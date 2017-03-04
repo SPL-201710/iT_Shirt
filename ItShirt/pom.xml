@@ -14,6 +14,5 @@
     <module>autenticacion-web</module>
     <module>catalogo-web</module>
     <module>personalizacion-web</module>
-    <module>eliminar</module>
   </modules>
 </project>
