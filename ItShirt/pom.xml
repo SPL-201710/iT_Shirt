@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>co.com.icustomize.itshirt</groupId>
+  <artifactId>ItShirt</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>ItShirt</name>
+  <modules>
+    <module>ItShirt-api</module>
+    <module>ItShirt-service</module>
+    <module>ItShirt-repository</module>
+    <module>administracion-web</module>
+    <module>autenticacion-web</module>
+    <module>catalogo-web</module>
+    <module>personalizacion-web</module>
+    <module>eliminar</module>
+  </modules>
+</project>
