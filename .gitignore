@@ -1,0 +1,9 @@
+files/Características core y opcional.pdf
+ItShirt/administracion-web/.gitignore
+ItShirt/autenticacion-web/.gitignore
+ItShirt/catalogo-web/.gitignore
+ItShirt/ItShirt-api/.gitignore
+ItShirt/ItShirt-repository/.gitignore
+ItShirt/ItShirt-service/.gitignore
+ItShirt/personalizacion-web/.gitignore
+ItShirt/personalizacion-web/.settings/org.eclipse.wst.validation.prefs
