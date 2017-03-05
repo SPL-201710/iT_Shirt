@@ -26,6 +26,22 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- Módulos It Shirt -->
+        <dependency>
+        	<groupId>co.com.icustomize.itshirt</groupId>
+        	<artifactId>ItShirt-api</artifactId>
+        	<version>0.1-SNAPSHOT</version>
+        	<scope>provided</scope>
+        </dependency>
+
+        <dependency>
+        	<groupId>co.com.icustomize.itshirt</groupId>
+        	<artifactId>ItShirt-service</artifactId>
+        	<version>0.1-SNAPSHOT</version>
+        	<scope>provided</scope>
+        </dependency>
+        
     </dependencies>
 
     <build>
