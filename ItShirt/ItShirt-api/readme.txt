@@ -1,2 +1,0 @@
-Proyecto que contiene enumeraciones, helpers, constantes, 
-utilidades y elementos comunes de toda la aplicación.
