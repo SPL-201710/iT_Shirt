@@ -20,8 +20,6 @@
     </properties>
     
     <dependencies>
-    
-    	<!-- Java -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -29,39 +27,46 @@
             <scope>provided</scope>
         </dependency>
         
-        <!-- Spring core & mvc -->
-        <dependency>
-        	<groupId>org.springframework</groupId>
-        	<artifactId>spring-core</artifactId>
-        	<version>4.0.3.RELEASE</version>
-        </dependency>
-
-        <dependency>
-        	<groupId>org.springframework</groupId>
-        	<artifactId>spring-webmvc</artifactId>
-        	<version>3.1.0.RELEASE</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.springframework</groupId>
-        	<artifactId>spring-web</artifactId>
-        	<version>3.1.0.RELEASE</version>
-        </dependency>
-        
-        <!-- Módulos It Shirt -->
-        <dependency>
-        	<groupId>co.com.icustomize.itshirt</groupId>
-        	<artifactId>ItShirt-api</artifactId>
-        	<version>0.1-SNAPSHOT</version>
-        	<scope>provided</scope>
-        </dependency>
-        
-        <dependency>
-        	<groupId>co.com.icustomize.itshirt</groupId>
-        	<artifactId>ItShirt-service</artifactId>
-        	<version>0.1-SNAPSHOT</version>
-        	<scope>provided</scope>
-        </dependency>
-        
+         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <version>4.3.7.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-web</artifactId>
+		    <version>4.3.7.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>4.3.7.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>bootstrap</artifactId>
+		    <version>3.3.7-1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery</artifactId>
+		    <version>2.2.4</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>webjars-locator</artifactId>
+		    <version>0.32</version>
+		</dependency>
+		
     </dependencies>
 
     <build>

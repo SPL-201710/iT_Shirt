@@ -20,11 +20,12 @@
     
     <dependencies>
 
-	    <dependency>
-	    	<groupId>co.com.icustomize.itshirt</groupId>
-	    	<artifactId>ItShirt-api</artifactId>
-	    	<version>0.1-SNAPSHOT</version>
-	    </dependency>
+
+<!-- 	    <dependency> -->
+<!-- 	    	<groupId>co.com.icustomize.itshirt</groupId> -->
+<!-- 	    	<artifactId>ItShirt-api</artifactId> -->
+<!-- 	    	<version>0.1-SNAPSHOT</version> -->
+<!-- 	    </dependency> -->
 	   
 	    <dependency>
 	    	<groupId>co.com.icustomize.itshirt</groupId>
@@ -33,38 +34,39 @@
 	    	<type>war</type>
 	    </dependency>
 
-	    <dependency>
-	    	<groupId>co.com.icustomize.itshirt</groupId>
-	    	<artifactId>catalogo-web</artifactId>
-	    	<version>0.1-SNAPSHOT</version>
-	    	<type>war</type>
-	    </dependency>
+<!-- 	    <dependency> -->
+<!-- 	    	<groupId>co.com.icustomize.itshirt</groupId> -->
+<!-- 	    	<artifactId>catalogo-web</artifactId> -->
+<!-- 	    	<version>0.1-SNAPSHOT</version> -->
+<!-- 	    	<type>war</type> -->
+<!-- 	    </dependency> -->
 
-	    <dependency>
-	    	<groupId>co.com.icustomize.itshirt</groupId>
-	    	<artifactId>autenticacion-web</artifactId>
-	    	<version>0.1-SNAPSHOT</version>
-	    	<type>war</type>
-	    </dependency>
+<!-- 	    <dependency> -->
+<!-- 	    	<groupId>co.com.icustomize.itshirt</groupId> -->
+<!-- 	    	<artifactId>autenticacion-web</artifactId> -->
+<!-- 	    	<version>0.1-SNAPSHOT</version> -->
+<!-- 	    	<type>war</type> -->
+<!-- 	    </dependency> -->
 
-	    <dependency>
-	    	<groupId>co.com.icustomize.itshirt</groupId>
-	    	<artifactId>personalizacion-web</artifactId>
-	    	<version>0.1-SNAPSHOT</version>
-	    	<type>war</type>
-	    </dependency>
+<!-- 	    <dependency> -->
+<!-- 	    	<groupId>co.com.icustomize.itshirt</groupId> -->
+<!-- 	    	<artifactId>personalizacion-web</artifactId> -->
+<!-- 	    	<version>0.1-SNAPSHOT</version> -->
+<!-- 	    	<type>war</type> -->
+<!-- 	    </dependency> -->
 	    
-	    <dependency>
-	    	<groupId>co.com.icustomize.itshirt</groupId>
-	    	<artifactId>ItShirt-repository</artifactId>
-	    	<version>0.1-SNAPSHOT</version>
-	    </dependency>
+<!-- 	    <dependency> -->
+<!-- 	    	<groupId>co.com.icustomize.itshirt</groupId> -->
+<!-- 	    	<artifactId>ItShirt-repository</artifactId> -->
+<!-- 	    	<version>0.1-SNAPSHOT</version> -->
+<!-- 	    </dependency> -->
 
-	    <dependency>
-	    	<groupId>co.com.icustomize.itshirt</groupId>
-	    	<artifactId>ItShirt-service</artifactId>
-	    	<version>0.1-SNAPSHOT</version>
-	    </dependency>
+<!-- 	    <dependency> -->
+<!-- 	    	<groupId>co.com.icustomize.itshirt</groupId> -->
+<!-- 	    	<artifactId>ItShirt-service</artifactId> -->
+<!-- 	    	<version>0.1-SNAPSHOT</version> -->
+<!-- 	    </dependency> -->
+
     </dependencies>
   
     <build>
