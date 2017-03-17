@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>co.com.icustomize.itshirt</groupId>
+  <artifactId>ItShirt</artifactId>
+  <version>0.1</version>
+  <packaging>pom</packaging>
+  <name>ItShirt</name>
+  
+  <modules>
+    <module>administracion-web</module>
+    <module>ItShirt-ear</module>
+  	<module>ItShirt-api</module>
+  	<module>ItShirt-repository</module>
+  	<module>ItShirt-service</module>
+    <module>autenticacion-web</module>
+    <module>catalogo-web</module>
+    <module>personalizacion-web</module>
+  </modules>
+  
+  <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>co.com.itshirt.admin</groupId>
+    		<artifactId>administracion-web</artifactId>
+            <version>0.1</version>
+            <type>war</type>
+         </dependency>
+         
+         <dependency>
+            <groupId>co.com.itshirt.catalogo</groupId>
+    		<artifactId>catalogo-web</artifactId>
+            <version>0.1</version>
+            <type>war</type>
+         </dependency>
+         
+         <dependency>
+            <groupId>co.com.itshirt.personalizacion</groupId>
+    		<artifactId>personalizacion-web</artifactId>
+            <version>0.1</version>
+            <type>war</type>
+         </dependency>
+         
+         <dependency>
+            <groupId>co.com.itshirt.autenticacion</groupId>
+    		<artifactId>autenticacion-web</artifactId>
+            <version>0.1</version>
+            <type>war</type>
+         </dependency>
+
+         <dependency>
+            <groupId>co.com.itshirt.api</groupId>
+    		<artifactId>ItShirt-api</artifactId>
+            <version>0.1</version>
+            <type>jar</type>
+         </dependency>
+         
+         <dependency>
+            <groupId>co.com.itshirt.service</groupId>
+    		<artifactId>ItShirt-service</artifactId>
+            <version>0.1</version>
+            <type>jar</type>
+         </dependency>
+         
+         <dependency>
+            <groupId>co.com.itshirt.repository</groupId>
+    		<artifactId>ItShirt-repository</artifactId>
+            <version>0.1</version>
+            <type>jar</type>
+         </dependency>
+
+         <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope> <!-- no se genera el jar, va a estar disponible por el contenedor -->
+         </dependency>
+         
+         <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+         
+         <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+		<dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+        
+        
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <version>4.3.7.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-context</artifactId>
+        	<version>4.3.7.RELEASE</version>
+      	</dependency>
+      	
+      	<dependency>
+    		<groupId>org.springframework</groupId>
+        	<artifactId>spring-beans</artifactId>
+        	<version>4.3.7.RELEASE</version>
+    	</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-web</artifactId>
+		    <version>4.3.7.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>4.3.7.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>bootstrap</artifactId>
+		    <version>3.3.7-1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery</artifactId>
+		    <version>2.2.4</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>webjars-locator</artifactId>
+		    <version>0.32</version>
+		</dependency>
+		
+      </dependencies>
+   </dependencyManagement>
+   
+  <build>
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>3.3</version>
+               <configuration>
+                  <source>1.7</source>
+                  <target>1.7</target>
+               </configuration>
+            </plugin>
+
+            <plugin>
+               <artifactId>maven-ejb-plugin</artifactId>
+               <version>2.5.1</version>
+               <configuration>
+                  <ejbVersion>3.1</ejbVersion>
+               </configuration>
+            </plugin>
+
+            <plugin>
+               <artifactId>maven-war-plugin</artifactId>
+               <version>2.6</version>
+               <configuration>
+                  <failOnMissingWebXml>false</failOnMissingWebXml>
+               </configuration>
+            </plugin>
+
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-ear-plugin</artifactId>
+               <version>2.10.1</version>
+               <configuration>
+                  <version>7</version>
+<!--                   Evitar error encontrar llamado de dependencia entre módulos Classnoutfoundexception -->
+                  <defaultLibBundleDir>lib</defaultLibBundleDir>
+                  <modules>
+                  	<jarModule>
+                        <groupId>co.com.itshirt.api</groupId>
+    					<artifactId>ItShirt-api</artifactId>
+                     </jarModule>
+                     <jarModule>
+                        <groupId>co.com.itshirt.service</groupId>
+    					<artifactId>ItShirt-service</artifactId>
+                     </jarModule>
+                     <jarModule>
+                        <groupId>co.com.itshirt.repository</groupId>
+  						<artifactId>ItShirt-repository</artifactId>
+                     </jarModule>
+                     <webModule>
+                        <groupId>co.com.itshirt.admin</groupId>
+    					<artifactId>administracion-web</artifactId>
+                        <contextRoot>/administracion-web</contextRoot>
+                     </webModule>
+                     <webModule>
+                        <groupId>co.com.itshirt.personalizacion</groupId>
+    					<artifactId>personalizacion-web</artifactId>
+                        <contextRoot>/personalizacion-web</contextRoot>
+                     </webModule>
+                     <webModule>
+                        <groupId>co.com.itshirt.autenticacion</groupId>
+    					<artifactId>autenticacion-web</artifactId>
+                        <contextRoot>/autenticacion-web</contextRoot>
+                     </webModule>
+                      <webModule>
+                        <groupId>co.com.itshirt.catalogo</groupId>
+    					<artifactId>catalogo-web</artifactId>
+                        <contextRoot>/catalogo-web</contextRoot>
+                     </webModule>
+                  </modules>
+                  <generateApplicationXml>true</generateApplicationXml>
+               </configuration>
+            </plugin>
+         </plugins>
+      </pluginManagement>
+   </build>
+   
+<!--    <profiles> -->
+<!--       <profile> -->
+<!--          <id>unpack</id> -->
+<!--          <build> -->
+<!--             <pluginManagement> -->
+<!--                <plugins> -->
+<!--                   <plugin> -->
+<!--                      <groupId>org.apache.maven.plugins</groupId> -->
+<!--                      <artifactId>maven-ear-plugin</artifactId> -->
+<!--                      <configuration> -->
+<!--                         <unpackTypes>war</unpackTypes> -->
+<!--                     </configuration> -->
+<!--                   </plugin> -->
+<!--                </plugins> -->
+<!--             </pluginManagement> -->
+<!--          </build> -->
+<!--       </profile> -->
+<!--    </profiles> -->
+   
+</project>

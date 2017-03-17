@@ -1,0 +1,1 @@
+Proyecto que se encarga del empaquetado y contiene los WAR y JAR.

@@ -1,0 +1,1 @@
+Proyecto que contiene las páginas de las vistas, recursos, y controladores asociadas a la administración de la aplicación.

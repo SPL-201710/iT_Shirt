@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>co.com.icustomize.itshirt</groupId>
+    <artifactId>ItShirt</artifactId>
+    <version>0.1</version>
+  </parent>
+  
+  <groupId>co.com.itshirt.service</groupId>
+  <artifactId>ItShirt-service</artifactId>
+  <version>0.1</version>
+  <name>ItShirt-service</name>
+  <url>http://maven.apache.org</url>
+  <packaging>jar</packaging>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
+  	
+  	<dependency>
+  		<groupId>co.com.itshirt.repository</groupId>
+  		<artifactId>ItShirt-repository</artifactId>
+  		<scope>provided</scope>
+  	</dependency>
+  	
+  	<dependency>
+  		<groupId>co.com.itshirt.api</groupId>
+  		<artifactId>ItShirt-api</artifactId>
+  		<scope>provided</scope>
+  	</dependency>
+  	
+   	<dependency>
+    	<groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+    </dependency>
+	<dependency>
+    	<groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+    </dependency>
+    
+<!-- 	<dependency> -->
+<!--     	<groupId>org.springframework</groupId> -->
+<!--         <artifactId>spring-dao</artifactId> -->
+<!--         <scope>provided</scope> -->
+<!--     </dependency> -->
+  </dependencies>
+</project>
