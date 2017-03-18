@@ -1,1 +1,0 @@
-Proyecto que contiene los controladores, vistas asociadas a el catalogo de productos. 
