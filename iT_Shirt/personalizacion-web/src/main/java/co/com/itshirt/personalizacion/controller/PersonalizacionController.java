@@ -1,18 +1,17 @@
-package co.com.itshirt.autenticacion.controller;
-
+package co.com.itshirt.personalizacion.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Controlador de inicio del módulo de autenticación.
+ * Controlador de inicio del módulo de personalizacion.
  * @author ja.picon
  *
  */
 @Controller
 @RequestMapping("/")
-public class AutenticacionController {
+public class PersonalizacionController {
 	
 	/**
 	 * Método inicial.
