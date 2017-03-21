@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <!-- Master -->
+    <definition name="master.page" template="/pages/template/master.jsp">
+    	<put-attribute name="title" value="" />
+        <put-attribute name="header" value="/pages/template/header.jsp"/>
+        <put-attribute name="footer" value="/pages/template/footer.jsp"/>
+    </definition>
+    <definition name="master.login" template="/pages/template/masterLogin.jsp">
+    	<put-attribute name="title" value="Ingreso al sistema" />
+    	<put-attribute name="header" value=""/>
+        <put-attribute name="footer" value=""/>
+    	<put-attribute name="body" value="/pages/login.jsp"/>
+    </definition>
+
+
+	<definition name="home" extends="master.page">
+		<put-attribute name="title" value="Bienvenida" />
+        <put-attribute name="body" value="/pages/home.jsp"/>
+    </definition>
+
+    <definition name="perfil/perfil" extends="master.page">
+    	<put-attribute name="title" value="Perfil usuario" />
+        <put-attribute name="body" value="/pages/perfil/perfil.jsp"/>
+    </definition>
+    
+    <definition name="login" extends="master.login">
+    	
+    </definition>
+
+</tiles-definitions>

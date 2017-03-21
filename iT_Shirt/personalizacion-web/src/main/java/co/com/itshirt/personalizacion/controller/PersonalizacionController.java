@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  */
 @Controller
-@RequestMapping("/")
 public class PersonalizacionController {
 	
 	/**
 	 * Método inicial.
 	 * @return Nombre de la página a redireccionar.
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "personalizacion"}, method = RequestMethod.GET)
 	public String home(ModelMap model) {
 	    return "home";
    }

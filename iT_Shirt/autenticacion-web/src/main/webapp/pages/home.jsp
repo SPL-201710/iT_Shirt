@@ -1,94 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
-	<!-- Website CSS style -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/main.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-	<!-- Website Font style -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-	<!-- Google Fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-</head>
-<body>
-		<div class="container">
-			<div class="row main">
-				<div class="panel-heading">
-	               <div class="panel-title text-center">
-	               		<h1 class="title">Bienvenidos a autenticacion-web</h1>
-	               		<hr />
-	               	</div>
-	            </div> 
-				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="#">
-						
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Your Name</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Your Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="username" class="cols-sm-2 control-label">Username</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group ">
-							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-						</div>
-						<div class="login-register">
-				            <a href="index.php">Login</a>
-				         </div>
-					</form>
-				</div>
-			</div>
-		</div>
-		
-		<script src="webjars/jquery/2.2.4/jquery.min.js"></script>
-		<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-	</body>
-</html>
+<div class="container-fluid">
+  
+  <h1>Bienvenido!</h1>
+  <p class="lead">Le damos la bienvenida al sistema de personalización y compras de camisetas <a href="#"><strong>iT_Shirt</strong></a>.</p>
+  
+  <div class="row-fluid">
+    <div class="span10">
+    	<div class="well">
+    	En el menú izquierdo contará con el acceso a las diferentes funcionalidades que tiene disponible sobre el sistema.
+        <br><br>
+        	<div class="text-center">
+        <button class="btn btn-primary btn-large">Ver Ayuda</button>
+        </div>
+    	</div>
+    </div>
+    <div class="span2">
+      	<!--<div id="carbonads-container pull-right"><div class="carbonad"><div id="azcarbon"></div></div></div>
+ -->   </div>
+  </div>
+  <hr>
+  <h4>Recientes estampas</h4>
+  <div id="posts" class="row-fluid">
+  	<div class="span3">
+      <div class="well">
+        <h4>
+          <a href="/60084" target="_parent">Estampa animales</a>
+        </h4>
+        <a href="/60084" target="_parent"><img class="thumbnail" src="//www.screenshot-service.com/8d2331e97ed3407f341daca4cd11d4ed"></a>
+        <div class="info">
+          <span class="badge">193 <i class="icon-chevron-up"></i></span>
+          <span class="badge">34 <i class="icon-heart"></i></span>
+        </div>
+      </div>
+  	</div>
+    
+    <div class="span3">
+      <div class="well">
+        <h4>
+          <a href="/65566" title="Bootstrap 3.0 RC full page example" target="_parent">Estampa caricatura</a>
+        </h4>
+        <a href="/65566" target="_parent"><img class="thumbnail" src="//www.screenshot-service.com/b7996363ad91743f2a5deba19c09c7b8"></a>
+        <div class="info">
+          <span class="badge">49 <i class="icon-chevron-up"></i></span>
+          <span class="badge">2 <i class="icon-heart"></i></span>
+        </div>
+      </div>
+  	</div>
+    
+  </div>
+</div>
