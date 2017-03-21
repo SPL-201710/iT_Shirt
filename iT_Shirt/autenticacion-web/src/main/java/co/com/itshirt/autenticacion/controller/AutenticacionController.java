@@ -29,7 +29,6 @@ import co.com.itshirt.service.UsuarioServicio;
  */
 @Controller
 @SessionAttributes("resultadoAutenticacion")
-//@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS )
 public class AutenticacionController implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -51,9 +50,6 @@ public class AutenticacionController implements Serializable {
 		System.out.println("Usuario aut: " + login.getUsuario());
 		try {
 			this.resultadoAutenticacion = this.usuarioServicio.autenticar(login);
-			model.addAttribute("resultadoAutenticacion", this.resultadoAutenticacion); //TODO Pruebas para ver como se pasan atributos de un lado a otro.
-			session.setAttribute("resultadoAutenticacion", this.resultadoAutenticacion);
-//			status.setComplete();
 			return "redirect:/home";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,11 +63,6 @@ public class AutenticacionController implements Serializable {
 	 */
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(ModelMap model, HttpSession session,SessionStatus status) {
-//		ResultadoAutenticacionDTO resultadoAutenticacion = (ResultadoAutenticacionDTO) model.get("resultadoAutenticacion");
-//		System.out.println("User aut enviado: "+resultadoAutenticacion.getUsuario());
-		status.setComplete();
-		System.out.println("User aut enviado: "+model.containsAttribute("resultadoAutenticacion"));
-		System.out.println("session: " + session.getAttribute("resultadoAutenticacion"));
 		return "home";
 	}
 
