@@ -37,4 +37,12 @@ public class CatalogoController implements Serializable{
 	    return "home";
    }
 	
+	/**
+	 * Método inicial.
+	 * @return Nombre de la página a redireccionar.
+	 */
+	@RequestMapping(value = {"/", "cat-web"}, method = RequestMethod.GET)
+	public String verCatWeb(ModelMap model, HttpSession session) {
+	    return "catweb";
+   }
 }
