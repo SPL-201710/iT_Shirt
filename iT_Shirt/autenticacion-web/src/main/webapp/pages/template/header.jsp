@@ -42,7 +42,7 @@
 					Perfil de usuario </a>
 				</li>
 				<li>
-					<a href="/catalogo-web/catalogo/">
+					<a href="${contextPath}/verCatalogo/">
 					<i class="glyphicon glyphicon-search"></i>
 					Catálogo </a>
 				</li>
