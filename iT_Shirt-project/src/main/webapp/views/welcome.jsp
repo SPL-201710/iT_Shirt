@@ -4,7 +4,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<div class="container">
+<div class="container-fluid">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">

@@ -25,10 +25,10 @@ public class UserController {
 	 @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
 	    public String welcome(Model model) {
 	    	final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    	if (authentication.isAuthenticated()) {
+	    	if (!authentication.getName().equals("anonymousUser")) {
 	    		return "welcome";
 	    	} else {
-	    		return "login";
+	    		return "home";
 	    	}
 	    }
 
@@ -55,6 +55,7 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
+    	System.err.println("Ingreso login");
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
