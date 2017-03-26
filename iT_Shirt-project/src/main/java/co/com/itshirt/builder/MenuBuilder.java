@@ -33,7 +33,7 @@ public class MenuBuilder {
 		MENUS_COMPRADOR = new ArrayList<MenuDTO>();
 		MENUS_COMPRADOR.add(new MenuDTO("Inicio", null, "/welcome"));
 		MENUS_COMPRADOR.add(new MenuDTO("Perfil de usuario", null, "/perfil"));
-		MENUS_COMPRADOR.add(new MenuDTO("Catalogo", null, "/verCatalogo"));
+		MENUS_COMPRADOR.add(new MenuDTO("Catalogo", null, "/catalogo"));
 		MENUS_COMPRADOR.add(new MenuDTO("Persinalizar camiseta", null, "/personalizar"));
 		MENUS_COMPRADOR.add(new MenuDTO("Carrito de compras", null, "/carrito"));
 		MENUS_COMPRADOR.add(new MenuDTO("Compras realizadas", null, "/historialCompras"));
@@ -43,9 +43,9 @@ public class MenuBuilder {
 		MENUS_ARTISTA = new ArrayList<MenuDTO>();
 		MENUS_ARTISTA.add(new MenuDTO("Inicio", null, "/welcome"));
 		MENUS_ARTISTA.add(new MenuDTO("Perfil de usuario", null, "/perfil"));
-		MENUS_ARTISTA.add(new MenuDTO("Catalogo", null, "/verCatalogo"));
+		MENUS_ARTISTA.add(new MenuDTO("Catalogo", null, "/catalogo"));
 		MENUS_ARTISTA.add(new MenuDTO("Crear estampa", null, "/crearEstampa"));
-		MENUS_ARTISTA.add(new MenuDTO("Ver", null, "/carrito"));
+		MENUS_ARTISTA.add(new MenuDTO("Ver carrito", null, "/carrito"));
 		MENUS_ARTISTA.add(new MenuDTO("Cambiar contraseña", null, "/cambiarCredenciales"));
 		MENUS_ARTISTA.add(new MenuDTO("Ayuda", null, "/ayuda"));
 	}
