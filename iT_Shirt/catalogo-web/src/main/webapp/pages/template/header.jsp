@@ -15,7 +15,7 @@
 		<!-- SIDEBAR USER TITLE -->
 		<div class="profile-usertitle">
 			<div class="profile-usertitle-name">
-				${pageContext.request.userPrincipal.name}
+				Pepito Perez
 			</div>
 			<div class="profile-usertitle-job">
 				Artista
@@ -42,7 +42,7 @@
 					Perfil de usuario </a>
 				</li>
 				<li>
-					<a href="${contextPath}/catalogo/">
+					<a href="${contextPath}/verCatalogo/">
 					<i class="glyphicon glyphicon-search"></i>
 					Catálogo </a>
 				</li>

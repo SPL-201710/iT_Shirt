@@ -2,19 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
 <!doctype html>
 <html lang="pt-BR" id="ng-app" ng-app="">
 <head>
         <title><tiles:getAsString name="title" /></title>
-        <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/4-col-portfolio.css">
-    	<link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    	<!-- /container -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-		<script src="${contextPath}/resources/js/angular.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+      	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/main.css">
+      	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/js/menu.js">
+        <script src="<%=request.getContextPath()%>/webjars/jquery/2.2.4/jquery.min.js"></script>
+		<script src="<%=request.getContextPath()%>/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+		<script src="<%=request.getContextPath()%>/webjars/angularjs/1.6.2/angular.min.js"></script>
     </head>
     <body>
         <div class="container">
