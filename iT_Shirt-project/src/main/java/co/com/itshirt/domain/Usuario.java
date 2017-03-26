@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "usua_usuario")
@@ -36,14 +37,11 @@ public class Usuario {
 	@Column(name = "usua_telefono")
 	private String telefono;
 	
-//	@Column(name = "rol_id")
-	private Long idRol;
-	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "rol_id")
     private Rol rol;
 	
-	
+	@Transient
 	private String passwordConfirm; //TODO Es temporal.
 	
 	
@@ -66,7 +64,7 @@ public class Usuario {
 		this.apellidos = user.apellidos;
 		this.email = user.email;
 		this.telefono = user.telefono;
-		this.idRol = user.idRol;
+		this.rol = user.getRol();
 	}
 
 	public Long getIdUsuario() {
@@ -141,21 +139,16 @@ public class Usuario {
 		this.rol = rol;
 	}
 
-	public Long getIdRol() {
-		return idRol;
-	}
-
-
-	public void setIdRol(Long idRol) {
-		this.idRol = idRol;
-	}
-
 	public String getPasswordConfirm() {
 		return passwordConfirm;
 	}
 
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
+	}
+	
+	public String getNombresCompletos() {
+		return this.nombres + " " +  this.apellidos;
 	}
 	
 }

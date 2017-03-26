@@ -1,5 +1,7 @@
 package co.com.itshirt.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import co.com.itshirt.builder.MenuBuilder;
 import co.com.itshirt.domain.Usuario;
+import co.com.itshirt.enums.EnumRol;
 import co.com.itshirt.security.CustomUserDetails;
 
 @Controller
@@ -24,11 +28,14 @@ public class UserController {
 //    private UserValidator userValidator;
 	
 	 @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-	    public String welcome(Model model) {
+	    public String welcome(Model model, HttpSession session) {
 	    	final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    	if (!authentication.getName().equals("anonymousUser")) {
 	    		CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
-		    	System.err.println("Usuario logueado: " +usuario.getNombres());
+	    		final String rol = usuario.getRol().getNombre();
+	    		session.setAttribute("nombreCompleto", usuario.getNombresCompletos());
+	    		session.setAttribute("rol", rol);
+	    		session.setAttribute("menus", MenuBuilder.obtenerMenusPorRol(usuario.getRol().getNombre()));
 	    		return "welcome";
 	    	} else {
 	    		return "home";

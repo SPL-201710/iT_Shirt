@@ -11,7 +11,7 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Bienvenido ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <h2>Sistema iT_Shirt | <a onclick="document.forms['logoutForm'].submit()">Salir</a></h2>
 
     
     <div class="container-fluid">
