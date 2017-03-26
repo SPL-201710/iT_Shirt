@@ -3,6 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<br>
+<br>
 
 <c:if test="${pageContext.request.userPrincipal == null}">
 	<div class="container">
