@@ -1,29 +1,9 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Create an account</title>
-
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -31,13 +11,63 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <h2>Bienvenido ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
 
-    </c:if>
     
-    <br>
-    <br>
+    <div class="container-fluid">
+  
+  <h1>Bienvenido!</h1>
+  <p class="lead">Le damos la bienvenida al sistema de personalización y compras de camisetas <a href="#"><strong>iT_Shirt</strong></a>.</p>
+  
+  <div class="row-fluid">
+    <div class="span10">
+    	<div class="well">
+    	En el menú izquierdo contará con el acceso a las diferentes funcionalidades que tiene disponible sobre el sistema.
+        <br><br>
+        	<div class="text-center">
+        <button class="btn btn-primary btn-large">Ver Ayuda</button>
+        </div>
+    	</div>
+    </div>
+    <div class="span2">
+      	<!--<div id="carbonads-container pull-right"><div class="carbonad"><div id="azcarbon"></div></div></div>
+ -->   </div>
+  </div>
+  <hr>
+  <h4>Recientes estampas</h4>
+  <div id="posts" class="row-fluid">
+  	<div class="span3">
+      <div class="well">
+        <h4>
+          <a href="/60084" target="_parent">Estampa animales</a>
+        </h4>
+        <a href="/60084" target="_parent"><img class="thumbnail" src="//www.screenshot-service.com/8d2331e97ed3407f341daca4cd11d4ed"></a>
+        <div class="info">
+          <span class="badge">193 <i class="icon-chevron-up"></i></span>
+          <span class="badge">34 <i class="icon-heart"></i></span>
+        </div>
+      </div>
+  	</div>
+    
+    <div class="span3">
+      <div class="well">
+        <h4>
+          <a href="/65566" title="Bootstrap 3.0 RC full page example" target="_parent">Estampa caricatura</a>
+        </h4>
+        <a href="/65566" target="_parent"><img class="thumbnail" src="//www.screenshot-service.com/b7996363ad91743f2a5deba19c09c7b8"></a>
+        <div class="info">
+          <span class="badge">49 <i class="icon-chevron-up"></i></span>
+          <span class="badge">2 <i class="icon-heart"></i></span>
+        </div>
+      </div>
+  	</div>
+    
+  </div>
+</div>
+    
+    </c:if>
 
+	<c:if test="${pageContext.request.userPrincipal == null}">
 		<div class="container">
 			<div class="jumbotron">
 				<h1><a>iT_Shirt</a></h1>
@@ -53,10 +83,6 @@
 			</c:if>
 		</div>
 		<!--container close-->
+	</c:if>
 
 	</div>
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-</body>
-</html>
