@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import co.com.itshirt.domain.Usuario;
+import co.com.itshirt.security.CustomUserDetails;
 
 @Controller
 public class UserController {
@@ -25,10 +26,12 @@ public class UserController {
 	 @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
 	    public String welcome(Model model) {
 	    	final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    	if (authentication.isAuthenticated()) {
+	    	if (!authentication.getName().equals("anonymousUser")) {
+	    		CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+		    	System.err.println("Usuario logueado: " +usuario.getNombres());
 	    		return "welcome";
 	    	} else {
-	    		return "login";
+	    		return "home";
 	    	}
 	    }
 
@@ -55,12 +58,12 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
+        if (error != null) {
+        	model.addAttribute("error", "Usuario y contraseña invalida.");
+        }
+        if (logout != null) {
+        	model.addAttribute("message", "Ha salido del sistema satisfactoriamente.");
+        }
         return "login";
     }
 
