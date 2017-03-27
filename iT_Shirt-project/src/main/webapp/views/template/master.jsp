@@ -29,5 +29,11 @@
             </div>
         </div>
         <tiles:insertAttribute name="footer" />
+        
+        <script>
+			$(document).ready(function(){
+			    $('[data-toggle="tooltip"]').tooltip();   
+			});
+		</script>
     </body>
 </html>
