@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public abstract class FileUtils {
 	
-	public final static String RUTA_ESTAMPAS = "/estampas/";
+	public final static String RUTA_ESTAMPAS = "/resources/estampas/";
 	
 	/**
 	 * Guardado de la imagen de la estampa.
@@ -31,10 +31,7 @@ public abstract class FileUtils {
                 {
                     new File(realPathtoUploads).mkdir();
                 }
-                System.err.println("realPathtoUploads = {}" + realPathtoUploads);
-                String[] fileFrags = file.getOriginalFilename().split("\\.");
-                String extension = fileFrags[fileFrags.length-1];
-                String filePath = realPathtoUploads + "/"+ idEstampa + "." + extension;
+                String filePath = realPathtoUploads + "/"+ idEstampa + "." + obtenerExtension(file);
                 File dest = new File(filePath);
                 file.transferTo(dest);
             } catch (Exception e) {
@@ -44,16 +41,12 @@ public abstract class FileUtils {
 	}
 	
 	/**
-	 * Guardado de la imagen de la estampa.
-	 * @param file
-	 * @param idUsuario
-	 * @param idEstampa
-	 * @param request
+	 * Obtiene la extensión de un archivo multipart.
 	 */
-	public static final File buscarArchivoEstampa(Long idUsuario, Long idEstampa){
-		byte[] reportBytes = null;
-	    File result = new File(RUTA_ESTAMPAS + "/" + idUsuario + "/" +idEstampa); //TODO Completarrrrrrr 
-	    return result;
+	public static final String obtenerExtension(MultipartFile file) {
+		 String[] fileFrags = file.getOriginalFilename().split("\\.");
+         String extension = fileFrags[fileFrags.length-1];
+         return extension;
 	}
 
 }

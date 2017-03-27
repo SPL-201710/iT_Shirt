@@ -18,6 +18,9 @@ public class Rol {
 	@Column(name = "rol_nombre")
 	private String nombre;
 	
+	@Column(name = "rol_sigla")
+	private String sigla;
+	
 	/**
 	 * Constructor vacío por defecto.
 	 */
@@ -39,6 +42,14 @@ public class Rol {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 	
 }
