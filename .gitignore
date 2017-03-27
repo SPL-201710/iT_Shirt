@@ -7,7 +7,10 @@ ItShirt/ItShirt-repository/.gitignore
 ItShirt/ItShirt-service/.gitignore
 ItShirt/personalizacion-web/.gitignore
 ItShirt/personalizacion-web/.settings/org.eclipse.wst.validation.prefs
+iT_Shirt-project\src\main\webapp\estampas
 .classpath
 .project
 .settings/
 target/
+iT_Shirt-project/src/main/webapp/estampas/
+iT_Shirt-project/src/main/webapp/resources/estampas/
