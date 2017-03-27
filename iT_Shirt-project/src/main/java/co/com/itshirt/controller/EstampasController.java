@@ -85,6 +85,9 @@ public class EstampasController {
 		estampaNueva.setUrl(creaEst.getFile().getOriginalFilename());
 		estampaNueva = this.estampaRepository.save(estampaNueva); //Para recuperar el ID
 		FileUtils.guardarArchivoEstampa(creaEst.getFile(), usuario.getIdUsuario(), estampaNueva.getIdEstampa(), request);
+//		final File fileRec = FileUtils.buscarArchivoEstampa(usuario.getIdUsuario(), estampaNueva.getIdEstampa());
+//		System.err.println(fileRec.getAbsolutePath());
+//		System.err.println(fileRec.exists());
 		return "redirect:/catalogo";
 	}
 	

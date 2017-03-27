@@ -34,6 +34,9 @@ public class Estampa {
 	@Column(name = "esta_estado")
 	private String estado;
 	
+	@Column(name = "esta_extension")
+	private String extension;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tema_id")
     private Tema tema;
@@ -113,4 +116,12 @@ public class Estampa {
 		this.artista = artista;
 	}
 
+	public String getExtension() {
+		return extension;
+	}
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+	
 }

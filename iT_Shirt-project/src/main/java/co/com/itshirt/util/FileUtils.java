@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public abstract class FileUtils {
 	
-	public final static String RUTA_ESTAMPAS = "/estampas/";
+	public final static String RUTA_ESTAMPAS = "/resources/estampas/";
 	
 	/**
 	 * Guardado de la imagen de la estampa.
@@ -41,19 +41,6 @@ public abstract class FileUtils {
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	/**
-	 * Guardado de la imagen de la estampa.
-	 * @param file
-	 * @param idUsuario
-	 * @param idEstampa
-	 * @param request
-	 */
-	public static final File buscarArchivoEstampa(Long idUsuario, Long idEstampa){
-		byte[] reportBytes = null;
-	    File result = new File(RUTA_ESTAMPAS + "/" + idUsuario + "/" +idEstampa); //TODO Completarrrrrrr 
-	    return result;
 	}
 
 }
