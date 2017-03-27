@@ -25,6 +25,7 @@ public class MenuBuilder {
 		//Configuración menus administrador.
 		MENUS_ADMIN = new ArrayList<MenuDTO>();
 		MENUS_ADMIN.add(new MenuDTO("Inicio", null, "/welcome"));
+		MENUS_ADMIN.add(new MenuDTO("Administrar Camisetas", null, "/camisetas/catalogo"));
 		MENUS_ADMIN.add(new MenuDTO("Administrar Usuarios", null, "/admin/usuarios"));
 		MENUS_ADMIN.add(new MenuDTO("Administrar Temas", null, "/admin/temas"));
 		MENUS_ADMIN.add(new MenuDTO("Administrar Estampas", null, "/admin/estampas"));

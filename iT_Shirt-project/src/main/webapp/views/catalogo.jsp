@@ -6,7 +6,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <div class="container-fluid">
-	<h1 class="page-header">Catalogo de Estampas</h1>
+	<h1 class="page-header">Catálogo de Estampas</h1>
 	<div class="col-lg-12">
 		
 		<div class="btn-group pull-right" style="margin-bottom: 15px">
