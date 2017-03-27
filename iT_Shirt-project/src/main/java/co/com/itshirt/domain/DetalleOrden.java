@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "orde_detalleordencamiseta")
-public class DetalleOrdenCompraCamiseta {
+@Table(name = "orde_detalleorden")
+public class DetalleOrden {
 	
 	@Id
 	@GeneratedValue
@@ -48,7 +48,7 @@ public class DetalleOrdenCompraCamiseta {
 	/**
 	 * Constructor vacío por defecto.
 	 */
-	public DetalleOrdenCompraCamiseta() {
+	public DetalleOrden() {
 		super();
 	}
 
