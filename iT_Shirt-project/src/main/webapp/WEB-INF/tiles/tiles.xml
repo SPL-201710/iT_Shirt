@@ -44,5 +44,10 @@
 		<put-attribute name="title" value="Catalogo" />
         <put-attribute name="body" value="/views/catalogo.jsp"/>
     </definition>
+    
+     <definition name="estampa/creacionEstampa" extends="master.page">
+		<put-attribute name="title" value="Creación estampa" />
+        <put-attribute name="body" value="/views/estampa/creacionEstampa.jsp"/>
+    </definition>
 
 </tiles-definitions>

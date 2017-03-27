@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import antlr.collections.List;
 import co.com.itshirt.domain.Tema;
-import co.com.itshirt.repository.TemaRepository;
+import co.com.itshirt.domain.TemaRepository;
 
 @Controller
 public class TemaController {
