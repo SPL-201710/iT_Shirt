@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.com.itshirt.domain.Estampa;
-import co.com.itshirt.domain.EstampaRepository;
 import co.com.itshirt.domain.Tema;
-import co.com.itshirt.domain.TemaRepository;
 import co.com.itshirt.dto.CreacionEstampaDTO;
 import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.enums.EnumEstadoEstampa;
 import co.com.itshirt.enums.EnumRol;
+import co.com.itshirt.repository.EstampaRepository;
+import co.com.itshirt.repository.TemaRepository;
 import co.com.itshirt.security.CustomUserDetails;
 import co.com.itshirt.util.FileUtils;
 
@@ -76,7 +76,6 @@ public class EstampasController {
 	public String addEstampa(ModelMap model, HttpSession session) {
 		final Iterable<Tema> temas = this.temaRepository.findAll();
 		Map<Long,String> mapTemas = new LinkedHashMap<Long,String>(); //Para leerlo de <form:options> toca así.
-		System.err.println("temas: " +temas);
 		for (Tema tema : temas) {
 			mapTemas.put(tema.getIdTema(), tema.getNombre());
 		}

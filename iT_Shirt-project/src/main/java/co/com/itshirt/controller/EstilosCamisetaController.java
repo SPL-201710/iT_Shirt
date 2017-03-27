@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.EstiloCamiseta;
-import co.com.itshirt.domain.EstiloCamisetaRepository;
 import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.dto.EstiloCamisetaDTO;
 import co.com.itshirt.enums.EnumEstilosCamiseta;
+import co.com.itshirt.repository.EstiloCamisetaRepository;
 
 /**
  * Funcionalidades de las camisetas.
