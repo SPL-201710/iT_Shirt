@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h1><a>iT_Shirt</a></h1>
-			<p> Bienvenido al sistema de personalización y compras de camisetas</p>
+			<p> Bienvenido al sistema de personalización y compras de camisetas.</p>
 		</div>
 		<c:if test="${pageContext.request.userPrincipal == null}">
 		<div style="margin-top: 10px" class="form-group text-center">

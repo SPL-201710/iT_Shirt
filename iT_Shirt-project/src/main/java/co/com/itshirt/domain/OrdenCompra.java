@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "orde_orden")
@@ -17,7 +19,8 @@ public class OrdenCompra {
 	@Column(name = "orde_id")
 	private Long idOrdenCompra;
 	
-	@Column(name = "orde_fecha")
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "orde_fecha", insertable = true, updatable = true, nullable = false)
 	private Date fecha;
 	
 	@Column(name = "orde_estado")
