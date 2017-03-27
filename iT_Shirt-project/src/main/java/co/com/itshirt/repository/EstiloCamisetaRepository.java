@@ -1,7 +1,9 @@
-package co.com.itshirt.domain;
+package co.com.itshirt.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import co.com.itshirt.domain.EstiloCamiseta;
 
 /**
  * Repositorio acceso a datos Estilos de camiseta.
