@@ -18,6 +18,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.EstampaRepository;
@@ -88,4 +89,15 @@ public class EstampasController {
 		return "redirect:/catalogo";
 	}
 	
+	/**
+	 * Se encarga de cargar la pagina de detalle de la estampa
+	 */
+	@RequestMapping(value="/detalleEstampa", method = RequestMethod.GET)
+	public String detalleEstampa(@RequestParam(value="es", required=true) Long es, Model model){
+		Estampa est = estampaRepository.findOne(es);
+		System.out.println(es);
+		System.out.println(est.getIdEstampa());
+		model.addAttribute("estampa",est);
+		return "estampa/detalleEstampa";
+	}
 }

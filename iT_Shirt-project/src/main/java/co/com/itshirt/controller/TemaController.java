@@ -31,6 +31,7 @@ import co.com.itshirt.domain.TemaRepository;
 @Controller    // This means that this class is a Controller
 public class TemaController {
 	
+	@Autowired
 	private TemaRepository temaRepository;
 	
 	
