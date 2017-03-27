@@ -74,5 +74,20 @@
 		<put-attribute name="title" value="Detalle camiseta" />
         <put-attribute name="body" value="/views/camiseta/detalleEstiloCamiseta.jsp"/>
     </definition>
+    
+    <definition name="usuario/listadoUsuarios" extends="master.page">
+		<put-attribute name="title" value="Administración de Usuarios" />
+        <put-attribute name="body" value="/views/usuario/listadoUsuarios.jsp"/>
+    </definition>
+    
+    <definition name="tema/listadoTemas" extends="master.page">
+		<put-attribute name="title" value="Administración de Temas" />
+        <put-attribute name="body" value="/views/tema/listadoTemas.jsp"/>
+    </definition>
+    
+    <definition name="reporte/reportes" extends="master.page">
+		<put-attribute name="title" value="Reportes" />
+        <put-attribute name="body" value="/views/reporte/reportes.jsp"/>
+    </definition>
 
 </tiles-definitions>
