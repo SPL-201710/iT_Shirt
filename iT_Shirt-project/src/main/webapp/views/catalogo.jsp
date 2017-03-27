@@ -34,7 +34,7 @@
 	                </a>
 	                <label></label>
 	                <c:choose>
-		                <c:when test="${user.nombre == 'Comprador'}">
+		                <c:when test="${roluser.nombre == 'Comprador'}">
 						    <a href="">Seleccionar</a>
 						</c:when>
 					</c:choose>

@@ -64,7 +64,7 @@ public class EstampasController {
     		}
     	}
     	model.addAttribute("estampas", estampas);
-    	model.addAttribute("user", usuario.getRol());
+    	model.addAttribute("roluser", usuario.getRol());
     	System.out.println("rol " + usuario.getRol());
 		return "catalogo";
 	}
