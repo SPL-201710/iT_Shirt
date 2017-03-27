@@ -8,7 +8,7 @@ package co.com.itshirt.enums;
 public enum EnumRol {
 	
 	ADMINISTRADOR ("ADMIN", "Administrador"),
-	ARTISTA ("ARTI", "Artista"),
+	ARTISTA ("ARTIS", "Artista"),
 	COMPRADOR ("COMPR", "Comprador"),
 	;
 	
