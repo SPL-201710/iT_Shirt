@@ -43,7 +43,7 @@ public class MenuBuilder {
 		MENUS_ARTISTA = new ArrayList<MenuDTO>();
 		MENUS_ARTISTA.add(new MenuDTO("Inicio", null, "/welcome"));
 		MENUS_ARTISTA.add(new MenuDTO("Perfil de usuario", null, "/perfil"));
-		MENUS_ARTISTA.add(new MenuDTO("Catalogo", null, "/verCatalogo"));
+		MENUS_ARTISTA.add(new MenuDTO("Catalogo", null, "/catalogo"));
 		MENUS_ARTISTA.add(new MenuDTO("Crear estampa", null, "/crearEstampa"));
 		MENUS_ARTISTA.add(new MenuDTO("Ver", null, "/carrito"));
 		MENUS_ARTISTA.add(new MenuDTO("Cambiar contraseña", null, "/cambiarCredenciales"));

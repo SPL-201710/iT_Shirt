@@ -24,7 +24,7 @@ import co.com.itshirt.api.util.StringUtils;
 public class TemaController {
 	
 	@RequestMapping("/temas")
-	public JsonArray temas()
+	public List<Tema> temas()
 	{
 		return Json.createArrayBuilder()
 				.add(tema("Animales",1))
