@@ -90,7 +90,6 @@ public class EstampasController {
 	@RequestMapping(value = "/crearEstampa", method = RequestMethod.POST)
 	public String checkCrearEstampa(@Valid CreacionEstampaDTO creacionEstampa, BindingResult bindingResult, Model model, HttpServletRequest request) {
 		if (bindingResult.hasErrors()) {
-			System.err.println(bindingResult.getFieldErrors());
 			model.addAttribute("error", "Por favor, llene los campos obligatorios.");
 			model.addAttribute("estampaForm", creacionEstampa);
 			return "estampa/creacionEstampa";
