@@ -26,7 +26,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.com.itshirt.domain.Tema;
-import co.com.itshirt.repository.TemaRepository;
+import co.com.itshirt.domain.TemaRepository;
 
 @Controller    // This means that this class is a Controller
 public class TemaController {
