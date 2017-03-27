@@ -29,9 +29,15 @@
         	
 	        	<div class="col-md-4 portfolio-item">
 	                <a href="${contextPath}/detalleEstampa/?es=${e.idEstampa}">
-	                    <img class="img-responsive" data-toggle="tooltip" data-placement="right" style="max-width:200px" 
+	                    <img class="img-responsive" data-toggle="tooltip" data-placement="right" style="width:200px; height:160px" 
 	                    	title="${e.nombreCorto}" src="/resources/estampas/${e.source}" alt="${e.nombreCorto}">
 	                </a>
+	                <label></label>
+	                <c:choose>
+		                <c:when test="${user.nombre == 'Comprador'}">
+						    <a href="">Seleccionar</a>
+						</c:when>
+					</c:choose>
 	            </div>
         	
         	</c:forEach>
