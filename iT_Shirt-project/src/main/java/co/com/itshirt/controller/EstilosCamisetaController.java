@@ -91,5 +91,21 @@ public class EstilosCamisetaController {
 		return "camiseta/detalleEstiloCamiseta";
 	}
 	
+	/**
+	 * Ver todo el catalogo de estampas.
+	 */
+	@RequestMapping(value="seleccionCamisetas", method = RequestMethod.GET)
+	public String seleccionCamisetas(ModelMap model, HttpSession session) {
+		List<EstiloCamisetaDTO> estilos = new ArrayList<EstiloCamisetaDTO>();
+    	Iterable<EstiloCamiseta> lstEntities = this.estiloCamisetaRepository.findAll();
+    	if (lstEntities != null) {
+    		for (final EstiloCamiseta estiloCamiseta : lstEntities) {
+    			estilos.add(new EstiloCamisetaDTO(estiloCamiseta));
+    		}
+    	}
+    	model.addAttribute("camisetas", estilos);
+		return "camiseta/catalogoCamisetas";
+	}
+	
 	
 }
