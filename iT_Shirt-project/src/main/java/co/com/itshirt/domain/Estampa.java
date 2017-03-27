@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 public class Estampa {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "esta_id")
 	private Long idEstampa;
 	
@@ -32,6 +33,9 @@ public class Estampa {
 	
 	@Column(name = "esta_estado")
 	private String estado;
+	
+	@Column(name = "esta_extension")
+	private String extension;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tema_id")
@@ -120,4 +124,12 @@ public class Estampa {
 		this.artista = artista;
 	}
 
+	public String getExtension() {
+		return extension;
+	}
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+	
 }

@@ -6,6 +6,13 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <div class="col-md-3">
+
+	 <c:if test="${pageContext.request.userPrincipal.name != null}">
+        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+     </c:if>
+     
 	<div class="profile-sidebar">
 		<!-- SIDEBAR USERPIC -->
 		<div class="profile-userpic">

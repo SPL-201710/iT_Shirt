@@ -1,5 +1,8 @@
 package co.com.itshirt.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Roles del sistema.
  * @author ja.picon
@@ -7,19 +10,34 @@ package co.com.itshirt.enums;
  */
 public enum EnumRol {
 	
-	ADMINISTRADOR ("ADMIN", "Administrador"),
-	ARTISTA ("ARTI", "Artista"),
-	COMPRADOR ("COMPR", "Comprador"),
+	ADMINISTRADOR ("ADMIN", "Administrador", false),
+	ARTISTA ("ARTIS", "Artista", true),
+	COMPRADOR ("COMPR", "Comprador", true),
 	;
 	
 	public final static EnumRol[] ENUM_VALUES = EnumRol.values();
 	
 	private String sigla;
 	private String nombre;
+	private boolean permiteRegistro; //Indica si se muestra o no en registro de usuarios desde la aplicación.
 	
-	private EnumRol(String sigla, String nombre) {
+	private EnumRol(String sigla, String nombre, boolean permiteRegistro) {
 		this.sigla = sigla;
 		this.nombre = nombre;
+		this.permiteRegistro = permiteRegistro;
+	}
+	
+	/**
+	 * Obtiene roles que permiten registro.
+	 */
+	public static List<EnumRol> obtenerRolesPermitenRegistro() {
+		List<EnumRol> rolesPermitenRegistro = new ArrayList<EnumRol>();
+		for (EnumRol rol : ENUM_VALUES) {
+			if (rol.permiteRegistro) {
+				rolesPermitenRegistro.add(rol);
+			}
+		}
+		return rolesPermitenRegistro;
 	}
 
 	public String getSigla() {
@@ -36,6 +54,14 @@ public enum EnumRol {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public boolean isPermiteRegistro() {
+		return permiteRegistro;
+	}
+
+	public void setPermiteRegistro(boolean permiteRegistro) {
+		this.permiteRegistro = permiteRegistro;
 	}
 	
 }

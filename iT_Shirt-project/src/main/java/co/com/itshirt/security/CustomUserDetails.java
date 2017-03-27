@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
 
 import co.com.itshirt.domain.Usuario;
 
-public class CustomUserDetails extends co.com.itshirt.domain.Usuario implements UserDetails {	
+public class CustomUserDetails extends Usuario implements UserDetails {	
 	
 	private static final long serialVersionUID = 1L;
 	private List<String> userRoles;
