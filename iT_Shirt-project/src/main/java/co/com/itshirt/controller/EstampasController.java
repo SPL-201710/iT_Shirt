@@ -65,29 +65,26 @@ public class EstampasController {
 	 * Método llamado al momento de guardar el formulario de creación.
 	 */
 	@RequestMapping(value = "/crearEstampa", method = RequestMethod.POST)
-	public String checkCrearEstampa(@Valid CreacionEstampaDTO creaEst, BindingResult bindingResult, Model model, HttpServletRequest request) {
+	public String checkCrearEstampa(@Valid CreacionEstampaDTO creacionEstampa, BindingResult bindingResult, Model model, HttpServletRequest request) {
 		if (bindingResult.hasErrors()) {
 			System.err.println(bindingResult.getFieldErrors());
 			model.addAttribute("error", "Por favor, llene los campos obligatorios.");
-			model.addAttribute("estampaForm", creaEst);
+			model.addAttribute("estampaForm", creacionEstampa);
 			return "estampa/creacionEstampa";
 		}
-		System.err.println(creaEst.getFile().getOriginalFilename());
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
 		Estampa estampaNueva = new Estampa();
 		estampaNueva.setArtista(usuario);
-		estampaNueva.setDescripcion(creaEst.getDescripcion());
+		estampaNueva.setDescripcion(creacionEstampa.getDescripcion());
 		estampaNueva.setEstado(EnumEstadoEstampa.ACTIVA.getCodigo());
-		estampaNueva.setEstaNombreCorto(creaEst.getEstaNombreCorto());
-		estampaNueva.setPrecio(creaEst.getPrecio());
-		estampaNueva.setTema(this.temaRepository.findOne(creaEst.getIdTema()));
-		estampaNueva.setUrl(creaEst.getFile().getOriginalFilename());
+		estampaNueva.setEstaNombreCorto(creacionEstampa.getEstaNombreCorto());
+		estampaNueva.setPrecio(creacionEstampa.getPrecio());
+		estampaNueva.setTema(this.temaRepository.findOne(creacionEstampa.getIdTema()));
+		estampaNueva.setUrl(creacionEstampa.getFile().getOriginalFilename());
+		estampaNueva.setExtension(FileUtils.obtenerExtension(creacionEstampa.getFile()));
 		estampaNueva = this.estampaRepository.save(estampaNueva); //Para recuperar el ID
-		FileUtils.guardarArchivoEstampa(creaEst.getFile(), usuario.getIdUsuario(), estampaNueva.getIdEstampa(), request);
-//		final File fileRec = FileUtils.buscarArchivoEstampa(usuario.getIdUsuario(), estampaNueva.getIdEstampa());
-//		System.err.println(fileRec.getAbsolutePath());
-//		System.err.println(fileRec.exists());
+		FileUtils.guardarArchivoEstampa(creacionEstampa.getFile(), usuario.getIdUsuario(), estampaNueva.getIdEstampa(), request);
 		return "redirect:/catalogo";
 	}
 	

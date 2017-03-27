@@ -31,16 +31,22 @@ public abstract class FileUtils {
                 {
                     new File(realPathtoUploads).mkdir();
                 }
-                System.err.println("realPathtoUploads = {}" + realPathtoUploads);
-                String[] fileFrags = file.getOriginalFilename().split("\\.");
-                String extension = fileFrags[fileFrags.length-1];
-                String filePath = realPathtoUploads + "/"+ idEstampa + "." + extension;
+                String filePath = realPathtoUploads + "/"+ idEstampa + "." + obtenerExtension(file);
                 File dest = new File(filePath);
                 file.transferTo(dest);
             } catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * Obtiene la extensión de un archivo multipart.
+	 */
+	public static final String obtenerExtension(MultipartFile file) {
+		 String[] fileFrags = file.getOriginalFilename().split("\\.");
+         String extension = fileFrags[fileFrags.length-1];
+         return extension;
 	}
 
 }
