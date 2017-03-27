@@ -34,6 +34,12 @@
     
         <h2 class="form-signin-heading">Creación de cuenta</h2>
         
+        <c:if test="${error != null}">
+			<div class="alert alert-danger">
+  				<strong>Error!</strong> ${error}
+			</div>
+		</c:if>
+			
        	<spring:bind path="rolUsuario">
             <div class="form-group ${status.error ? 'has-error' : ''}">
             	<label class="col-md-4 control-label" for=rolUsuario>Tipo usuario:</label>  
