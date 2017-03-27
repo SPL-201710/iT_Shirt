@@ -1,7 +1,9 @@
 package co.com.itshirt.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +26,9 @@ import co.com.itshirt.domain.EstampaRepository;
 import co.com.itshirt.domain.Tema;
 import co.com.itshirt.domain.TemaRepository;
 import co.com.itshirt.dto.CreacionEstampaDTO;
+import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.enums.EnumEstadoEstampa;
+import co.com.itshirt.enums.EnumRol;
 import co.com.itshirt.security.CustomUserDetails;
 import co.com.itshirt.util.FileUtils;
 
@@ -39,9 +43,26 @@ public class EstampasController {
 	@Autowired
 	private EstampaRepository estampaRepository;
 	
+	/**
+	 * Ver todo el catalogo de estampas.
+	 */
 	@RequestMapping(value="catalogo", method = RequestMethod.GET)
-	public String verEstampas(ModelMap model, HttpSession session)
-	{
+	public String verEstampas(ModelMap model, HttpSession session) {
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+    	Iterable<Estampa> lstEntities = null;
+    	List<EstampaDTO> estampas = new ArrayList<EstampaDTO>();
+    	if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
+    		lstEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
+    	} else {
+    		lstEntities = this.estampaRepository.findAll();
+    	}
+    	if (lstEntities != null) {
+    		for (final Estampa estampa : lstEntities) {
+    			estampas.add(new EstampaDTO(estampa));
+    		}
+    	}
+    	model.addAttribute("estampas", estampas);
 		return "catalogo";
 	}
 	
