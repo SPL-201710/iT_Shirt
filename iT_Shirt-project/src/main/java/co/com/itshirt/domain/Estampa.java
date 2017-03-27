@@ -19,7 +19,7 @@ public class Estampa {
 	private Long idEstampa;
 	
 	@Column(name = "esta_nombrecorto")
-	private String estaNombreCorto;
+	private String NombreCorto;
 	
 	@Column(name = "esta_descripcion")
 	private String descripcion;
@@ -44,8 +44,16 @@ public class Estampa {
 	/**
 	 * Constructor vacío por defecto.
 	 */
-	public Estampa() {
+	public Estampa(Estampa estampa) {
 		super();
+		this.idEstampa = estampa.idEstampa;
+		this.NombreCorto = estampa.NombreCorto;
+		this.descripcion = estampa.descripcion;
+		this.url = estampa.url;
+		this.precio = estampa.precio;
+		this.estado = estampa.estado;
+		this.tema = estampa.getTema();
+		this.artista = estampa.getArtista();
 	}
 
 	public Long getIdEstampa() {
@@ -56,12 +64,12 @@ public class Estampa {
 		this.idEstampa = idEstampa;
 	}
 
-	public String getEstaNombreCorto() {
-		return estaNombreCorto;
+	public String getNombreCorto() {
+		return NombreCorto;
 	}
 
-	public void setEstaNombreCorto(String estaNombreCorto) {
-		this.estaNombreCorto = estaNombreCorto;
+	public void setNombreCorto(String NombreCorto) {
+		this.NombreCorto = NombreCorto;
 	}
 
 	public String getDescripcion() {
