@@ -115,10 +115,8 @@ public class EstampasController {
 	 */
 	@RequestMapping(value="/detalleEstampa", method = RequestMethod.GET)
 	public String detalleEstampa(@RequestParam(value="es", required=true) Long es, Model model){
-		Estampa est = estampaRepository.findOne(es);
-		System.out.println(es);
-		System.out.println(est.getIdEstampa());
-		model.addAttribute("estampa",est);
+		final Estampa estampa = estampaRepository.findOne(es);
+		model.addAttribute("estampa", new EstampaDTO(estampa));
 		return "estampa/detalleEstampa";
 	}
 }
