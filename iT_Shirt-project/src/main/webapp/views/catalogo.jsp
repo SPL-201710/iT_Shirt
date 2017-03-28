@@ -35,7 +35,11 @@
 	                <label></label>
 	                <c:choose>
 		                <c:when test="${roluser.nombre == 'Comprador'}">
+<<<<<<< HEAD
 						    <a href="${contextPath}/seleccionCamiseta/?es=${e.idEstampa}">Seleccionar</a>
+=======
+						    <a href="${contextPath}/personalizacion/?es=${e.idEstampa}">Seleccionar</a>
+>>>>>>> 0237282040d9b59b001ee77dd3494a2b5d6ade8f
 						</c:when>
 					</c:choose>
 	            </div>
