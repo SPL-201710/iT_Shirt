@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -24,6 +26,7 @@ import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.dto.EstiloCamisetaDTO;
 import co.com.itshirt.enums.EnumEstilosCamiseta;
 import co.com.itshirt.repository.EstiloCamisetaRepository;
+import co.com.itshirt.security.CustomUserDetails;
 
 /**
  * Funcionalidades de las camisetas.
@@ -40,6 +43,8 @@ public class EstilosCamisetaController {
 	 */
 	@RequestMapping(value="catalogo", method = RequestMethod.GET)
 	public String verEstampas(ModelMap model, HttpSession session) {
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
 		List<EstiloCamisetaDTO> estilos = new ArrayList<EstiloCamisetaDTO>();
     	Iterable<EstiloCamiseta> lstEntities = this.estiloCamisetaRepository.findAll();
     	if (lstEntities != null) {
@@ -47,6 +52,7 @@ public class EstilosCamisetaController {
     			estilos.add(new EstiloCamisetaDTO(estiloCamiseta));
     		}
     	}
+    	model.addAttribute("rolUsuario", usuario.getRol().getNombre()); //Para mostrar o quitar cosas de la vista.
     	model.addAttribute("camisetas", estilos);
 		return "camiseta/catalogoCamisetas";
 	}

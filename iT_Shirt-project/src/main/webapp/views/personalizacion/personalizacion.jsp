@@ -8,8 +8,9 @@
 	<h1 class="page-header">Personalización de Camiseta</h1>
 	<fieldset>
 			<!-- Form Name -->
-			
+			Id estampa seleccionada: ${session.idEstampaSeleccionada}
 			<br>
+			Id estilo: ${session.idEstiloSeleccionado}
 			
 		<form:form method="POST" modelAttribute="personalizacionForm" class="form-horizontal">
 

@@ -14,10 +14,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.com.itshirt.domain.DetalleOrden;
 import co.com.itshirt.dto.PersonalizacionDTO;
 import co.com.itshirt.enums.EnumEstilosCamiseta;
+import co.com.itshirt.repository.EstampaRepository;
+import co.com.itshirt.repository.EstiloCamisetaRepository;
+import co.com.itshirt.repository.OrdenCompraRepository;
 import co.com.itshirt.repository.PersonalizacionRepository;
 
 @Controller
@@ -26,16 +30,35 @@ public class PersonalizacionController {
 	@Autowired
 	private PersonalizacionRepository personalizacionRepository;
 	
+	@Autowired
+	private EstampaRepository estampaRepository;
+	
+	@Autowired
+	private EstiloCamisetaRepository estiloCamisetaRepo;
+	
+	@Autowired
+	private OrdenCompraRepository ordenCompraRepo;
+	
+	/**
+	 * Se encarga de guardar en sesion el id estampa seleccionada y redirige a seleccionar camiseta.
+	 */
+	@RequestMapping(value="/seleccionCamiseta", method = RequestMethod.GET)
+	public String detalleEstampa(@RequestParam(value="es", required=true) Long idEstampaSeleccionada, Model model, HttpSession session){
+		session.setAttribute("idEstampaSeleccionada", idEstampaSeleccionada);
+		return "redirect:/camisetas/catalogo";
+	}
+	
 	/**
 	 * Ver página creación de personalización.
 	 */
 	@RequestMapping(value="personalizacion", method = RequestMethod.GET)
-	public String agregarPersonalizacion(ModelMap model, HttpSession session) {
+	public String agregarPersonalizacion(@RequestParam(value="es", required=true) Long idEstilo, ModelMap model, HttpSession session) {
 		Map<String,String> estilos = new LinkedHashMap<String,String>(); 
 		for (EnumEstilosCamiseta estilo : EnumEstilosCamiseta.ENUM_VALUES) {
 			estilos.put(estilo.getSigla(), estilo.getNombre());
 		}
 		model.addAttribute("estilos", estilos);
+		session.setAttribute("idEstiloSeleccionado", idEstilo);
 		model.addAttribute("personalizacionForm", new PersonalizacionDTO());
 		return "personalizacion/personalizacion";
 	}
@@ -52,9 +75,14 @@ public class PersonalizacionController {
 			return "personalizacion/personalizacion";
 		}
 		DetalleOrden personalizacionSave = personalizacion.toEntity();
+		personalizacionSave.setEstampa(this.estampaRepository.findOne(personalizacion.getEstampa()));
+		personalizacionSave.setEstiloCamiseta(this.estiloCamisetaRepo.findOne(personalizacion.getEstiloCamiseta()));
+		personalizacionSave.setOrdenCompra(this.ordenCompraRepo.findOne(personalizacion.getOrdenCompra()));
 		session.setAttribute("pers", personalizacionSave);
 		System.out.println(session.getAttribute("pers"));
 		//this.personalizacionRepository.save(personalizacionSave);
+		PersonalizacionDTO pers = new PersonalizacionDTO();
+		model.addAttribute("personalizacionForm", pers);
 		return "personalizacion/personalizacion";
 	}
 }

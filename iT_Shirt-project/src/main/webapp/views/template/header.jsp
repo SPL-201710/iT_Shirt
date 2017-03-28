@@ -16,8 +16,14 @@
 	<div class="profile-sidebar">
 		<!-- SIDEBAR USERPIC -->
 		<div class="profile-userpic">
-			<img src="<%=request.getContextPath()%>/resources/images/person-flat.png" 
-				class="img-responsive" alt="avatar" style="width: 50%">
+			<c:if test="${genero == 'M'}">
+				<img src="<%=request.getContextPath()%>/resources/images/person-flat.png" 
+					class="img-responsive" alt="avatar" style="width: 50%">
+			</c:if>
+			<c:if test="${genero == 'F'}">
+				<img src="<%=request.getContextPath()%>/resources/images/person-girl-flat.png" 
+					class="img-responsive" alt="avatar" style="width: 50%">
+			</c:if>
 		</div>
 		<!-- END SIDEBAR USERPIC -->
 		<!-- SIDEBAR USER TITLE -->

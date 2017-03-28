@@ -8,12 +8,14 @@
 <div class="container-fluid">
 	<h1 class="page-header">Catálogo de camisetas</h1>
 
+		<c:if test="${rolUsuario == 'Administrador'}">
 		<!-- Button -->
 		<div class="form-group">
 		  <div class="col-md-12 text-right">
 		    <input type="button"  class="btn btn-success" onclick="location.href='/camisetas/agregarCamiseta'" value="Crear nuevo estilo" >
 		  </div>
 		</div>
+		</c:if>
 		<!-- Projects Row -->
         <div class="row">
         	
@@ -30,6 +32,9 @@
 					<div class="col-md-10">
 						<label class="txt-success">Precio: $ ${e.precio}</label> 
 					</div>
+					<c:if test="${rolUsuario == 'Comprador'}">
+						<a href="${contextPath}/personalizacion/?es=${e.idEstilo}">Seleccionar</a>
+					</c:if>
 	            </div>
         	
         	</c:forEach>

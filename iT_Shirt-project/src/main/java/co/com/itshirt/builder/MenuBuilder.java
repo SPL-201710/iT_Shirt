@@ -35,7 +35,7 @@ public class MenuBuilder {
 		MENUS_COMPRADOR.add(new MenuDTO("Inicio", "glyphicon-home", "/welcome"));
 		MENUS_COMPRADOR.add(new MenuDTO("Perfil de usuario", "glyphicon-user", "/perfil"));
 		MENUS_COMPRADOR.add(new MenuDTO("Catalogo", "glyphicon-search", "/catalogo"));
-		MENUS_COMPRADOR.add(new MenuDTO("Persinalizar camiseta", "glyphicon-tag", "/personalizar"));
+//		MENUS_COMPRADOR.add(new MenuDTO("Persinalizar camiseta", "glyphicon-tag", "/personalizar"));
 		MENUS_COMPRADOR.add(new MenuDTO("Carrito de compras", "glyphicon-shopping-cart", "/carrito"));
 		MENUS_COMPRADOR.add(new MenuDTO("Compras realizadas", "glyphicon-usd", "/historialCompras"));
 		MENUS_COMPRADOR.add(new MenuDTO("Cambiar contraseña", "glyphicon-wrench", "/cambiarCredenciales"));

@@ -5,9 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import co.com.itshirt.domain.DetalleOrden;
-import co.com.itshirt.domain.Estampa;
-import co.com.itshirt.domain.EstiloCamiseta;
-import co.com.itshirt.domain.OrdenCompra;
 
 public class PersonalizacionDTO {
 	
@@ -28,12 +25,15 @@ public class PersonalizacionDTO {
 	private Long precioCamiseta;
 
 	private Long precioEstampa;
+	
+	@NotNull
+	private Long estiloCamiseta;
+	@NotNull
+	private Long estampa;
+	@NotNull
+	private Long ordenCompra;
 
-    private OrdenCompra ordenCompra;
-	
-    private EstiloCamiseta estiloCamiseta;
-	
-    private Estampa estampa;
+    
 	
 	public PersonalizacionDTO() {
 		super();
@@ -47,8 +47,6 @@ public class PersonalizacionDTO {
 		this.textoConfigurado = entity.getTextoConfigurado();
 		this.precioCamiseta = entity.getPrecioCamiseta();
 		this.precioEstampa = entity.getPrecioEstampa();
-		this.estiloCamiseta = entity.getEstiloCamiseta();
-		this.estampa = entity.getEstampa();
 	}
 	
 	public DetalleOrden toEntity() {
@@ -59,8 +57,6 @@ public class PersonalizacionDTO {
 		entity.setTextoConfigurado(this.textoConfigurado);
 		entity.setPrecioCamiseta(this.precioCamiseta);
 		entity.setPrecioEstampa(this.precioEstampa);
-		entity.setEstiloCamiseta(this.estiloCamiseta);
-		entity.setEstampa(this.estampa);
 		return entity;
 	}
 	
@@ -116,32 +112,28 @@ public class PersonalizacionDTO {
 		this.precioEstampa = precioEstampa;
 	}
 
-	public OrdenCompra getOrdenCompra() {
+	public Long getOrdenCompra() {
 		return ordenCompra;
 	}
 
-	public void setOrdenCompra(OrdenCompra ordenCompra) {
+	public void setOrdenCompra(Long ordenCompra) {
 		this.ordenCompra = ordenCompra;
 	}
 
-	public EstiloCamiseta getEstiloCamiseta() {
-		return estiloCamiseta;
-	}
-
-	public void setEstiloCamiseta(EstiloCamiseta estiloCamiseta) {
-		this.estiloCamiseta = estiloCamiseta;
-	}
-
-	public Estampa getEstampa() {
+	public Long getEstampa() {
 		return estampa;
 	}
 
-	public void setEstampa(Estampa estampa) {
+	public void setEstampa(Long estampa) {
 		this.estampa = estampa;
 	}
 
-	
+	public Long getEstiloCamiseta() {
+		return estiloCamiseta;
+	}
 
-	
+	public void setEstiloCamiseta(Long estiloCamiseta) {
+		this.estiloCamiseta = estiloCamiseta;
+	}
 	
 }
