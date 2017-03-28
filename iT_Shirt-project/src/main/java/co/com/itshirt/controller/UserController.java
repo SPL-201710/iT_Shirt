@@ -71,6 +71,7 @@ public class UserController {
         usuario.setApellidos(userForm.getApellidos());
         usuario.setTelefono(userForm.getTelefono());
         usuario.setEmail(userForm.getEmail());
+        usuario.setGenero(userForm.getSexo());
         usuario.setRol(this.rolRepository.findBySigla(userForm.getRolUsuario()));
         this.userRepository.save(usuario);
         this.securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());

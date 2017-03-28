@@ -37,6 +37,9 @@ public class Usuario {
 	@Column(name = "usua_telefono")
 	private String telefono;
 	
+	@Column(name = "usua_genero")
+	private String genero;
+	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "rol_id")
     private Rol rol;
@@ -65,6 +68,7 @@ public class Usuario {
 		this.email = user.email;
 		this.telefono = user.telefono;
 		this.rol = user.getRol();
+		this.genero = user.genero;
 	}
 
 	public Long getIdUsuario() {
@@ -149,6 +153,14 @@ public class Usuario {
 	
 	public String getNombresCompletos() {
 		return this.nombres + " " +  this.apellidos;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 	
 }
