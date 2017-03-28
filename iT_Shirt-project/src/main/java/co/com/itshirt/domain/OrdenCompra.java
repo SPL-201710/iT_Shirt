@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import co.com.itshirt.enums.EnumEstadoCompra;
+
 @Entity
 @Table(name = "orde_orden")
 public class OrdenCompra {
@@ -26,14 +28,14 @@ public class OrdenCompra {
 	@Column(name = "orde_estado")
 	private String estado;
 	
-	@Column(name = "orde_direccionEnvio")
+	@Column(name = "orde_direccionenvio")
 	private String direccionEnvio;
 	
 	@Column(name = "orde_telefonocontacto")
 	private String telefonoContacto;
 	
 	@Column(name = "usua_id")
-	private String idUsuario;
+	private Long idUsuario;
 	
 	@Column(name = "orde_total")
 	private Long total;
@@ -85,11 +87,11 @@ public class OrdenCompra {
 		this.telefonoContacto = telefonoContacto;
 	}
 
-	public String getIdUsuario() {
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(String idUsuario) {
+	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -99,6 +101,10 @@ public class OrdenCompra {
 
 	public void setTotal(Long total) {
 		this.total = total;
+	}
+	
+	public String getEstadoDescripcion() {
+		return EnumEstadoCompra.PROCESADO.getNombre();
 	}
 	
 }

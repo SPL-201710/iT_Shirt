@@ -80,7 +80,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="subscribe btn btn-success btn-lg btn-block" type="button">Realizar Pago</button>
+                                <button class="subscribe btn btn-success btn-lg btn-block" type="button" onclick="location.href='/carrito/realizarPago'">Realizar Pago</button>
                             </div>
                         </div>
                         <div class="row" style="display:none;">

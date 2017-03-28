@@ -40,6 +40,9 @@ public class Usuario {
 	@Column(name = "usua_genero")
 	private String genero;
 	
+	@Column(name = "usua_direccion")
+	private String direccion;
+	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "rol_id")
     private Rol rol;
@@ -69,6 +72,7 @@ public class Usuario {
 		this.telefono = user.telefono;
 		this.rol = user.getRol();
 		this.genero = user.genero;
+		this.direccion = user.getDireccion();
 	}
 
 	public Long getIdUsuario() {
@@ -161,6 +165,14 @@ public class Usuario {
 
 	public void setGenero(String genero) {
 		this.genero = genero;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 	
 }

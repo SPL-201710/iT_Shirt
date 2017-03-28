@@ -23,13 +23,13 @@ import co.com.itshirt.enums.EnumEstilosCamiseta;
 import co.com.itshirt.repository.EstampaRepository;
 import co.com.itshirt.repository.EstiloCamisetaRepository;
 import co.com.itshirt.repository.OrdenCompraRepository;
-import co.com.itshirt.repository.PersonalizacionRepository;
+import co.com.itshirt.repository.DetalleOrdenRepository;
 
 @Controller
 public class PersonalizacionController {
 	
 	@Autowired
-	private PersonalizacionRepository personalizacionRepository;
+	private DetalleOrdenRepository personalizacionRepository;
 	
 	@Autowired
 	private EstampaRepository estampaRepository;

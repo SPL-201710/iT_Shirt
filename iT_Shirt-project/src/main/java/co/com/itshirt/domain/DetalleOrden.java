@@ -123,5 +123,9 @@ public class DetalleOrden {
 	public void setEstampa(Estampa estampa) {
 		this.estampa = estampa;
 	}
+	
+	public Long getPrecioTotalCalculado() {
+		return this.estampa.getPrecio()+this.estiloCamiseta.getPrecio();
+	}
 
 }

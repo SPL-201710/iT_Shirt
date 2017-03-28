@@ -57,7 +57,7 @@
 	            <div class="form-group">
 	            	<label class="col-md-3 control-label" for=idTema>Texto:</label>  
 			  		<div class="col-md-7">
-		                <form:input type="text" path="textoConfigurado" required="required" class="form-control" placeholder="Texto" autofocus="false"/>
+		                <form:input type="text" path="textoConfigurado" class="form-control" placeholder="Texto" autofocus="false"/>
 		                <form:errors path="textoConfigurado"></form:errors>
 	                </div>
 	            </div>
@@ -69,8 +69,7 @@
 			<!-- Button -->
 			<div class="form-group">
 			  <div class="col-md-12 text-center">
-			    <button class="btn btn-primary">Guardar</button>
-			    <button class="btn btn-info">Cancelar</button>
+			    <button class="btn btn-success">Agregar al carrito</button>
 			  </div>
 			</div>
 

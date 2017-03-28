@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import co.com.itshirt.domain.*;
 
-public interface PersonalizacionRepository extends CrudRepository<DetalleOrden, Long>  {
+public interface DetalleOrdenRepository extends CrudRepository<DetalleOrden, Long>  {
 	
 }
