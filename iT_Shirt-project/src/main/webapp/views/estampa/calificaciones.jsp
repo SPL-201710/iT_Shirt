@@ -9,7 +9,7 @@
 	
 	<fieldset>
 
-		<legend>Reportes de <b>Ventas</b></legend>
+		<legend>Calificaciones de <b>Estampas</b></legend>
 
 		<br>
 		

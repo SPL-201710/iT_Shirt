@@ -107,7 +107,7 @@
     </definition>
     
      <definition name="compra/payment" extends="master.page">
-		<put-attribute name="title" value="Pago" />
+		<put-attribute name="title" value="Pago del Carrito" />
         <put-attribute name="body" value="/views/compra/payment.jsp"/>
     </definition>
     
@@ -117,8 +117,18 @@
     </definition>
     
     <definition name="perfil/cambiarCredenciales" extends="master.page">
-		<put-attribute name="title" value="Cambiar conraseña" />
+		<put-attribute name="title" value="Cambiar contraseña" />
         <put-attribute name="body" value="/views/perfil/cambiarCredenciales.jsp"/>
+    </definition>
+    
+    <definition name="estampa/calificaciones" extends="master.page">
+		<put-attribute name="title" value="Calificaciones de Estampas" />
+        <put-attribute name="body" value="/views/estampa/calificaciones.jsp"/>
+    </definition>
+    
+    <definition name="compra/detalleCompra" extends="master.page">
+		<put-attribute name="title" value="Detalle de la compra" />
+        <put-attribute name="body" value="/views/compra/detalleCompra.jsp"/>
     </definition>
 
 </tiles-definitions>

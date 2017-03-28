@@ -33,15 +33,15 @@ public class DetalleOrden {
 	@Column(name = "deto_precioestampa")
 	private Long precioEstampa;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "orde_id")
     private OrdenCompra ordenCompra;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "esti_id")
     private EstiloCamiseta estiloCamiseta;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "esta_id")
     private Estampa estampa;
 	

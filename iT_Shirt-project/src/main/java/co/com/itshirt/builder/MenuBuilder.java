@@ -46,7 +46,7 @@ public class MenuBuilder {
 		MENUS_ARTISTA.add(new MenuDTO("Perfil de usuario", "glyphicon-user", "/perfil"));
 		MENUS_ARTISTA.add(new MenuDTO("Catalogo", "glyphicon-search", "/catalogo"));
 		MENUS_ARTISTA.add(new MenuDTO("Crear estampa", "glyphicon-equalizer", "/crearEstampa"));
-		MENUS_ARTISTA.add(new MenuDTO("Ver calificaciones", "glyphicon-thumbs-up", "/artista/calificaciones"));
+		MENUS_ARTISTA.add(new MenuDTO("Ver calificaciones", "glyphicon-thumbs-up", "/estampa/calificaciones"));
 		MENUS_ARTISTA.add(new MenuDTO("Cambiar contraseña", "glyphicon-wrench", "/perfil/cambiarCredenciales"));
 		MENUS_ARTISTA.add(new MenuDTO("Reportes", "glyphicon-download-alt", "/artista/reportes"));
 //		MENUS_ARTISTA.add(new MenuDTO("Ayuda", "glyphicon-flag", "/ayuda"));

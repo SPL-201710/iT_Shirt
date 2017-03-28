@@ -18,6 +18,10 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 		<script src="${contextPath}/resources/js/angular.min.js"></script>
+		
+		<link href="${contextPath}/resources/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+		<script src="${contextPath}/resources/js/star-rating.js" type="text/javascript"></script>
+		
     </head>
     <body>
         <div class="container">
@@ -34,6 +38,12 @@
         
         <script>
 			$(document).ready(function(){
+				// initialize with defaults
+				$("#input-id").rating();
+				 
+				// with plugin options
+				$("#input-id").rating({min:1, max:10, step:2, size:'lg'});
+				
 			    $('[data-toggle="tooltip"]').tooltip();   
 			});
 		</script>

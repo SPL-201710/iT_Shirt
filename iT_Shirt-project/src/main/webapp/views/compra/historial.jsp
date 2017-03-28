@@ -29,7 +29,11 @@
 						<td>${c.fecha}</td>
 						<td>${c.estadoDescripcion}</td>
 						<td>$${c.total}</td>
-						<td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-tags"></span> Ver detalle</a></td>
+						<td class="text-center">
+							<a class='btn btn-info btn-xs' href="${contextPath}/compras/detalle/?es=${c.idOrdenCompra}">
+								<span class="glyphicon glyphicon-tags"></span> Ver detalle
+							</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

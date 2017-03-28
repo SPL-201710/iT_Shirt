@@ -117,4 +117,13 @@ public class EstampasController {
 		model.addAttribute("estampa", new EstampaDTO(estampa));
 		return "estampa/detalleEstampa";
 	}
+	
+	/**
+	 * Se encarga de cargar la pagina de detalle de la estampa
+	 */
+	@RequestMapping(value="estampa/calificaciones", method = RequestMethod.GET)
+	public String verCalificaciones(Model model){
+		return "estampa/calificaciones";
+	}
+	
 }

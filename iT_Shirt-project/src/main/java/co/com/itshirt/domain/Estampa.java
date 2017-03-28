@@ -124,4 +124,8 @@ public class Estampa {
 		this.extension = extension;
 	}
 	
+	public String getSource() {
+		return this.artista.getIdUsuario() + "/" + this.idEstampa + "." + this.extension;
+	}
+	
 }
