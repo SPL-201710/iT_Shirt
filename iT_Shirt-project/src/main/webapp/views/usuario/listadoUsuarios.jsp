@@ -10,8 +10,14 @@
 	<fieldset>
 			<!-- Form Name -->
 			<legend>Administración de <b>Usuarios</b></legend>
-
-		<div class="row col-md-6 col-md-offset-2 custyle">
+		
+		<div class="alert alert-warning">
+			<b>Importante: </b>Tenga en cuenta que al "Dar de baja" un usuario bloqueará su acceso al Sistema.
+		</div>
+		
+		<br>
+		
+		<div class="row col-md-12 col-md-offset-2 custyle" style="margin-left: 0.0% !important; ">
 			<table class="table table-striped custab">
 				<thead>
 					<tr>
