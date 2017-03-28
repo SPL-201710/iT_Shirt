@@ -35,7 +35,7 @@
 	                <label></label>
 	                <c:choose>
 		                <c:when test="${roluser.nombre == 'Comprador'}">
-						    <a href="">Seleccionar</a>
+						    <a href="${contextPath}/personalizacion/?es=${e.idEstampa}">Seleccionar</a>
 						</c:when>
 					</c:choose>
 	            </div>

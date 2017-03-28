@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import co.com.itshirt.domain.DetalleOrden;
 import co.com.itshirt.dto.PersonalizacionDTO;
 import co.com.itshirt.enums.EnumEstilosCamiseta;
+import co.com.itshirt.repository.EstampaRepository;
+import co.com.itshirt.repository.EstiloCamisetaRepository;
+import co.com.itshirt.repository.OrdenCompraRepository;
 import co.com.itshirt.repository.PersonalizacionRepository;
 
 @Controller
@@ -25,6 +28,15 @@ public class PersonalizacionController {
 	
 	@Autowired
 	private PersonalizacionRepository personalizacionRepository;
+	
+	@Autowired
+	private EstampaRepository estampaRepository;
+	
+	@Autowired
+	private EstiloCamisetaRepository estiloCamisetaRepo;
+	
+	@Autowired
+	private OrdenCompraRepository ordenCompraRepo;
 	
 	/**
 	 * Ver página creación de personalización.
@@ -52,9 +64,14 @@ public class PersonalizacionController {
 			return "personalizacion/personalizacion";
 		}
 		DetalleOrden personalizacionSave = personalizacion.toEntity();
+		personalizacionSave.setEstampa(this.estampaRepository.findOne(personalizacion.getEstampa()));
+		personalizacionSave.setEstiloCamiseta(this.estiloCamisetaRepo.findOne(personalizacion.getEstiloCamiseta()));
+		personalizacionSave.setOrdenCompra(this.ordenCompraRepo.findOne(personalizacion.getOrdenCompra()));
 		session.setAttribute("pers", personalizacionSave);
 		System.out.println(session.getAttribute("pers"));
 		//this.personalizacionRepository.save(personalizacionSave);
+		PersonalizacionDTO pers = new PersonalizacionDTO();
+		model.addAttribute("personalizacionForm", pers);
 		return "personalizacion/personalizacion";
 	}
 }
