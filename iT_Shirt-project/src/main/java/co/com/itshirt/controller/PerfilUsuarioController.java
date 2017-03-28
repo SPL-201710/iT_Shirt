@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import co.com.itshirt.domain.Usuario;
+import co.com.itshirt.dto.CambioCredencialesDTO;
 import co.com.itshirt.dto.PerfilUsuarioDTO;
 import co.com.itshirt.enums.EnumSexo;
 import co.com.itshirt.repository.UserRepository;
@@ -92,6 +93,31 @@ public class PerfilUsuarioController {
 	public String cambiarCredenciales(ModelMap model, HttpSession session, HttpServletRequest request) {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+    	model.addAttribute("credencialesForm", new CambioCredencialesDTO());
+		return "perfil/cambiarCredenciales";
+	}
+	
+	/**
+	 * Método llamado al momento de guardar el formulario de creación.
+	 */
+	@RequestMapping(value = "/perfil/cambiarCredenciales", method = RequestMethod.POST)
+	public String checkCambiarPerfil(@Valid CambioCredencialesDTO credencialesForm, BindingResult bindingResult, Model model, HttpServletRequest request) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("error", "Por favor, llene los campos obligatorios.");
+			model.addAttribute("credencialesForm", credencialesForm);
+		}
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+		if (!usuario.getPassword().equals(credencialesForm.getActualPassword())) {
+        	model.addAttribute("error", "Contraseña actual invalida. Por favor, verifique e intente nuevamente.");
+        	model.addAttribute("credencialesForm", credencialesForm);
+        } else {
+        	final Usuario user = this.userRepository.findOne(usuario.getIdUsuario());
+        	user.setPassword(credencialesForm.getNewPassword());
+        	this.userRepository.save(user);
+        	model.addAttribute("credencialesForm", new CambioCredencialesDTO());
+    		model.addAttribute("msgExitoso", "Se han actualizado sus datos exitosamente.");
+        }
 		return "perfil/cambiarCredenciales";
 	}
 	

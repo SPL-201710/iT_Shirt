@@ -60,7 +60,7 @@ public class UserController {
             return "registration";
         }
         if (this.userRepository.findByUsername(userForm.getUsername()) != null) {
-        	model.addAttribute("error", "Ya existe en el sistema un usuario con el nombre mencionado. Por favor, verifique e intente nuevamente..");
+        	model.addAttribute("error", "Ya existe en el sistema un usuario con el nombre mencionado. Por favor, verifique e intente nuevamente.");
 			model.addAttribute("userForm", userForm);
             return "registration";
         }
