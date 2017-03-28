@@ -115,5 +115,10 @@
 		<put-attribute name="title" value="Historial de compras" />
         <put-attribute name="body" value="/views/compra/historial.jsp"/>
     </definition>
+    
+    <definition name="perfil/cambiarCredenciales" extends="master.page">
+		<put-attribute name="title" value="Cambiar conraseña" />
+        <put-attribute name="body" value="/views/perfil/cambiarCredenciales.jsp"/>
+    </definition>
 
 </tiles-definitions>

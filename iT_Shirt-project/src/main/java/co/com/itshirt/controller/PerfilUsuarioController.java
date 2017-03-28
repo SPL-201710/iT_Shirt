@@ -88,4 +88,12 @@ public class PerfilUsuarioController {
 		return "redirect:/welcome";
 	}
 	
+	@RequestMapping(value ="/perfil/cambiarCredenciales", method = RequestMethod.GET)
+	public String cambiarCredenciales(ModelMap model, HttpSession session, HttpServletRequest request) {
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+		return "perfil/cambiarCredenciales";
+	}
+	
+	
 }

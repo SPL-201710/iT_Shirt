@@ -60,12 +60,7 @@ public class AdministracionController {
 	
 	@RequestMapping(value="estampas", method = RequestMethod.GET)
 	public String estampas(ModelMap model, HttpSession session) {
-		return "catalogo";
-	}
-	
-	@RequestMapping(value="reportes", method = RequestMethod.GET)
-	public String reportes(ModelMap model, HttpSession session) {
-		return "reporte/reportes";
+		return "redirect:/catalogo";
 	}
 	
 }
