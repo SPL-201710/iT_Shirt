@@ -14,6 +14,7 @@
     	<link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     	<link href="${contextPath}/resources/css/payment-method.css" rel="stylesheet">
     	<link href="${contextPath}/resources/css/payment.css" rel="stylesheet">
+    	<link href="${contextPath}/resources/css/rating.css" rel="stylesheet">
     	<!-- /container -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
