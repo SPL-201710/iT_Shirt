@@ -19,6 +19,7 @@ import co.com.itshirt.domain.Tema;
 import co.com.itshirt.dto.CreacionEstampaDTO;
 import co.com.itshirt.enums.EnumEstadoEstampa;
 import co.com.itshirt.repository.TemaRepository;
+import co.com.itshirt.repository.UserRepository;
 import co.com.itshirt.security.CustomUserDetails;
 import co.com.itshirt.util.FileUtils;
 
@@ -29,9 +30,12 @@ public class AdministracionController {
 	
 	@Autowired
 	private TemaRepository temaRepository;
+	@Autowired
+	private UserRepository userRepository;
 	
 	@RequestMapping(value="usuarios", method = RequestMethod.GET)
 	public String usuarios(ModelMap model, HttpSession session) {
+		model.addAttribute("usuarios", this.userRepository.findAll());
 		return "usuario/listadoUsuarios";
 	}
 	

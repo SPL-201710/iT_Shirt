@@ -6,8 +6,11 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <div class="container-fluid">
-	<h1 class="page-header">Catálogo de camisetas</h1>
-
+	
+	<fieldset>
+			<!-- Form Name -->
+			<legend>Catálogo de <b>Camisetas</b></legend>
+			
 		<c:if test="${rolUsuario == 'Administrador'}">
 		<!-- Button -->
 		<div class="form-group">
@@ -40,4 +43,7 @@
         	</c:forEach>
         	
         </div>
+        
+      </fieldset> 
+       
 </div>
