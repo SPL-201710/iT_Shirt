@@ -16,6 +16,8 @@
 			</div>
 		</c:if>
 		
+		${elementosCarrito}
+		
 		<br>
 			
 	    <div class="row">

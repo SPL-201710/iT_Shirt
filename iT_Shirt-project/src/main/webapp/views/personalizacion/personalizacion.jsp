@@ -8,12 +8,19 @@
 	<h1 class="page-header">Personalización de Camiseta</h1>
 	<fieldset>
 			<!-- Form Name -->
-			Id estampa seleccionada: ${session.idEstampaSeleccionada}
-			<br>
-			Id estilo: ${session.idEstiloSeleccionado}
+		<br>
 			
 		<form:form method="POST" modelAttribute="personalizacionForm" class="form-horizontal">
 
+
+			 <spring:bind path="estiloCamiseta">
+			 	<form:hidden path="estiloCamiseta" />
+	        </spring:bind>
+	        
+	        <spring:bind path="estampa">
+	        	<form:hidden path="estampa" />
+	        </spring:bind>
+	        
 	        <spring:bind path="talla">
 	            <div class="form-group">
 	            	<label class="col-md-3 control-label" for=idTema>Talla:</label>  

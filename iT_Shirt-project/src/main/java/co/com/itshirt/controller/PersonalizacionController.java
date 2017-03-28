@@ -1,5 +1,6 @@
 package co.com.itshirt.controller;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -57,9 +58,10 @@ public class PersonalizacionController {
 		for (EnumEstilosCamiseta estilo : EnumEstilosCamiseta.ENUM_VALUES) {
 			estilos.put(estilo.getSigla(), estilo.getNombre());
 		}
-		model.addAttribute("estilos", estilos);
-		session.setAttribute("idEstiloSeleccionado", idEstilo);
-		model.addAttribute("personalizacionForm", new PersonalizacionDTO());
+		final PersonalizacionDTO personaliFrom = new PersonalizacionDTO(); //Todo se envian los datos seleccionados antes.
+		personaliFrom.setEstampa( (Long) session.getAttribute("idEstampaSeleccionada"));
+		personaliFrom.setEstiloCamiseta(idEstilo);
+		model.addAttribute("personalizacionForm", personaliFrom);
 		return "personalizacion/personalizacion";
 	}
 	
@@ -74,15 +76,20 @@ public class PersonalizacionController {
 			model.addAttribute("personalizacionForm", personalizacion);
 			return "personalizacion/personalizacion";
 		}
+		System.err.println("estampa: " +personalizacion.getEstampa());
+		System.err.println("estilo camiseta: " +personalizacion.getEstiloCamiseta());
 		DetalleOrden personalizacionSave = personalizacion.toEntity();
 		personalizacionSave.setEstampa(this.estampaRepository.findOne(personalizacion.getEstampa()));
 		personalizacionSave.setEstiloCamiseta(this.estiloCamisetaRepo.findOne(personalizacion.getEstiloCamiseta()));
-		personalizacionSave.setOrdenCompra(this.ordenCompraRepo.findOne(personalizacion.getOrdenCompra()));
-		session.setAttribute("pers", personalizacionSave);
-		System.out.println(session.getAttribute("pers"));
-		//this.personalizacionRepository.save(personalizacionSave);
-		PersonalizacionDTO pers = new PersonalizacionDTO();
-		model.addAttribute("personalizacionForm", pers);
-		return "personalizacion/personalizacion";
+//		personalizacionSave.setOrdenCompra(this.ordenCompraRepo.findOne(personalizacion.getOrdenCompra()));
+		
+		if (session.getAttribute("elementosCarrito")==null){ //Guardado en memoria.
+			session.setAttribute("elementosCarrito", new ArrayList());
+		}
+		ArrayList<DetalleOrden> elementosCarrito = (ArrayList) session.getAttribute("elementosCarrito");
+		elementosCarrito.add(personalizacionSave);
+		session.setAttribute("elementosCarrito", elementosCarrito);
+//		this.personalizacionRepository.save(personalizacionSave);
+		return "redirect:/carrito";
 	}
 }

@@ -18,8 +18,6 @@ public class PersonalizacionDTO {
     @Size(max=50)
 	private String color;
 	
-	@NotNull
-    @Size(max=50)
 	private String textoConfigurado;
 	
 	private Long precioCamiseta;
@@ -30,7 +28,6 @@ public class PersonalizacionDTO {
 	private Long estiloCamiseta;
 	@NotNull
 	private Long estampa;
-	@NotNull
 	private Long ordenCompra;
 
     
