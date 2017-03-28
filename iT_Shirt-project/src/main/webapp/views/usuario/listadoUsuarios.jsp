@@ -24,6 +24,7 @@
 						<th>Nombre usuario</th>
 						<th>Nombres</th>
 						<th>Correo electónico</th>
+						<th>Rol</th>
 						<th class="text-center">Acciones</th>
 					</tr>
 				</thead>
@@ -32,6 +33,7 @@
 						<td>${u.username}</td>
 						<td>${u.nombresCompletos}</td>
 						<td>${u.email}</td>
+						<td>${u.rol.nombre}</td>
 						<td class="text-center">
 							<a class='btn btn-warning btn-xs' href="#">
 								<span class="glyphicon glyphicon-thumbs-down"></span>
