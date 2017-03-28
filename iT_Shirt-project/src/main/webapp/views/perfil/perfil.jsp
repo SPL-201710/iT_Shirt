@@ -10,7 +10,7 @@
 		
 		<fieldset>
 			<!-- Form Name -->
-			<legend>Perfil de usuario</legend>
+			<legend>Perfil de <b>Usuario</b></legend>
 		
 		 <c:if test="${error != null}">
 			<div class="alert alert-danger col-md-5">
