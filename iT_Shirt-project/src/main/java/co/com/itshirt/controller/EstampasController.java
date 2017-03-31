@@ -51,15 +51,15 @@ public class EstampasController {
 	public String verEstampas(ModelMap model, HttpSession session) {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
-    	Iterable<Estampa> lstEntities = null;
+    	Iterable<Estampa> listEntities = null;
     	List<EstampaDTO> estampas = new ArrayList<EstampaDTO>();
     	if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
-    		lstEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
+    		listEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
     	} else {
-    		lstEntities = this.estampaRepository.findAll();
+    		listEntities = this.estampaRepository.findAll();
     	}
-    	if (lstEntities != null) {
-    		for (final Estampa estampa : lstEntities) {
+    	if (listEntities != null) {
+    		for (final Estampa estampa : listEntities) {
     			estampas.add(new EstampaDTO(estampa));
     		}
     	}
@@ -100,7 +100,7 @@ public class EstampasController {
 		estampaNueva.setArtista(usuario);
 		estampaNueva.setDescripcion(creacionEstampa.getDescripcion());
 		estampaNueva.setEstado(EnumEstadoEstampa.ACTIVA.getCodigo());
-		estampaNueva.setEstaNombreCorto(creacionEstampa.getEstaNombreCorto());
+		estampaNueva.setNombreCorto(creacionEstampa.getNombreCorto());
 		estampaNueva.setPrecio(creacionEstampa.getPrecio());
 		estampaNueva.setTema(this.temaRepository.findOne(creacionEstampa.getIdTema()));
 		estampaNueva.setUrl(creacionEstampa.getFile().getOriginalFilename());

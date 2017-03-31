@@ -32,7 +32,7 @@ public class EstampaDTO {
 	public EstampaDTO(final Estampa estampa) {
 		super();
 		this.idEstampa = estampa.getIdEstampa();
-		this.nombreCorto = estampa.getEstaNombreCorto();
+		this.nombreCorto = estampa.getNombreCorto();
 		this.descripcion = estampa.getDescripcion();
 		this.url = estampa.getUrl();
 		this.precio = estampa.getPrecio();

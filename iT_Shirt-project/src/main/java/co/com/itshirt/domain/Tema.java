@@ -21,8 +21,10 @@ public class Tema {
 	/**
 	 * Constructor vacío por defecto.
 	 */
-	public Tema() {
+	public Tema(Tema tema) {
 		super();
+		this.idTema = tema.idTema;
+		this.nombre = tema.nombre;
 	}
 
 	public Long getIdTema() {

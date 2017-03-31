@@ -16,7 +16,7 @@ public class CreacionEstampaDTO {
 	
 	@NotNull
     @Size(max=50)
-	private String estaNombreCorto;
+	private String NombreCorto;
 	@NotNull
     @Size(max=50)
 	private String descripcion;
@@ -27,11 +27,11 @@ public class CreacionEstampaDTO {
 	private String estado;
     private Long idTema;
     
-	public String getEstaNombreCorto() {
-		return estaNombreCorto;
+	public String getNombreCorto() {
+		return NombreCorto;
 	}
-	public void setEstaNombreCorto(String estaNombreCorto) {
-		this.estaNombreCorto = estaNombreCorto;
+	public void setNombreCorto(String estaNombreCorto) {
+		this.NombreCorto = estaNombreCorto;
 	}
 	public String getDescripcion() {
 		return descripcion;

@@ -48,16 +48,8 @@ public class Estampa {
 	/**
 	 * Constructor vacío por defecto.
 	 */
-	public Estampa(Estampa estampa) {
+	public Estampa() {
 		super();
-		this.idEstampa = estampa.idEstampa;
-		this.NombreCorto = estampa.NombreCorto;
-		this.descripcion = estampa.descripcion;
-		this.url = estampa.url;
-		this.precio = estampa.precio;
-		this.estado = estampa.estado;
-		this.tema = estampa.getTema();
-		this.artista = estampa.getArtista();
 	}
 
 	public Long getIdEstampa() {
