@@ -96,7 +96,7 @@
         
         <spring:bind path="sexo">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-            	<label class="col-md-4 control-label" for=sexo>Sexo:</label>  
+            	<label class="col-md-4 control-label" for=sexo>Género:</label>  
 		  		<div class="col-md-4">
 	                <form:select path="sexo" class="form-control"  required="required">
 	                	<form:option value="" label="--- Seleccione ---"/>
@@ -142,7 +142,7 @@
 		<div class="form-group">
 		  <div class="col-md-12 text-center">
 		    <button class="btn btn-primary" type="submit">Registrar</button>
-		    <button class="btn btn-info">Cancelar</button>
+		    <button class="btn btn-info" onclick="location.href='/login'">Cancelar</button>
 		  </div>
 		</div>
 

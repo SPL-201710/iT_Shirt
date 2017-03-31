@@ -82,7 +82,7 @@
 			<div class="form-group">
 			  <div class="col-md-12 text-center">
 			    <button class="btn btn-primary">Guardar</button>
-			    <button class="btn btn-info">Cancelar</button>
+			    <button class="btn btn-info" onclick="location.href='/'">Cancelar</button>
 			  </div>
 			</div>
 

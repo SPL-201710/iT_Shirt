@@ -37,11 +37,11 @@ public class Estampa {
 	@Column(name = "esta_extension")
 	private String extension;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "tema_id")
     private Tema tema;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "artista_id")
     private Usuario artista;
 	
@@ -122,6 +122,10 @@ public class Estampa {
 
 	public void setExtension(String extension) {
 		this.extension = extension;
+	}
+	
+	public String getSource() {
+		return this.artista.getIdUsuario() + "/" + this.idEstampa + "." + this.extension;
 	}
 	
 }

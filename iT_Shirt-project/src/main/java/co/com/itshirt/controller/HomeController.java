@@ -35,6 +35,7 @@ public class HomeController {
 			CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
 			final String rol = usuario.getRol().getNombre();
 			session.setAttribute("nombreCompleto", usuario.getNombresCompletos());
+			session.setAttribute("genero", usuario.getGenero());
 			session.setAttribute("rol", rol);
 			session.setAttribute("menus", MenuBuilder.obtenerMenusPorRol(usuario.getRol().getNombre()));
 			return "welcome";

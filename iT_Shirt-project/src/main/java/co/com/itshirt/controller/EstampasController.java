@@ -1,6 +1,5 @@
 package co.com.itshirt.controller;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -64,7 +62,7 @@ public class EstampasController {
     		}
     	}
     	model.addAttribute("estampas", estampas);
-    	model.addAttribute("user", usuario.getRol());
+    	model.addAttribute("roluser", usuario.getRol());
     	System.out.println("rol " + usuario.getRol());
 		return "catalogo";
 	}
@@ -119,4 +117,13 @@ public class EstampasController {
 		model.addAttribute("estampa", new EstampaDTO(estampa));
 		return "estampa/detalleEstampa";
 	}
+	
+	/**
+	 * Se encarga de cargar la pagina de detalle de la estampa
+	 */
+	@RequestMapping(value="estampa/calificaciones", method = RequestMethod.GET)
+	public String verCalificaciones(Model model){
+		return "estampa/calificaciones";
+	}
+	
 }

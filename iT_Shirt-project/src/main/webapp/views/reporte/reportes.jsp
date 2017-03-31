@@ -6,6 +6,15 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <div class="container-fluid">
-	<h1 class="page-header">Reportes</h1>
+	
+	<fieldset>
+
+		<legend>Reportes de <b>Ventas</b></legend>
+
+		<br>
+		
+		
+	
+	</fieldset>
 
 </div>

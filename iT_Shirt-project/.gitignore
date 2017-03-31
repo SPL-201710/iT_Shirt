@@ -6,7 +6,8 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
-iT_Shirt-project\src\main\webapp\estampas
+src\main\webapp\estampas
+src\main\resources\application.properties
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/

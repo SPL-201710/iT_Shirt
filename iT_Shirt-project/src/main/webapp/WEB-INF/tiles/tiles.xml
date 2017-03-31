@@ -90,6 +90,12 @@
         <put-attribute name="body" value="/views/reporte/reportes.jsp"/>
     </definition>
     
+
+    <definition name="personalizacion/personalizacion" extends="master.page">
+		<put-attribute name="title" value="Personalizacion" />
+        <put-attribute name="body" value="/views/personalizacion/personalizacion.jsp"/>
+	</definition>
+	
     <definition name="compra/carrito" extends="master.page">
 		<put-attribute name="title" value="Carrito de compras" />
         <put-attribute name="body" value="/views/compra/carrito.jsp"/>
@@ -101,8 +107,28 @@
     </definition>
     
      <definition name="compra/payment" extends="master.page">
-		<put-attribute name="title" value="Pago" />
+		<put-attribute name="title" value="Pago del Carrito" />
         <put-attribute name="body" value="/views/compra/payment.jsp"/>
+    </definition>
+    
+    <definition name="compra/historial" extends="master.page">
+		<put-attribute name="title" value="Historial de compras" />
+        <put-attribute name="body" value="/views/compra/historial.jsp"/>
+    </definition>
+    
+    <definition name="perfil/cambiarCredenciales" extends="master.page">
+		<put-attribute name="title" value="Cambiar contraseña" />
+        <put-attribute name="body" value="/views/perfil/cambiarCredenciales.jsp"/>
+    </definition>
+    
+    <definition name="estampa/calificaciones" extends="master.page">
+		<put-attribute name="title" value="Calificaciones de Estampas" />
+        <put-attribute name="body" value="/views/estampa/calificaciones.jsp"/>
+    </definition>
+    
+    <definition name="compra/detalleCompra" extends="master.page">
+		<put-attribute name="title" value="Detalle de la compra" />
+        <put-attribute name="body" value="/views/compra/detalleCompra.jsp"/>
     </definition>
 
 </tiles-definitions>

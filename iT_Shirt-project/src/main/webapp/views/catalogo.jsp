@@ -6,22 +6,12 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <div class="container-fluid">
-	<h1 class="page-header">Catálogo de Estampas</h1>
-	<div class="col-lg-12">
+	<fieldset>
+
+		<legend>Catálogo de <b>Estampas</b></legend>
+
+		<br>
 		
-		<div class="btn-group pull-right" style="margin-bottom: 15px">
-		  <button type="button" class="btn btn-primary dropdown-toggle"
-		          data-toggle="dropdown">
-		    Categoría <span class="caret"></span>
-		  </button>
-		 
-		  <ul class="dropdown-menu" role="menu">
-		    <li><a href="#">Animales</a></li>
-		    <li><a href="#">Deportes</a></li>
-		    <li><a href="#">Música</a></li>
-		  </ul>
-		</div>
-	</div>
 		<!-- Projects Row -->
         <div class="row">
         	
@@ -34,8 +24,8 @@
 	                </a>
 	                <label></label>
 	                <c:choose>
-		                <c:when test="${user.nombre == 'Comprador'}">
-						    <a href="">Seleccionar</a>
+		                <c:when test="${roluser.nombre == 'Comprador'}">
+						    <a href="${contextPath}/seleccionCamiseta/?es=${e.idEstampa}">Seleccionar</a>
 						</c:when>
 					</c:choose>
 	            </div>
@@ -43,4 +33,7 @@
         	</c:forEach>
         	
         </div>
+        
+      </fieldset>
+      
 </div>
