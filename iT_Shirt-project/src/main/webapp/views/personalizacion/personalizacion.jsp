@@ -63,6 +63,17 @@
 	            </div>
 	        </spring:bind>
 	        
+	        <spring:bind path="cantidad">
+	            <div class="form-group">
+	            	<label class="col-md-3 control-label" for=idTema>Cantidad:</label>  
+			  		<div class="col-md-7">
+		                <form:input type="number" path="cantidad" class="form-control" value="1" autofocus="false"/>
+		                <form:errors path="cantidad"></form:errors>
+	                </div>
+	            </div>
+	        </spring:bind>
+	        
+	        
 	        <br>
 	        <br>
 	
