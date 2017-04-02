@@ -35,5 +35,26 @@
         </div>
         
       </fieldset>
+     
+    <div class="row col-md-6 col-md-offset-2 custyle">
+    <table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Nombre de la estampa</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+    </thead>
+    	<c:forEach items="${estampa}" var="t">
+    		<tr>
+                <td>${t.nombreCorto}</td>
+                <td class="text-center">
+                <a class='btn btn-info btn-xs' href="#">
+                <span class="glyphicon glyphicon-edit"></span> Editar</a> 
+                <a href="#" class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
+            </tr>
+    	</c:forEach>
+    </table>
+    </div>
       
 </div>

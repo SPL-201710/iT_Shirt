@@ -42,7 +42,10 @@
     	<c:forEach items="${temas}" var="t">
     		<tr>
                 <td>${t.nombre}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Editar</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="#">
+                <span class="glyphicon glyphicon-edit"></span> Editar</a>
+                <a href="#" class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
             </tr>
     	</c:forEach>
     </table>
