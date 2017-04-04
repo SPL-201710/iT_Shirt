@@ -128,6 +128,7 @@ return false;
 	                    	title="${e.nombre}" src="/resources/images/icono-camiseta.jpg" alt="${e.nombre}"> -->	
 	               <c:if test="${rolUsuario == 'Comprador'}">
 	               <img border="0" src="/resources/estampas/${url}" class="estampa" width="25%" />
+	               <div class="product_text" ></div>
 	               </c:if>
 	                </a>
 	                <div class="col-md-10">
