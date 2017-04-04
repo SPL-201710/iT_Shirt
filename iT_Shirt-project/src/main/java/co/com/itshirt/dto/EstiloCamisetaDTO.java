@@ -3,6 +3,8 @@ package co.com.itshirt.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import co.com.itshirt.domain.EstiloCamiseta;
 import co.com.itshirt.enums.EnumEstilosCamiseta;
 
@@ -24,6 +26,8 @@ public class EstiloCamisetaDTO {
     @Size(max=50)
 	private String material;
 	private Long precio;
+	private MultipartFile file;
+	private String extension;
     
 	public EstiloCamisetaDTO() {
 		super();
@@ -36,6 +40,7 @@ public class EstiloCamisetaDTO {
 		this.estilo = entity.getEstilo();
 		this.material = entity.getMaterial();
 		this.precio = entity.getPrecio();
+		this.extension = entity.getExtension();
 	}
 	
 	public EstiloCamiseta toEntity() {
@@ -45,6 +50,7 @@ public class EstiloCamisetaDTO {
 		entity.setEstilo(this.estilo);
 		entity.setMaterial(this.material);
 		entity.setPrecio(this.precio);
+		entity.setExtension(this.extension);
 		return entity;
 	}
 	
@@ -93,6 +99,26 @@ public class EstiloCamisetaDTO {
 			return EnumEstilosCamiseta.get(this.estilo).getNombre();
 		}
 		return "";
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	
+	public String getExtension() {
+		return extension;
+	}
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+
+	public String getSource() {
+		return this.idEstilo + "." + this.extension;
 	}
 	
 }

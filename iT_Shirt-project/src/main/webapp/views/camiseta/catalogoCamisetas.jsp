@@ -39,21 +39,30 @@
         var selectedColor = "white";
 
         function colorPicker_OnMouseOver(color) {
-            var imgColorPreview = document.getElementById("imgColorPreview");
-            imgColorPreview.style.backgroundColor = color;
+            var imgColorPreview = document.getElementsByClassName("imgColorPreview");
+            var i;
+            for (i = 0; i < imgColorPreview.length; i++) {
+            	imgColorPreview[i].style.backgroundColor = color;
+            }
         }
 
         function colorPicker_OnMouseOut() {
             var tblColorPalette = document.getElementById("colorPalette");
             if (tblColorPalette.style.display != "none") {
-                var imgColorPreview = document.getElementById("imgColorPreview");
-                imgColorPreview.style.backgroundColor = selectedColor;
+            	var imgColorPreview = document.getElementsByClassName("imgColorPreview");
+                var i;
+                for (i = 0; i < imgColorPreview.length; i++) {
+                	imgColorPreview[i].style.backgroundColor = selectedColor;
+                }
             }
         }
 
         function colorPicker_OnClick(color) {
-            var imgColorPreview = document.getElementById("imgColorPreview");
-            imgColorPreview.style.backgroundColor = color;
+            var imgColorPreview = document.getElementsByClassName("imgColorPreview");
+            var i;
+            for (i = 0; i < imgColorPreview.length; i++) {
+            	imgColorPreview[i].style.backgroundColor = color;
+            }
             selectedColor = color;
         }
     </script>
@@ -80,11 +89,13 @@
         	
 	        	<div class="col-md-4 portfolio-item">
 	                <a href="${contextPath}/camisetas/detalleCamiseta/?es=${e.idEstilo}">
-	                    <img class="img-responsive" data-toggle="tooltip" data-placement="right" style="max-width:200px" 
-	                    	title="${e.nombre}" src="/resources/images/shirt.png" alt="${e.nombre}" class="camisetaTransparente" id="imgColorPreview" >
+	                    <img class="img-responsive camisetaTransparente imgColorPreview" data-toggle="tooltip" data-placement="right" style="max-width:200px" 
+	                    	title="${e.nombre}" src="/resources/camisetas/${e.source}" alt="${e.nombre}" id="imgColorPreview_" >
 	                  <!-- <img class="img-responsive" data-toggle="tooltip" data-placement="right" style="max-width:200px" 
 	                    	title="${e.nombre}" src="/resources/images/icono-camiseta.jpg" alt="${e.nombre}"> -->	
+	               <c:if test="${rolUsuario == 'Comprador'}">
 	               <img border="0" src="/resources/estampas/${url}" class="estampa" width="25%" />
+	               </c:if>
 	                </a>
 	                <div class="col-md-10">
 						<label class="txt-primary">Referencia: ${e.nombre}</label> 
@@ -106,6 +117,7 @@
 </div>
 
     <br />
+    <c:if test="${rolUsuario == 'Comprador'}">
     <div id="colorPalette" >
         Selecciona el color
         <table id="tblColorPalette" border="1" cellpadding="0" cellspacing="0" class="colorPicker">
@@ -135,3 +147,4 @@
             </tr>
         </table>
     </div>
+    </c:if>

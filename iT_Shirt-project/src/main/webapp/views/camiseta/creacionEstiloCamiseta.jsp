@@ -64,6 +64,16 @@
 	            </div>
 	        </spring:bind>
 	        
+	        <spring:bind path="file">
+	            <div class="form-group ${status.error ? 'has-error' : ''}">
+	            	<label class="col-md-3 control-label" for="file">Seleccionar estilo:</label>  
+			  		<div class="col-md-7">
+	                <form:input type="file" path="file" required="required" class="form-control btn btn-default btn-file"/>
+	                <form:errors path="file"></form:errors>
+	                </div>
+	            </div>
+	        </spring:bind>
+	        
 	        <br>
 	        <br>
 	

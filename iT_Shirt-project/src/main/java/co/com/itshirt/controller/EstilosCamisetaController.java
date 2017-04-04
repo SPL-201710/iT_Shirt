@@ -27,6 +27,7 @@ import co.com.itshirt.dto.EstiloCamisetaDTO;
 import co.com.itshirt.enums.EnumEstilosCamiseta;
 import co.com.itshirt.repository.EstiloCamisetaRepository;
 import co.com.itshirt.security.CustomUserDetails;
+import co.com.itshirt.util.FileUtils;
 
 /**
  * Funcionalidades de las camisetas.
@@ -83,7 +84,9 @@ public class EstilosCamisetaController {
 			return "camiseta/creacionEstiloCamiseta";
 		}
 		EstiloCamiseta estiloCamiseta = camiseta.toEntity();
-		this.estiloCamisetaRepository.save(estiloCamiseta);
+		estiloCamiseta.setExtension(FileUtils.obtenerExtension(camiseta.getFile()));
+		estiloCamiseta = this.estiloCamisetaRepository.save(estiloCamiseta);
+		FileUtils.guardarArchivoCamiseta(camiseta.getFile(), estiloCamiseta.getIdEstilo(), request);
 		return "redirect:/camisetas/catalogo";
 	}
 	
