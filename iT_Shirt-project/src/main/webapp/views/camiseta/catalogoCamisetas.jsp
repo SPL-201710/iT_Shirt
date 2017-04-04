@@ -2,6 +2,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -28,15 +29,16 @@
 	.estampa
 	{
 		position: absolute;
-		top: 105px;
-		left: 55px;
+		top: 80px;
+		left: 80px;
 	}
 	
 		.product_text {
-	position: absolute;
-	bottom: 100px;
-	left: 65px;
-	width: 100%;
+	 position: absolute;
+    top: 150px;
+    left: 72px;
+    width: 100%;
+    font-size: 10px;
 	color: #000;
 	}
 	
@@ -54,6 +56,11 @@
 	margin: 0 auto;
 	position: relative;
 	}
+	
+	.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
 	
     </style>
     
@@ -91,15 +98,22 @@
         }
     </script>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script>
-$(document).ready(function(){
-$('.submit').click(function(){
-var text = $('.text').val();
-$('.product_text').html('<p>' + text + '</p>');
-return false;
-});
-});
-</script>
+	<script>
+	$(document).ready(function(){
+		
+		$('.submit').click(function(){
+			var text = $('.text').val();
+			$('.product_text').html('<p>' + text + '</p>');
+			return false;
+		});
+		
+		$('input').keyup(function() {
+			var text = $('.text').val();
+			$('.product_text').html('<p>' + text + '</p>');
+		});
+		
+	});
+	</script>
 
 <div class="container-fluid">
 	
@@ -121,16 +135,16 @@ return false;
         	<c:forEach items="${camisetas}" var="e">
         	
 	        	<div class="col-md-4 portfolio-item">
-	                <a href="${contextPath}/camisetas/detalleCamiseta/?es=${e.idEstilo}">
-	                    <img class="img-responsive camisetaTransparente imgColorPreview" data-toggle="tooltip" data-placement="right" style="max-width:200px" 
-	                    	title="${e.nombre}" src="/resources/camisetas/${e.source}" alt="${e.nombre}" id="imgColorPreview_" >
-	                  <!-- <img class="img-responsive" data-toggle="tooltip" data-placement="right" style="max-width:200px" 
-	                    	title="${e.nombre}" src="/resources/images/icono-camiseta.jpg" alt="${e.nombre}"> -->	
-	               <c:if test="${rolUsuario == 'Comprador'}">
-	               <img border="0" src="/resources/estampas/${url}" class="estampa" width="25%" />
-	               <div class="product_text" ></div>
-	               </c:if>
-	                </a>
+	        		<div class="image">
+	        			<a href="${contextPath}/camisetas/detalleCamiseta/?es=${e.idEstilo}">
+					      <img src="/resources/camisetas/${e.source}" class="img-responsive camisetaTransparente imgColorPreview" 
+					      	data-toggle="tooltip" data-placement="right" title="${e.nombre}" alt="${e.nombre}"/>
+					      	<c:if test="${rolUsuario == 'Comprador'}">
+	               				<img border="0" src="/resources/estampas/${url}" class="estampa" width="25%" />
+					      		<span class="product_text"></span>
+	               			</c:if>
+					    </a>
+					</div>
 	                <div class="col-md-10">
 						<label class="txt-primary">Referencia: ${e.nombre}</label> 
 					</div>
@@ -147,11 +161,10 @@ return false;
         </div>
         
       </fieldset> 
-       
-</div>
-
-    <br />
+      
+      
     <c:if test="${rolUsuario == 'Comprador'}">
+    <br />
     <div id="colorPalette" >
         Selecciona el color
         <table id="tblColorPalette" border="1" cellpadding="0" cellspacing="0" class="colorPicker">
@@ -181,21 +194,20 @@ return false;
             </tr>
         </table>
     </div>
-    	<div class="product_wrapper" ">
- 
-		<div class="product_image" >
-		<!--<div class="product_text" ></div>
-		<!-- end product_text -->
- 
- 		</div>
+    <br/>
+    <div class="">
 		<!-- end product_image -->
  		<form class="input_text" name="input_text" action="" >
-		<label for="text">Inserta el Texto<br />
-		<input class="text" type="text"><br />
-		<input type="submit" class="submit" value="submit" />
-		</label>
+			<div class="form-group">
+            	<label class="col-md-3 control-label" for="texto">Texto configurable:</label>  
+		  		<div class="col-md-7">
+                	<input class="text form-control" placeholder="Texto configurable" type="text">
+                </div>
+		     </div>
 		</form>
 	</div>
     
     
     </c:if>
+     
+</div>

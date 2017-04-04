@@ -19,7 +19,7 @@
 			<br>
 			
 		<form:form method="POST" modelAttribute="estampaForm" class="form-horizontal" enctype="multipart/form-data">
-
+	        
 	        <spring:bind path="estaNombreCorto">
 	            <div class="form-group ${status.error ? 'has-error' : ''}">
 	            	<label class="col-md-3 control-label" for="estaNombreCorto">Nombre corto:</label>  
