@@ -36,22 +36,32 @@
 	                </div>
 	            </div>
 	        </spring:bind>
-	
+	        
 	        <spring:bind path="color">
 	            <div class="form-group">
-	            	<label class="col-md-3 control-label" for=idTema>Color:</label>  
+	            	<label class="col-md-3 control-label" for="color">Color:</label>  
 			  		<div class="col-md-7">
-		                <form:select path="color" class="form-control"  required="required">
-		                	<form:option value="" label="--- Seleccione Color ---"/>
-	   						<form:option value="Rojo" label="Rojo"/>
-	   						<form:option value="Azul" label="Azul"/>
-	   						<form:option value="Verde" label="Verde"/>
-	   						<form:option value="Amarillo" label="Amarillo"/>
-		                </form:select>
+		                <form:input type="text" path="color" class="form-control" placeholder="Color" autofocus="false" />
 		                <form:errors path="color"></form:errors>
 	                </div>
 	            </div>
 	        </spring:bind>
+	
+<%-- 	        <spring:bind path="color"> --%>
+<!-- 	            <div class="form-group"> -->
+<!-- 	            	<label class="col-md-3 control-label" for=idTema>Color:</label>   -->
+<!-- 			  		<div class="col-md-7"> -->
+<%-- 		                <form:select path="color" class="form-control"  required="required"> --%>
+<%-- 		                	<form:option value="" label="--- Seleccione Color ---"/> --%>
+<%-- 	   						<form:option value="Rojo" label="Rojo"/> --%>
+<%-- 	   						<form:option value="Azul" label="Azul"/> --%>
+<%-- 	   						<form:option value="Verde" label="Verde"/> --%>
+<%-- 	   						<form:option value="Amarillo" label="Amarillo"/> --%>
+<%-- 		                </form:select> --%>
+<%-- 		                <form:errors path="color"></form:errors> --%>
+<!-- 	                </div> -->
+<!-- 	            </div> -->
+<%-- 	        </spring:bind> --%>
 	        
 	        <spring:bind path="textoConfigurado">
 	            <div class="form-group">

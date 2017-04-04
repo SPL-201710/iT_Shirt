@@ -95,6 +95,7 @@
             	imgColorPreview[i].style.backgroundColor = color;
             }
             selectedColor = color;
+            $('#color-estampa').val(color);
         }
     </script>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -110,6 +111,7 @@
 		$('input').keyup(function() {
 			var text = $('.text').val();
 			$('.product_text').html('<p>' + text + '</p>');
+			$('#texto-camiseta').val(text);
 		});
 		
 	});
@@ -133,28 +135,52 @@
         <div class="row">
         	
         	<c:forEach items="${camisetas}" var="e">
-        	
-	        	<div class="col-md-4 portfolio-item">
-	        		<div class="image">
-	        			<a href="${contextPath}/camisetas/detalleCamiseta/?es=${e.idEstilo}">
-					      <img src="/resources/camisetas/${e.source}" class="img-responsive camisetaTransparente imgColorPreview" 
-					      	data-toggle="tooltip" data-placement="right" title="${e.nombre}" alt="${e.nombre}"/>
-					      	<c:if test="${rolUsuario == 'Comprador'}">
-	               				<img border="0" src="/resources/estampas/${url}" class="estampa" width="25%" />
-					      		<span class="product_text"></span>
-	               			</c:if>
-					    </a>
-					</div>
-	                <div class="col-md-10">
-						<label class="txt-primary">Referencia: ${e.nombre}</label> 
-					</div>
-					<div class="col-md-10">
-						<label class="txt-success">Precio: $ ${e.precio}</label> 
-					</div>
-					<c:if test="${rolUsuario == 'Comprador'}">
-						<a href="${contextPath}/personalizacion/?es=${e.idEstilo}">Seleccionar</a>
-					</c:if>
-	            </div>
+        		
+        		<form:form method="POST" modelAttribute="personalizacionForm" class="form-horizontal" enctype="multipart/form-data">
+        		
+        			<spring:bind path="estiloCamiseta">
+	                	<form:hidden path="estiloCamiseta" value="${e.idEstilo}"/>
+	        		</spring:bind>
+	        		
+        			<spring:bind path="estampa">
+	                	<form:hidden path="estampa"/>
+	        		</spring:bind>
+	        		
+	        		<spring:bind path="color">
+	                	<form:hidden path="color" id="color-estampa"/>
+	        		</spring:bind>
+	        		
+	        		<spring:bind path="textoConfigurado">
+	                	<form:hidden path="textoConfigurado" id="texto-camiseta"/>
+	        		</spring:bind>
+	        		
+		        	<div class="col-md-4 portfolio-item">
+		        		<div class="image">
+		        			<a href="${contextPath}/camisetas/detalleCamiseta/?es=${e.idEstilo}">
+						      <img src="/resources/camisetas/${e.source}" class="img-responsive camisetaTransparente imgColorPreview" 
+						      	data-toggle="tooltip" data-placement="right" title="${e.nombre}" alt="${e.nombre}"/>
+						      	<c:if test="${rolUsuario == 'Comprador'}">
+		               				<img border="0" src="/resources/estampas/${url}" class="estampa" width="25%" />
+						      		<span class="product_text"></span>
+		               			</c:if>
+						    </a>
+						</div>
+		                <div class="col-md-10">
+							<label class="txt-primary">Referencia: ${e.nombre}</label> 
+						</div>
+						<div class="col-md-10">
+							<label class="txt-success">Precio: $ ${e.precio}</label> 
+						</div>
+						<c:if test="${rolUsuario == 'Comprador'}">
+							<div class="form-group">
+							  <div class="col-md-12 text-center">
+							    <button class="btn btn-primary">Seleccionar</button>
+							  </div>
+							</div>
+						</c:if>
+		            </div>
+	            
+	            </form:form>
         	
         	</c:forEach>
         	

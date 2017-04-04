@@ -24,6 +24,7 @@ import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.EstiloCamiseta;
 import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.dto.EstiloCamisetaDTO;
+import co.com.itshirt.dto.PersonalizacionDTO;
 import co.com.itshirt.enums.EnumEstilosCamiseta;
 import co.com.itshirt.repository.EstiloCamisetaRepository;
 import co.com.itshirt.security.CustomUserDetails;
@@ -55,7 +56,20 @@ public class EstilosCamisetaController {
     	}
     	model.addAttribute("rolUsuario", usuario.getRol().getNombre()); //Para mostrar o quitar cosas de la vista.
     	model.addAttribute("camisetas", estilos);
+    	model.addAttribute("personalizacionForm", new PersonalizacionDTO());
 		return "camiseta/catalogoCamisetas";
+	}
+	
+	/**
+	 * TEMPORALLLLLLL Mientras se define bien!!!!!!!!!!!!!!!!!!
+	 */
+	@RequestMapping(value = "catalogo", method = RequestMethod.POST)
+	public String checkSeleccionarCamiseta(PersonalizacionDTO camiseta, HttpSession session, BindingResult bindingResult, Model model, HttpServletRequest request) {
+		System.err.println("Color:" +camiseta.getColor());
+		System.err.println("Texto:" +camiseta.getTextoConfigurado());
+		System.err.println("Id estilo:" +camiseta.getEstiloCamiseta());
+		session.setAttribute("personalizacionDTO", camiseta);
+		return "redirect:/personalizacion";
 	}
 	
 	/**
