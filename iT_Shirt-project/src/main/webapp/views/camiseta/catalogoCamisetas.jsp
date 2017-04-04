@@ -85,7 +85,6 @@
 	                  <!-- <img class="img-responsive" data-toggle="tooltip" data-placement="right" style="max-width:200px" 
 	                    	title="${e.nombre}" src="/resources/images/icono-camiseta.jpg" alt="${e.nombre}"> -->	
 	               <img border="0" src="/resources/estampas/${url}" class="estampa" width="25%" />
-	               ${url}
 	                </a>
 	                <div class="col-md-10">
 						<label class="txt-primary">Referencia: ${e.nombre}</label> 
@@ -97,8 +96,7 @@
 						<a href="${contextPath}/personalizacion/?es=${e.idEstilo}">Seleccionar</a>
 					</c:if>
 	            </div>
-        	 ${url}
-        	 hlasfñajsfl
+        	
         	</c:forEach>
         	
         </div>

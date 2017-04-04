@@ -47,7 +47,6 @@ public class PersonalizacionController {
 	public String detalleEstampa(@RequestParam(value="es", required=true) Long idEstampaSeleccionada, Model model, HttpSession session, @RequestParam(value="url", required=true) String url ){
 		session.setAttribute("idEstampaSeleccionada", idEstampaSeleccionada);
 		session.setAttribute("url", url);
-		System.out.println("ACA URL!!!!!!!!!!!!!!"+url);
 		return "redirect:/camisetas/catalogo";
 	}
 	
