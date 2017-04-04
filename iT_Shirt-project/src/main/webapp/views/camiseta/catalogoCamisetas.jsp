@@ -34,7 +34,7 @@
 	
 		.product_text {
 	position: absolute;
-	bottom: 245px;
+	bottom: 100px;
 	left: 65px;
 	width: 100%;
 	color: #000;
@@ -184,7 +184,7 @@ return false;
     	<div class="product_wrapper" ">
  
 		<div class="product_image" >
-		<div class="product_text" ></div>
+		<!--<div class="product_text" ></div>
 		<!-- end product_text -->
  
  		</div>
