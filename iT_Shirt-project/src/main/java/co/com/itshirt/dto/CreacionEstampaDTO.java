@@ -5,6 +5,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import co.com.itshirt.domain.Estampa;
+
 /**
  * Información nueva estampa
  * @author ja.picon
@@ -24,6 +26,22 @@ public class CreacionEstampaDTO {
 	private Long precio;
 	private String estado;
     private Long idTema;
+    
+    //Para la edición.
+    private Long idEstampa;
+    
+    public CreacionEstampaDTO() {
+		// TODO Auto-generated constructor stub
+	}
+    
+    public CreacionEstampaDTO(Estampa estampa) {
+		this.idEstampa = estampa.getIdEstampa();
+		this.idTema = estampa.getTema().getIdTema();
+		this.estaNombreCorto = estampa.getEstaNombreCorto();
+		this.descripcion = estampa.getDescripcion();
+		this.precio = estampa.getPrecio();
+	}
+    
     
 	public String getEstaNombreCorto() {
 		return estaNombreCorto;
@@ -60,6 +78,12 @@ public class CreacionEstampaDTO {
 	}
 	public void setIdTema(Long idTema) {
 		this.idTema = idTema;
+	}
+	public Long getIdEstampa() {
+		return idEstampa;
+	}
+	public void setIdEstampa(Long idEstampa) {
+		this.idEstampa = idEstampa;
 	}
     
 }

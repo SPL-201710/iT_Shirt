@@ -111,6 +111,35 @@ public class EstampasController {
 	/**
 	 * Se encarga de cargar la pagina de detalle de la estampa
 	 */
+	@RequestMapping(value="/estampa/editar", method = RequestMethod.GET)
+	public String verEditarEstampa(@RequestParam(value="es", required=true) Long idEstampaEditar, Model model){
+		final Iterable<Tema> temas = this.temaRepository.findAll();
+		Map<Long,String> mapTemas = new LinkedHashMap<Long,String>(); //Para leerlo de <form:options> toca así.
+		for (Tema tema : temas) {
+			mapTemas.put(tema.getIdTema(), tema.getNombre());
+		}
+		final Estampa estampa = this.estampaRepository.findOne(idEstampaEditar);
+		model.addAttribute("temas", mapTemas);
+		model.addAttribute("estampaForm", new CreacionEstampaDTO(estampa)); //Se llena DTO para pre cargar información
+		return "estampa/edicionEstampa";
+	}
+	
+	/**
+	 * Método llamado al momento de guardar el formulario de creación.
+	 */
+	@RequestMapping(value = "/estampa/editar", method = RequestMethod.POST)
+	public String checkEditarEstampa(@Valid CreacionEstampaDTO creacionEstampa, BindingResult bindingResult, Model model, HttpServletRequest request) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("error", "Por favor, llene los campos obligatorios.");
+			model.addAttribute("estampaForm", creacionEstampa);
+			return "estampa/edicionEstampa";
+		}
+		return "redirect:/catalogo";
+	}
+	
+	/**
+	 * Se encarga de cargar la pagina de detalle de la estampa
+	 */
 	@RequestMapping(value="/detalleEstampa", method = RequestMethod.GET)
 	public String detalleEstampa(@RequestParam(value="es", required=true) Long es, Model model){
 		final Estampa estampa = estampaRepository.findOne(es);
