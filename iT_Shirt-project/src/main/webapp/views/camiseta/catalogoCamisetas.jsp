@@ -31,6 +31,30 @@
 		top: 105px;
 		left: 55px;
 	}
+	
+		.product_text {
+	position: absolute;
+	bottom: 245px;
+	left: 65px;
+	width: 100%;
+	color: #000;
+	}
+	
+	.product_wrapper {
+	position: absolute;
+
+	width: 300px;
+	margin: 0 auto;
+	}
+ 
+	.product_image {
+	position: absolute;
+
+	width: 300px;
+	margin: 0 auto;
+	position: relative;
+	}
+	
     </style>
     
         <!--Script used-->
@@ -66,7 +90,16 @@
             selectedColor = color;
         }
     </script>
-    
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script>
+$(document).ready(function(){
+$('.submit').click(function(){
+var text = $('.text').val();
+$('.product_text').html('<p>' + text + '</p>');
+return false;
+});
+});
+</script>
 
 <div class="container-fluid">
 	
@@ -147,4 +180,21 @@
             </tr>
         </table>
     </div>
+    	<div class="product_wrapper" ">
+ 
+		<div class="product_image" >
+		<div class="product_text" ></div>
+		<!-- end product_text -->
+ 
+ 		</div>
+		<!-- end product_image -->
+ 		<form class="input_text" name="input_text" action="" >
+		<label for="text">Inserta el Texto<br />
+		<input class="text" type="text"><br />
+		<input type="submit" class="submit" value="submit" />
+		</label>
+		</form>
+	</div>
+    
+    
     </c:if>
