@@ -5,6 +5,60 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+<style>
+        table.colorPicker 
+        {
+            border: 1px solid black;
+            background-color: white;
+        }
+        table.colorPicker td 
+        {
+           border: 1px solid white;
+           width: 30px;
+           height: 30px;
+           cursor:pointer;
+        }
+		
+	.camisetaTransparente
+	{
+		position: relative;
+		top: 0;
+		left: 0;
+	}
+	.estampa
+	{
+		position: absolute;
+		top: 105px;
+		left: 55px;
+	}
+    </style>
+    
+        <!--Script used-->
+    <script type="text/javascript">
+        //Default selected color = white
+        var selectedColor = "white";
+
+        function colorPicker_OnMouseOver(color) {
+            var imgColorPreview = document.getElementById("imgColorPreview");
+            imgColorPreview.style.backgroundColor = color;
+        }
+
+        function colorPicker_OnMouseOut() {
+            var tblColorPalette = document.getElementById("colorPalette");
+            if (tblColorPalette.style.display != "none") {
+                var imgColorPreview = document.getElementById("imgColorPreview");
+                imgColorPreview.style.backgroundColor = selectedColor;
+            }
+        }
+
+        function colorPicker_OnClick(color) {
+            var imgColorPreview = document.getElementById("imgColorPreview");
+            imgColorPreview.style.backgroundColor = color;
+            selectedColor = color;
+        }
+    </script>
+    
+
 <div class="container-fluid">
 	
 	<fieldset>
@@ -27,7 +81,11 @@
 	        	<div class="col-md-4 portfolio-item">
 	                <a href="${contextPath}/camisetas/detalleCamiseta/?es=${e.idEstilo}">
 	                    <img class="img-responsive" data-toggle="tooltip" data-placement="right" style="max-width:200px" 
-	                    	title="${e.nombre}" src="/resources/images/icono-camiseta.jpg" alt="${e.nombre}">
+	                    	title="${e.nombre}" src="/resources/images/shirt.png" alt="${e.nombre}" class="camisetaTransparente" id="imgColorPreview" >
+	                  <!-- <img class="img-responsive" data-toggle="tooltip" data-placement="right" style="max-width:200px" 
+	                    	title="${e.nombre}" src="/resources/images/icono-camiseta.jpg" alt="${e.nombre}"> -->	
+	               <img border="0" src="/resources/estampas/${url}" class="estampa" width="25%" />
+	               ${url}
 	                </a>
 	                <div class="col-md-10">
 						<label class="txt-primary">Referencia: ${e.nombre}</label> 
@@ -39,7 +97,8 @@
 						<a href="${contextPath}/personalizacion/?es=${e.idEstilo}">Seleccionar</a>
 					</c:if>
 	            </div>
-        	
+        	 ${url}
+        	 hlasfñajsfl
         	</c:forEach>
         	
         </div>
@@ -47,3 +106,34 @@
       </fieldset> 
        
 </div>
+
+    <br />
+    <div id="colorPalette" >
+        Selecciona el color
+        <table id="tblColorPalette" border="1" cellpadding="0" cellspacing="0" class="colorPicker">
+            <tr>
+                <td style="background-color:red;" onmouseover="colorPicker_OnMouseOver('red')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('red')" title="Red"></td>
+                <td style="background-color:green;" onmouseover="colorPicker_OnMouseOver('green')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('green')" title="Green"></td>
+                <td style="background-color:black;" onmouseover="colorPicker_OnMouseOver('black')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('black')" title="Black"></td>
+                <td style="background-color:white;" onmouseover="colorPicker_OnMouseOver('white')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('white')" title="White"></td>
+                <td style="background-color:brown;" onmouseover="colorPicker_OnMouseOver('brown')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('brown')" title="Brown"></td>
+                <td style="background-color:beige;" onmouseover="colorPicker_OnMouseOver('beige')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('beige')" title="Beige"></td>
+                <td style="background-color:magenta;" onmouseover="colorPicker_OnMouseOver('magenta')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('magenta')" title="Magenta"></td>
+                <td style="background-color:navy;" onmouseover="colorPicker_OnMouseOver('navy')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('navy')" title="Navy"></td>
+                <td style="background-color:pink;" onmouseover="colorPicker_OnMouseOver('pink')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('pink')" title="Pink"></td>
+                <td style="background-color:tan;" onmouseover="colorPicker_OnMouseOver('tan')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('tan')" title="Tan"></td>
+            </tr>
+            <tr>
+                <td style="background-color:blue;" onmouseover="colorPicker_OnMouseOver('blue')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('blue')" title="Blue"></td>
+                <td style="background-color:maroon;" onmouseover="colorPicker_OnMouseOver('maroon')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('maroon')" title="Maroon"></td>
+                <td style="background-color:yellow;" onmouseover="colorPicker_OnMouseOver('yellow')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('yellow')" title="Yellow"></td>
+                <td style="background-color:gray;" onmouseover="colorPicker_OnMouseOver('gray')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('gray')" title="Gray"></td>
+                <td style="background-color:gold;" onmouseover="colorPicker_OnMouseOver('gold')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('gold')" title="Gold"></td>
+                <td style="background-color:aqua;" onmouseover="colorPicker_OnMouseOver('aqua')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('aqua')" title="Aqua"></td>
+                <td style="background-color:silver;" onmouseover="colorPicker_OnMouseOver('silver')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('silver')" title="Silver"></td>
+                <td style="background-color:orange;" onmouseover="colorPicker_OnMouseOver('orange')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('orange')" title="Beige"></td>
+                <td style="background-color:olive;" onmouseover="colorPicker_OnMouseOver('olive')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('olive')" title="Olive"></td>
+                <td style="background-color:purple;" onmouseover="colorPicker_OnMouseOver('purple')" onmouseout="colorPicker_OnMouseOut()" onclick="colorPicker_OnClick('purple')" title="Purple"></td>
+            </tr>
+        </table>
+    </div>
