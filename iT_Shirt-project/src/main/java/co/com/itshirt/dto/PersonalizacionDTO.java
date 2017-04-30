@@ -29,6 +29,8 @@ public class PersonalizacionDTO {
 	@NotNull
 	private Long estampa;
 	private Long ordenCompra;
+	@NotNull
+	private Long cantidad;
 
     
 	
@@ -44,6 +46,7 @@ public class PersonalizacionDTO {
 		this.textoConfigurado = entity.getTextoConfigurado();
 		this.precioCamiseta = entity.getPrecioCamiseta();
 		this.precioEstampa = entity.getPrecioEstampa();
+		this.cantidad = entity.getCantidad();
 	}
 	
 	public DetalleOrden toEntity() {
@@ -54,6 +57,7 @@ public class PersonalizacionDTO {
 		entity.setTextoConfigurado(this.textoConfigurado);
 		entity.setPrecioCamiseta(this.precioCamiseta);
 		entity.setPrecioEstampa(this.precioEstampa);
+		entity.setCantidad(this.cantidad);
 		return entity;
 	}
 	
@@ -131,6 +135,14 @@ public class PersonalizacionDTO {
 
 	public void setEstiloCamiseta(Long estiloCamiseta) {
 		this.estiloCamiseta = estiloCamiseta;
+	}
+
+	public Long getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(Long cantidad) {
+		this.cantidad = cantidad;
 	}
 	
 }

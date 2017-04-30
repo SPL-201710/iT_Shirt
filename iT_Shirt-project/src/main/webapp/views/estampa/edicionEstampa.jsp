@@ -8,7 +8,7 @@
 	
 		<fieldset>
 			<!-- Form Name -->
-			<legend>Creación de <b>Estilos de Camisetas</b></legend>
+			<legend>Edición de <b>Estampas</b></legend>
 
 			<c:if test="${error != null}">
 			<div class="alert alert-danger">
@@ -18,25 +18,25 @@
 			
 			<br>
 			
-		<form:form method="POST" modelAttribute="camisetaForm" class="form-horizontal" enctype="multipart/form-data">
+		<form:form method="POST" modelAttribute="estampaForm" class="form-horizontal" enctype="multipart/form-data">
 
-	        <spring:bind path="nombre">
+	        <spring:bind path="estaNombreCorto">
 	            <div class="form-group ${status.error ? 'has-error' : ''}">
-	            	<label class="col-md-3 control-label" for="nombre">Referencia:</label>  
+	            	<label class="col-md-3 control-label" for="estaNombreCorto">Nombre corto:</label>  
 			  		<div class="col-md-7">
-	                <form:input type="text" path="nombre" required="required" class="form-control" placeholder="Nombre"
+	                <form:input type="text" path="estaNombreCorto" required="required" class="form-control" placeholder="Nombre corto"
 	                            autofocus="true"/>
-	                <form:errors path="nombre"/>
+	                <form:errors path="estaNombreCorto"/>
 	                </div>
 	            </div>
 	        </spring:bind>
 	
-	        <spring:bind path="material">
+	        <spring:bind path="descripcion">
 	            <div class="form-group ${status.error ? 'has-error' : ''}">
-	            	<label class="col-md-3 control-label" for="descripcion">Material:</label>  
+	            	<label class="col-md-3 control-label" for="descripcion">Descripción:</label>  
 			  		<div class="col-md-7">
-	                <form:input type="text" path="material" required="required" class="form-control" placeholder="Material"/>
-	                <form:errors path="material"></form:errors>
+	                <form:textarea type="text" path="descripcion" required="required" class="form-control" placeholder="Descripción"></form:textarea>
+	                <form:errors path="descripcion"></form:errors>
 	                </div>
 	            </div>
 	        </spring:bind>
@@ -45,31 +45,21 @@
 	            <div class="form-group ${status.error ? 'has-error' : ''}">
 	            	<label class="col-md-3 control-label" for=precio>Precio:</label>  
 			  		<div class="col-md-7">
-	                <form:input type="number" path="precio" required="required" class="form-control"  placeholder="Precio camiseta"/>
+	                <form:input type="number" path="precio" required="required" class="form-control"  placeholder="Precio estampa"/>
 	                <form:errors path="precio"></form:errors>
 	                </div>
 	            </div>
 	        </spring:bind>
 	        
-	        <spring:bind path="estilo">
+	        <spring:bind path="idTema">
 	            <div class="form-group ${status.error ? 'has-error' : ''}">
-	            	<label class="col-md-3 control-label" for=idTema>Estilo:</label>  
+	            	<label class="col-md-3 control-label" for=idTema>Tema:</label>  
 			  		<div class="col-md-7">
-	                <form:select path="estilo" class="form-control"  required="required">
+	                <form:select path="idTema" class="form-control"  required="required" placeholder="Tema estampa">
 	                	<form:option value="" label="--- Seleccione ---"/>
-   						<form:options items="${estilos}" />
+   						<form:options items="${temas}" />
 	                </form:select>
-	                <form:errors path="estilo"></form:errors>
-	                </div>
-	            </div>
-	        </spring:bind>
-	        
-	        <spring:bind path="file">
-	            <div class="form-group ${status.error ? 'has-error' : ''}">
-	            	<label class="col-md-3 control-label" for="file">Seleccionar estilo:</label>  
-			  		<div class="col-md-7">
-	                <form:input type="file" path="file" required="required" class="form-control btn btn-default btn-file"/>
-	                <form:errors path="file"></form:errors>
+	                <form:errors path="idTema"></form:errors>
 	                </div>
 	            </div>
 	        </spring:bind>
@@ -81,7 +71,7 @@
 			<div class="form-group">
 			  <div class="col-md-12 text-center">
 			    <button class="btn btn-primary">Guardar</button>
-			    <button class="btn btn-info">Cancelar</button>
+			    <button class="btn btn-info" onclick="location.href='/'">Cancelar</button>
 			  </div>
 			</div>
 

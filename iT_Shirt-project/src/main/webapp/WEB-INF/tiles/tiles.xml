@@ -55,6 +55,11 @@
         <put-attribute name="body" value="/views/estampa/creacionEstampa.jsp"/>
     </definition>
     
+    <definition name="estampa/edicionEstampa" extends="master.page">
+		<put-attribute name="title" value="Edición estampa" />
+        <put-attribute name="body" value="/views/estampa/edicionEstampa.jsp"/>
+    </definition>
+    
     <definition name="estampa/detalleEstampa" extends="master.page">
 		<put-attribute name="title" value="Detalle estampa" />
         <put-attribute name="body" value="/views/estampa/detalleEstampa.jsp"/>

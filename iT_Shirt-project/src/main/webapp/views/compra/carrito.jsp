@@ -37,7 +37,7 @@
 		                	<tr>
 		                        <td class="col-sm-8 col-md-6">
 		                        <div class="media">
-		                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+		                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="/resources/estampas/${m.estampa.source }" style="width: 75px; height: 75px;"> </a>
 		                            <div class="media-body">
 		                                <h4 class="media-heading"><a href="#">Estampa: ${m.estampa.estaNombreCorto}</a></h4>
 		                                <h5 class="media-heading"> Por <a href="#">${m.estampa.artista.nombresCompletos}</a></h5>
@@ -45,11 +45,11 @@
 		                            </div>
 		                        </div></td>
 		                        <td class="col-md-1" style="text-align: center">
-	                        		<input type="number" class="form-control" value="1">
+	                        		<strong>${m.cantidad}</strong>
 	                        	</td>
 		                        <td class="col-sm-1 col-md-1 text-center"><strong>$${m.estiloCamiseta.precio}</strong></td>
 		                        <td class="col-sm-1 col-md-1 text-center"><strong>$${m.estampa.precio}</strong></td>
-		                        <td class="col-sm-1 col-md-1 text-center"><strong>$${m.precioTotalCalculado}</strong></td>
+		                        <td class="col-sm-1 col-md-1 text-center"><strong>$${m.precioTotalCalculado}</strong></td>     
 		                        <td class="col-sm-1 col-md-1">
 		                        <button type="button" class="btn btn-danger">
 		                            <span class="glyphicon glyphicon-remove"></span> Eliminar
@@ -77,6 +77,7 @@
 	                        <td>   </td>
 	                        <td><h3>Total</h3></td>
 	                        <td class="text-right"><h3><strong>$${total}</strong></h3></td>
+	                        
 	                    </tr>
 	                    <tr>
 	                        <td>   </td>

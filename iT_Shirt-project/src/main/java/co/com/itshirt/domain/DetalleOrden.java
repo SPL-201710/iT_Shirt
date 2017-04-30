@@ -24,6 +24,9 @@ public class DetalleOrden {
 	@Column(name = "deto_color")
 	private String color;
 	
+	@Column(name = "deto_cantidad")
+	private Long cantidad;
+	
 	@Column(name = "deto_textoconfigurado")
 	private String textoConfigurado;
 	
@@ -125,7 +128,16 @@ public class DetalleOrden {
 	}
 	
 	public Long getPrecioTotalCalculado() {
-		return this.estampa.getPrecio()+this.estiloCamiseta.getPrecio();
+		return (this.estampa.getPrecio()+this.estiloCamiseta.getPrecio())*this.cantidad;
 	}
+	
+	public Long getCantidad(){
+		return this.cantidad;
+	}
+	
+	public void setCantidad(Long cantidad){
+		this.cantidad = cantidad;
+	}
+	
 
 }

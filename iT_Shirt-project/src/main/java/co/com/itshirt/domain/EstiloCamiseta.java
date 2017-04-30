@@ -28,6 +28,9 @@ public class EstiloCamiseta {
 	@Column(name = "esti_precio")
 	private Long precio;
 	
+	@Column(name = "esti_extension")
+	private String extension;
+	
 	/**
 	 * Constructor vacío por defecto.
 	 */
@@ -75,4 +78,12 @@ public class EstiloCamiseta {
 		this.precio = precio;
 	}
 
+	public String getExtension() {
+		return extension;
+	}
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+	
 }

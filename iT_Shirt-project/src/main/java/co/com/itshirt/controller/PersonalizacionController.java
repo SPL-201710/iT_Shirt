@@ -44,8 +44,9 @@ public class PersonalizacionController {
 	 * Se encarga de guardar en sesion el id estampa seleccionada y redirige a seleccionar camiseta.
 	 */
 	@RequestMapping(value="/seleccionCamiseta", method = RequestMethod.GET)
-	public String detalleEstampa(@RequestParam(value="es", required=true) Long idEstampaSeleccionada, Model model, HttpSession session){
+	public String detalleEstampa(@RequestParam(value="es", required=true) Long idEstampaSeleccionada, Model model, HttpSession session, @RequestParam(value="url", required=true) String url ){
 		session.setAttribute("idEstampaSeleccionada", idEstampaSeleccionada);
+		session.setAttribute("url", url);
 		return "redirect:/camisetas/catalogo";
 	}
 	
@@ -53,14 +54,13 @@ public class PersonalizacionController {
 	 * Ver página creación de personalización.
 	 */
 	@RequestMapping(value="personalizacion", method = RequestMethod.GET)
-	public String agregarPersonalizacion(@RequestParam(value="es", required=true) Long idEstilo, ModelMap model, HttpSession session) {
+	public String agregarPersonalizacion(ModelMap model, HttpSession session) {
 		Map<String,String> estilos = new LinkedHashMap<String,String>(); 
 		for (EnumEstilosCamiseta estilo : EnumEstilosCamiseta.ENUM_VALUES) {
 			estilos.put(estilo.getSigla(), estilo.getNombre());
 		}
-		final PersonalizacionDTO personaliFrom = new PersonalizacionDTO(); //Todo se envian los datos seleccionados antes.
+		final PersonalizacionDTO personaliFrom = (PersonalizacionDTO) session.getAttribute("personalizacionDTO");
 		personaliFrom.setEstampa( (Long) session.getAttribute("idEstampaSeleccionada"));
-		personaliFrom.setEstiloCamiseta(idEstilo);
 		model.addAttribute("personalizacionForm", personaliFrom);
 		return "personalizacion/personalizacion";
 	}
