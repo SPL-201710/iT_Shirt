@@ -5,30 +5,36 @@ import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import co.com.itshirt.annotation.OptionalFeature;
+
+/**
+ * Tareas programadas (Usar en envío de correos).
+ * @author ja.picon
+ *
+ */
 @Component
+@OptionalFeature
 public class ScheduledTasks {
 
-	private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
+	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm:ss");
 
-	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
-	//@Conditional(SchedulerCondition.class)
-//    @Scheduled(fixedRate = 5000)
-//    @Scheduled(fixedRate = 5000, cron = "${config.scheduler.enabled}")
-    public void reportCurrentTime() {
-    	System.err.println("The time is now {} :"+ dateFormat.format(new Date()));
-    }
+	@Value("${config.schedulerEnabled}")
+    private boolean schedulerEnabled;
     
-//    @Scheduled(cron = "${cron.foo.bar}")
-    @Scheduled(fixedRate = 5000)
-//    @ConditionalOnProperty(name="config.scheduler.enabled", relaxedNames = false)
-    @ConditionalOnProperty(prefix = "config.scheduler", value = "enabled")
-    public void reportCurrentTime2() {
-    	System.err.println("The time is now {} :"+ dateFormat.format(new Date()));
+    @Scheduled(fixedRate = 15000)
+    public void enviarNotificaciones() {
+    	System.err.println("Envío de notificaciones activado: " + this.schedulerEnabled);
+    	if (this.schedulerEnabled) {
+    		System.err.println("Enviando correos: " + DATE_FORMAT.format(new Date()));
+    	}
     }
 }

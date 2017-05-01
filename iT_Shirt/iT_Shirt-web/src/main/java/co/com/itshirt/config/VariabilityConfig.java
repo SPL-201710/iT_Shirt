@@ -14,6 +14,8 @@ public class VariabilityConfig {
 
 	//Indica si es búsqueda simple o avanzada
 	private boolean busquedaAvanzada;
+	private boolean schedulerEnabled;
+	private String language;
 
 	
 	public boolean isBusquedaAvanzada() {
@@ -23,4 +25,21 @@ public class VariabilityConfig {
 	public void setBusquedaAvanzada(boolean busquedaAvanzada) {
 		this.busquedaAvanzada = busquedaAvanzada;
 	}
+
+	public boolean isSchedulerEnabled() {
+		return schedulerEnabled;
+	}
+
+	public void setSchedulerEnabled(boolean schedulerEnabled) {
+		this.schedulerEnabled = schedulerEnabled;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	
 }

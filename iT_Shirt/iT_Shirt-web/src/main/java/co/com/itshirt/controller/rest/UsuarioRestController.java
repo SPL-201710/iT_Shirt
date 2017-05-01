@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.itshirt.domain.Usuario;
 import co.com.itshirt.repository.UserRepository;
+import co.com.itshirt.variability.injection.IReportService;
 
 /**
  * Controlador Rest Usuarios.
@@ -18,10 +19,17 @@ public class UsuarioRestController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private IReportService reporteVentas;
 
 	@RequestMapping("/usuarios")
     public List<Usuario> getUsuarios() {
         return (List<Usuario>) this.userRepository.findAll();
+    }
+	
+	@RequestMapping("/greeting")
+    public String greeting() {
+        return reporteVentas.greet();
     }
     
 }
