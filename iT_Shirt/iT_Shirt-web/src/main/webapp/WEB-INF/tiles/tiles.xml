@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <!-- Master -->
+    <definition name="master.page" template="/views/template/master.jsp">
+    	<put-attribute name="title" value="" />
+        <put-attribute name="header" value="/views/template/header.jsp"/>
+        <put-attribute name="footer" value="/views/template/footer.jsp"/>
+    </definition>
+    <definition name="master.login" template="/views/template/masterLogin.jsp">
+    	<put-attribute name="title" value="Ingreso al sistema" />
+    	<put-attribute name="header" value=""/>
+        <put-attribute name="footer" value=""/>
+    	<put-attribute name="body" value="/views/login.jsp"/>
+    </definition>
+
+	<definition name="welcome" extends="master.page">
+		<put-attribute name="title" value="Bienvenida" />
+        <put-attribute name="body" value="/views/welcome.jsp"/>
+        <put-attribute name="current" value="welcome"/>
+    </definition>
+
+    <definition name="login" extends="master.login">
+    	<put-attribute name="title" value="Ingreso al sistema" />
+        <put-attribute name="body" value="/views/login.jsp"/>
+        <put-attribute name="current" value=""/>
+    </definition>
+    
+    <definition name="home" extends="master.login">
+    	<put-attribute name="title" value="Ingreso al sistema" />
+        <put-attribute name="body" value="/views/home.jsp"/>
+        <put-attribute name="current" value=""/>
+    </definition>
+    
+    <definition name="perfil/perfil" extends="master.page">
+    	<put-attribute name="title" value="Perfil usuario" />
+        <put-attribute name="body" value="/views/perfil/perfil.jsp"/>
+        <put-attribute name="current" value="perfil"/>
+    </definition>
+    
+    <definition name="catalogo" extends="master.page">
+		<put-attribute name="title" value="Catalogo" />
+        <put-attribute name="body" value="/views/catalogo.jsp"/>
+    </definition>
+    
+    <definition name="temas" extends="master.page">
+		<put-attribute name="title" value="Temas" />
+        <put-attribute name="body" value="/views/temas.jsp"/>
+    </definition>
+
+    <definition name="estampa/creacionEstampa" extends="master.page">
+		<put-attribute name="title" value="Creación estampa" />
+        <put-attribute name="body" value="/views/estampa/creacionEstampa.jsp"/>
+    </definition>
+    
+    <definition name="estampa/edicionEstampa" extends="master.page">
+		<put-attribute name="title" value="Edición estampa" />
+        <put-attribute name="body" value="/views/estampa/edicionEstampa.jsp"/>
+    </definition>
+    
+    <definition name="estampa/detalleEstampa" extends="master.page">
+		<put-attribute name="title" value="Detalle estampa" />
+        <put-attribute name="body" value="/views/estampa/detalleEstampa.jsp"/>
+    </definition>
+    
+    <definition name="camiseta/catalogoCamisetas" extends="master.page">
+		<put-attribute name="title" value="Catalogo camisetas" />
+        <put-attribute name="body" value="/views/camiseta/catalogoCamisetas.jsp"/>
+    </definition>
+    
+    <definition name="camiseta/creacionEstiloCamiseta" extends="master.page"> <!-- Name: Nombre página -->
+		<put-attribute name="title" value="Agregar camiseta" />
+        <put-attribute name="body" value="/views/camiseta/creacionEstiloCamiseta.jsp"/>
+    </definition>
+    
+    <definition name="camiseta/detalleEstiloCamiseta" extends="master.page"> <!-- Name: Nombre página -->
+		<put-attribute name="title" value="Detalle camiseta" />
+        <put-attribute name="body" value="/views/camiseta/detalleEstiloCamiseta.jsp"/>
+    </definition>
+    
+    <definition name="usuario/listadoUsuarios" extends="master.page">
+		<put-attribute name="title" value="Administración de Usuarios" />
+        <put-attribute name="body" value="/views/usuario/listadoUsuarios.jsp"/>
+    </definition>
+    
+    <definition name="tema/listadoTemas" extends="master.page">
+		<put-attribute name="title" value="Administración de Temas" />
+        <put-attribute name="body" value="/views/tema/listadoTemas.jsp"/>
+    </definition>
+    
+    <definition name="reporte/reportes" extends="master.page">
+		<put-attribute name="title" value="Reportes" />
+        <put-attribute name="body" value="/views/reporte/reportes.jsp"/>
+    </definition>
+    
+
+    <definition name="personalizacion/personalizacion" extends="master.page">
+		<put-attribute name="title" value="Personalizacion" />
+        <put-attribute name="body" value="/views/personalizacion/personalizacion.jsp"/>
+	</definition>
+	
+    <definition name="compra/carrito" extends="master.page">
+		<put-attribute name="title" value="Carrito de compras" />
+        <put-attribute name="body" value="/views/compra/carrito.jsp"/>
+    </definition>
+    
+    <definition name="compra/metodoPago" extends="master.page">
+		<put-attribute name="title" value="Método de pago" />
+        <put-attribute name="body" value="/views/compra/metodoPago.jsp"/>
+    </definition>
+    
+     <definition name="compra/payment" extends="master.page">
+		<put-attribute name="title" value="Pago del Carrito" />
+        <put-attribute name="body" value="/views/compra/payment.jsp"/>
+    </definition>
+    
+    <definition name="compra/historial" extends="master.page">
+		<put-attribute name="title" value="Historial de compras" />
+        <put-attribute name="body" value="/views/compra/historial.jsp"/>
+    </definition>
+    
+    <definition name="perfil/cambiarCredenciales" extends="master.page">
+		<put-attribute name="title" value="Cambiar contraseña" />
+        <put-attribute name="body" value="/views/perfil/cambiarCredenciales.jsp"/>
+    </definition>
+    
+    <definition name="estampa/calificaciones" extends="master.page">
+		<put-attribute name="title" value="Calificaciones de Estampas" />
+        <put-attribute name="body" value="/views/estampa/calificaciones.jsp"/>
+    </definition>
+    
+    <definition name="compra/detalleCompra" extends="master.page">
+		<put-attribute name="title" value="Detalle de la compra" />
+        <put-attribute name="body" value="/views/compra/detalleCompra.jsp"/>
+    </definition>
+
+</tiles-definitions>

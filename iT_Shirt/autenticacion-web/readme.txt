@@ -1,1 +1,0 @@
-Proyecto que contiene las páginas de las vistas, recursos, y controladores asociadas a la autenticación de la aplicación.
