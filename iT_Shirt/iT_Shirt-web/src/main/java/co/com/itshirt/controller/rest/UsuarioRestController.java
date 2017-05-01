@@ -14,7 +14,8 @@ import co.com.itshirt.variability.injection.IReportService;
  * Controlador Rest Usuarios.
  * @author ja.picon
  */
-@RestController("/rest")
+@RestController
+//@RequestMapping("/rest")
 public class UsuarioRestController {
 	
 	@Autowired

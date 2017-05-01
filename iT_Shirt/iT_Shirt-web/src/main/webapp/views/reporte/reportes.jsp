@@ -12,7 +12,7 @@
 		<legend>Reportes de <b>Ventas</b></legend>
 
 		<br>
-		
+		<a target="_blank" href="/pdf">Generate report</a>
 		
 	
 	</fieldset>

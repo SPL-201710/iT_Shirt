@@ -32,7 +32,7 @@ public class ScheduledTasks {
     
     @Scheduled(fixedRate = 15000)
     public void enviarNotificaciones() {
-    	System.err.println("Envío de notificaciones activado: " + this.schedulerEnabled);
+//    	System.err.println("Envío de notificaciones activado: " + this.schedulerEnabled);
     	if (this.schedulerEnabled) {
     		System.err.println("Enviando correos: " + DATE_FORMAT.format(new Date()));
     	}
