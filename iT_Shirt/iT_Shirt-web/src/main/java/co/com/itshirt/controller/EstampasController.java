@@ -25,6 +25,7 @@ import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.Tema;
 import co.com.itshirt.dto.CreacionEstampaDTO;
 import co.com.itshirt.dto.EstampaDTO;
+import co.com.itshirt.dto.TemaDTO;
 import co.com.itshirt.enums.EnumEstadoEstampa;
 import co.com.itshirt.enums.EnumRol;
 import co.com.itshirt.repository.EstampaRepository;
@@ -51,28 +52,45 @@ public class EstampasController {
 	 * Ver todo el catalogo de estampas.
 	 */
 	@RequestMapping(value="catalogo", method = RequestMethod.GET)
-	public String verEstampas(ModelMap model, HttpSession session) {
+	public String verEstampas(@RequestParam(value="id", required=false) Tema idTema, ModelMap model, HttpSession session) {
 		final BusquedaCatalogo busquedaCatalogo = BusquedaFactory.getBusqueda(this.variabilityConfig.isBusquedaAvanzada());
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
     	Iterable<Estampa> lstEntities = null;
     	List<EstampaDTO> estampas = new ArrayList<EstampaDTO>();
-    	if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
+    	
+    	if(idTema != null)
+    	{
+    		lstEntities = this.estampaRepository.findByTema(idTema);
+    		
+    	}
+    	else if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
     		lstEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
     	} else {
     		lstEntities = this.estampaRepository.findAll();
     	}
+    	
     	if (lstEntities != null) {
     		for (final Estampa estampa : lstEntities) {
     			estampas.add(new EstampaDTO(estampa));
     		}
     	}
+    	
+    	//Temas para el filtro por temas
+    	final Iterable<Tema> temas = this.temaRepository.findAll();
+		List<TemaDTO> listTemas = new ArrayList<TemaDTO>();
+		for (final Tema tema : temas) {
+			listTemas.add(new TemaDTO(tema));
+		}
+		
+		model.addAttribute("temas", listTemas);
     	model.addAttribute("estampas", estampas);
     	model.addAttribute("busqueda", busquedaCatalogo);
     	model.addAttribute("roluser", usuario.getRol());
     	System.out.println("rol " + usuario.getRol());
 		return "catalogo";
 	}
+	
 	
 	/**
 	 * Se encarga de cargar la pagina de creación de estampas.
