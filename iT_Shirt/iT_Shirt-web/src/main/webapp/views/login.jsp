@@ -43,11 +43,19 @@
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+            <button class="btn btn-lg btn-success btn-block" type="submit">Ingresar</button>
             <h4 class="text-center"><a href="${contextPath}/crearCuenta">Crear cuenta</a></h4>
+            
         </div>
 
     </form>
+    
+    <div class="col-sm-12">
+        <form action="/signin/facebook" method="POST" class="form-signin">
+            <input type="hidden" name="scope" value="public_profile" />
+            <input type="submit" value="Sign in with Facebook" class="btn btn-block btn-primary">
+        </form>
+	</div>
 
 </div>
 <!-- /container -->

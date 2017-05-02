@@ -51,6 +51,9 @@ public class Usuario {
     @JoinColumn(name = "rol_id")
     private Rol rol;
 	
+	@Column(name = "social_id")
+	private String idRedSocial;
+	
 	@Transient
 	private String passwordConfirm; //TODO Es temporal.
 	
@@ -186,5 +189,14 @@ public class Usuario {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	public String getIdRedSocial() {
+		return idRedSocial;
+	}
+
+	public void setIdRedSocial(String idRedSocial) {
+		this.idRedSocial = idRedSocial;
+	}
+	
 	
 }

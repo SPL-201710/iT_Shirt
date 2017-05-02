@@ -9,5 +9,7 @@ import co.com.itshirt.domain.Usuario;
 public interface UserRepository extends CrudRepository<Usuario, Long> {
     
 	public Usuario findByUsername(String username);
+	
+	public Usuario findByIdRedSocial(String idRedSocial);
     
 }

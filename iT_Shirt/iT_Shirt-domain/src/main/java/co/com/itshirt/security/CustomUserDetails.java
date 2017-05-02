@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
 import co.com.itshirt.domain.Usuario;
+import co.com.itshirt.enums.EnumEstadoUsuario;
 
 public class CustomUserDetails extends Usuario implements UserDetails {	
 	
@@ -43,7 +44,7 @@ public class CustomUserDetails extends Usuario implements UserDetails {
 	}
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return EnumEstadoUsuario.ACTIVO.getSigla().equals(super.getEstado());
 	}
 
 
