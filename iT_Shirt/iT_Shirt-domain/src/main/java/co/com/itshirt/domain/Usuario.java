@@ -80,6 +80,8 @@ public class Usuario {
 		this.rol = user.getRol();
 		this.genero = user.genero;
 		this.direccion = user.getDireccion();
+		this.estado = user.getEstado();
+		this.idRedSocial = user.getIdRedSocial();
 	}
 
 	public Long getIdUsuario() {
