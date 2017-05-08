@@ -35,10 +35,22 @@
 						<td>${u.email}</td>
 						<td>${u.rol.nombre}</td>
 						<td class="text-center">
-							<a class='btn btn-warning btn-xs' href="#">
-								<span class="glyphicon glyphicon-thumbs-down"></span>
-								Dar de baja
-							</a>
+						<c:if test="${u.rol.nombre != 'Administrador'}">
+							<c:choose>
+								  <c:when test="${u.estado == 'A'}">
+									    <a class='btn btn-warning btn-xs' href="cambioestado?id=${u.idUsuario}">
+											<span class="glyphicon glyphicon-thumbs-down"></span>
+											Dar de baja
+										</a>
+								  </c:when>
+								  <c:when test="${u.estado == 'I'}">
+									   	<a class='btn btn-primary btn-xs' href="cambioestado?id=${u.idUsuario}">
+											<span class="glyphicon glyphicon-thumbs-up"></span>
+											Dar de alta
+										</a>
+								  </c:when>
+							</c:choose>
+						</c:if>
 						</td>
 					</tr>
 				</c:forEach>

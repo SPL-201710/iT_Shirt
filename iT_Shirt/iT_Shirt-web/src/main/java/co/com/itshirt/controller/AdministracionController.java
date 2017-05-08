@@ -13,9 +13,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.Tema;
+import co.com.itshirt.domain.Usuario;
 import co.com.itshirt.dto.CreacionEstampaDTO;
 import co.com.itshirt.enums.EnumEstadoEstampa;
 import co.com.itshirt.repository.TemaRepository;
@@ -65,6 +67,23 @@ public class AdministracionController {
 	@RequestMapping(value="estampas", method = RequestMethod.GET)
 	public String estampas(ModelMap model, HttpSession session) {
 		return "redirect:/catalogo";
+	}
+	
+	@RequestMapping(value="/cambioestado", method = RequestMethod.GET)
+	public String cambioEstado(@RequestParam(value="id", required=false) Usuario user, Model model, HttpServletRequest request){
+		
+		if(user.getEstado().equals("A"))
+		{
+			//usuario.setEstado("I");
+			this.userRepository.updateEstado("I", user.getIdUsuario());
+		}
+		else
+		{
+			//usuario.setEstado("A");
+			this.userRepository.updateEstado("A", user.getIdUsuario());
+		}
+		
+		return "redirect:usuarios";
 	}
 	
 }
