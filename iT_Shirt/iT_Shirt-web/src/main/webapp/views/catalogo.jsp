@@ -17,15 +17,22 @@
 
 		<!-- Projects Row -->
 		<div class="row">
-			${busqueda.tipoBusqueda}
-			
-			<div class="container">
+		
+<c:if test="${errorDelete != null}">
+	<div class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <strong>Mensaje!</strong> ${errorDelete}
+	</div>
+</c:if>
+
+
+<div class="container">
 	<div class="row">
 		<div class="col-md-12">                        
             <div class="col-md-6">
             	<div class="">
 	            	<div class="btn-group">
-						  <button type="button" class="btn btn-default dropdown-toggle"	data-toggle="dropdown">
+						  <button type="button" class="btn btn-primary dropdown-toggle"	data-toggle="dropdown">
 						    Filtro por Tema <span class="caret"></span>
 						  </button>
 						 
@@ -37,10 +44,7 @@
 						  </ul>
 					</div>
             	</div>
-            </div>
-            
-                
-            
+            </div> 
           </div>
         </div>
 	</div>
@@ -73,9 +77,10 @@
 											<a href="${contextPath}/estampa/editar/?es=${e.idEstampa}" class='btn btn-info btn-xs'> 
 												<span class="glyphicon glyphicon-edit"></span> Editar
 											</a> 
-											<a href="#" class="btn btn-danger btn-xs"> 
-												<span class="glyphicon glyphicon-remove"></span> Eliminar
-											</a>
+											<form action="eliminaEstampa" method="post">
+												<input type="hidden" name="es" value="${e.idEstampa}">
+												<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
+											</form>
 											</td>
 										</tr>
 									

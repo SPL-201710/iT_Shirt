@@ -19,8 +19,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.com.itshirt.config.VariabilityConfig;
+import co.com.itshirt.domain.DetalleOrden;
 import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.Tema;
 import co.com.itshirt.dto.CreacionEstampaDTO;
@@ -28,6 +30,7 @@ import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.dto.TemaDTO;
 import co.com.itshirt.enums.EnumEstadoEstampa;
 import co.com.itshirt.enums.EnumRol;
+import co.com.itshirt.repository.DetalleOrdenRepository;
 import co.com.itshirt.repository.EstampaRepository;
 import co.com.itshirt.repository.TemaRepository;
 import co.com.itshirt.security.CustomUserDetails;
@@ -47,6 +50,8 @@ public class EstampasController {
 	private EstampaRepository estampaRepository;
 	@Autowired
 	protected VariabilityConfig variabilityConfig;
+	@Autowired
+	private DetalleOrdenRepository detalleOrdenRepository;
 	
 	/**
 	 * Ver todo el catalogo de estampas.
@@ -186,6 +191,32 @@ public class EstampasController {
 	@RequestMapping(value="estampa/calificaciones", method = RequestMethod.GET)
 	public String verCalificaciones(Model model){
 		return "estampa/calificaciones";
+	}
+	
+	/**
+	 * Se encarga de eliminar la estampa
+	 */
+	
+	@RequestMapping(value="/eliminaEstampa", method = RequestMethod.POST)
+	public String eliminarEstampa(@RequestParam(value="es", required=true) Estampa es, Model model, final RedirectAttributes redirectAttributes){
+		List<DetalleOrden> detalle = this.detalleOrdenRepository.findByEstampa(es);
+		
+		System.out.println("DetalleOrden: "+detalle.size());
+		
+		String Message;
+		
+		if(detalle.size() == 0)
+		{
+			this.estampaRepository.delete(es);
+			Message = "La estampa ha sido eliminada con exito!";
+		}
+		else
+		{
+			Message = "La estampa tiene compras asociadas, no se puede eliminar!";
+		}
+		
+		redirectAttributes.addFlashAttribute("errorDelete", Message);
+		return "redirect:/catalogo";
 	}
 	
 }
