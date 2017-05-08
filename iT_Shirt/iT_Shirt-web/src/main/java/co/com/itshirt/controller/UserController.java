@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import co.com.itshirt.domain.Usuario;
 import co.com.itshirt.dto.RegistroUsuarioDTO;
+import co.com.itshirt.enums.EnumEstadoUsuario;
 import co.com.itshirt.enums.EnumRol;
 import co.com.itshirt.enums.EnumSexo;
 import co.com.itshirt.repository.RolRepository;
@@ -73,6 +74,7 @@ public class UserController {
         usuario.setEmail(userForm.getEmail());
         usuario.setGenero(userForm.getSexo());
         usuario.setRol(this.rolRepository.findBySigla(userForm.getRolUsuario()));
+        usuario.setEstado(EnumEstadoUsuario.ACTIVO.getSigla());
         this.userRepository.save(usuario);
         this.securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/welcome";

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import co.com.itshirt.builder.MenuBuilder;
 import co.com.itshirt.repository.UserRepository;
+import co.com.itshirt.repository.service.SecurityService;
 import co.com.itshirt.security.CustomUserDetails;
 
 /**
@@ -23,6 +24,8 @@ public class HomeController {
 	final static String ANONYMOUS_USER = "anonymousUser";
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private SecurityService securityService;
 	
 	/**
 	 * Método que se encarga se ejecutar la petición raíz del proyecto, 
@@ -36,6 +39,7 @@ public class HomeController {
 			CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
 			if (usuario.getIdUsuario() == null) { //Por si viene desde conexión red social
 				usuario = new CustomUserDetails(this.userRepository.findByUsername(usuario.getUsername()));
+				this.securityService.autologin(usuario.getUsername(), usuario.getPassword());
 			}
 			final String rol = usuario.getRol().getNombre();
 			session.setAttribute("nombreCompleto", usuario.getNombresCompletos());
