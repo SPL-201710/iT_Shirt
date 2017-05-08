@@ -97,6 +97,37 @@
             selectedColor = color;
             $('#color-estampa').val(color);
         }
+
+        function colorPicker_OnClick(color) {
+            var imgColorPreview = document.getElementsByClassName("imgColorPreview");
+            var i;
+            for (i = 0; i < imgColorPreview.length; i++) {
+            	imgColorPreview[i].style.backgroundColor = color;
+            }
+            selectedColor = color;
+            $('#color-estampa').val(color);
+        }
+		
+		status = 1;
+		function changeStyle() {
+		var text = $('.text').val();
+		//Note the lowercase first letter.
+		x = document.getElementById("text");
+
+		if(status==1) {
+		x.style.color = 'blue';
+		status = 2;
+		}
+		else if(status==2) {
+		x.style.color = 'red';
+		status = 3;
+		}	
+		else if(status==3) {
+		x.style.color = 'yellow';
+		status = 1;
+		}
+
+		}	
     </script>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script>
@@ -227,12 +258,13 @@
 			<div class="form-group">
             	<label class="col-md-3 control-label" for="texto">Texto configurable:</label>  
 		  		<div class="col-md-7">
-                	<input class="text form-control" placeholder="Texto configurable" type="text">
+                	<input class="text form-control" placeholder="Texto configurable" type="text" id="text">
                 </div>
 		     </div>
 		</form>
 	</div>
     
+    	<button type="button" onclick="javascripot:changeStyle();">Cambiar Color del Texto</button>
     
     </c:if>
      
