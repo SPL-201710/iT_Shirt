@@ -72,6 +72,7 @@ public class CarritoComprasController {
 			ordenCompra.setTelefonoContacto(usuario.getTelefono());
 			ordenCompra.setTotal((Long)session.getAttribute("total"));
 			ordenCompra = this.ordenCompraRepository.save(ordenCompra);
+			long idOrden = ordenCompra.getIdOrdenCompra();
 			ArrayList<DetalleOrden> elementosCarrito = (ArrayList<DetalleOrden>) session.getAttribute("elementosCarrito");
 			for (DetalleOrden detalleOrden : elementosCarrito) {
 				detalleOrden.setOrdenCompra(ordenCompra);
@@ -79,9 +80,11 @@ public class CarritoComprasController {
 				detalleOrden.setPrecioEstampa(detalleOrden.getEstampa().getPrecio());
 				this.detalleOrdenRepository.save(detalleOrden);
 			}
+			session.removeAttribute("elementosCarrito");
+			return "redirect:/compras/detalle?es=" + idOrden;
 		}
-		session.removeAttribute("elementosCarrito");
-		return "redirect:/compras/historial";
+		
+		return "catalogo";
 	}
 	
 }
