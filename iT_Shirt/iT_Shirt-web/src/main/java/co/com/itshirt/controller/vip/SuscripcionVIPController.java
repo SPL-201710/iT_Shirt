@@ -99,7 +99,7 @@ public class SuscripcionVIPController {
 		detalleOrdenVIP.setSuscripcion(suscripcion);
 		detalleOrdenVIP.setPrecio(suscripcion.getPrecio());
 		session.setAttribute("compraVIP", detalleOrdenVIP);
-		return "redirect:/metodoPago";
+		return "redirect:/carrito/metodoPago";
 	}
 	
 }
