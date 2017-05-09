@@ -135,5 +135,15 @@
 		<put-attribute name="title" value="Detalle de la compra" />
         <put-attribute name="body" value="/views/compra/detalleCompra.jsp"/>
     </definition>
+    
+    <definition name="vip/listado" extends="master.page">
+		<put-attribute name="title" value="Suscripciones VIP" />
+        <put-attribute name="body" value="/views/vip/listado.jsp"/>
+    </definition>
+    
+    <definition name="vip/creacionPaqueteVIP" extends="master.page">
+		<put-attribute name="title" value="Creación Paquete VIP" />
+        <put-attribute name="body" value="/views/vip/creacionPaqueteVIP.jsp"/>
+    </definition>
 
 </tiles-definitions>

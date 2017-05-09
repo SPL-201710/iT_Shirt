@@ -38,9 +38,11 @@
 					        </div>        
 						</div>
 						<div class="footerNavWrap clearfix">
-							 <button type="button" class="btn btn-default pull-left btn-fyi" onclick="location.href='/catalogo'">
-	                            <span class="glyphicon glyphicon-shopping-cart"></span> Continuar comprando
-	                        </button>
+							<c:if test="${rolUser == 'Comprador'}">
+								 <button type="button" class="btn btn-default pull-left btn-fyi" onclick="location.href='/catalogo'">
+		                            <span class="glyphicon glyphicon-shopping-cart"></span> Continuar comprando
+		                        </button>
+	                        </c:if>
 							<button type="button" class="btn btn-success pull-right btn-fyi" onclick="location.href='/carrito/pago'">
 		                            Checkout <span class="glyphicon glyphicon-play"></span>
 		                    </button>
