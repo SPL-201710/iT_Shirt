@@ -30,11 +30,14 @@ public class ScheduledTasks {
 	@Value("${config.schedulerEnabled}")
     private boolean schedulerEnabled;
     
-    @Scheduled(fixedRate = 15000)
+    @Scheduled(fixedRate = 1500000)
     public void enviarNotificaciones() {
 //    	System.err.println("Envío de notificaciones activado: " + this.schedulerEnabled);
     	if (this.schedulerEnabled) {
     		System.err.println("Enviando correos: " + DATE_FORMAT.format(new Date()));
+    		System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    		SSLEmail enviarCorreo = new SSLEmail();
+    		enviarCorreo.enviar();
     	}
     }
 }

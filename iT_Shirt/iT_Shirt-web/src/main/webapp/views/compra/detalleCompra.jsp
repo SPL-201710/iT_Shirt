@@ -60,6 +60,30 @@
 
         	</c:forEach>
         	
+       	<c:forEach items="${detallesOrdenVIP}" var="deto">
+       			<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="well well-sm">
+                <div class="row">
+                	<div class="col-sm-6 col-md-4">
+	                    <img class="img-responsive" style="width:200px; height:160px" src="/resources/images/vip-icon.png">
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                           ${deto.suscripcion.descripcion}
+                        </h4>
+                        <small><b class="text-primary"> Precio: </b>$ ${deto.suscripcion.precio}</small>
+                        <br />
+                        <small><b class="text-primary"> Cantidad estampas: </b> ${deto.suscripcion.cantidad}</small>
+                        <br />
+                        <small><b class="text-primary"> Estado: </b> ${deto.suscripcion.estadoDesc}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       	</c:forEach>
+        	
       </fieldset>
       
 </div>
