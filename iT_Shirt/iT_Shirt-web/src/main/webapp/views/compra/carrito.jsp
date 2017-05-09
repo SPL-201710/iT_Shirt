@@ -28,12 +28,12 @@
 	                        <th class="text-center">Precio camiseta</th>
 	                        <th class="text-center">Precio estampa</th>
 	                        <th class="text-center">Total</th>
-	                        <th> </th>
+	                        <th>Acciones</th>
 	                    </tr>
 	                </thead>
 	                <tbody>
 	                	
-	                	<c:forEach items="${elementosCarrito}" var="m">
+	                	<c:forEach items="${elementosCarrito}" var="m" varStatus="count">
 		                	<tr>
 		                        <td class="col-sm-8 col-md-6">
 		                        <div class="media">
@@ -50,39 +50,43 @@
 		                        <td class="col-sm-1 col-md-1 text-center"><strong>$${m.estiloCamiseta.precio}</strong></td>
 		                        <td class="col-sm-1 col-md-1 text-center"><strong>$${m.estampa.precio}</strong></td>
 		                        <td class="col-sm-1 col-md-1 text-center"><strong>$${m.precioTotalCalculado}</strong></td>     
-		                        <td class="col-sm-1 col-md-1">
-		                        <button type="button" class="btn btn-danger">
-		                            <span class="glyphicon glyphicon-remove"></span> Eliminar
-		                        </button></td>
+		                        <td class="col-sm-1 col-md-1"> 
+		                        	<form action="carrito/eliminarOrden" method="post">
+										<input type="hidden" name="ordDet" value="${count.count}">
+										<button class="btn btn-danger">
+										   <span class="glyphicon glyphicon-remove"></span>Eliminar
+										</button>
+									</form>
+								</td>
 		                    </tr>
 	                	</c:forEach>
 	                	
 	                    <tr>
-	                        <td>   </td>
-	                        <td>   </td>
-	                        <td>   </td>
+	                        <td> </td>
+	                        <td> </td>
+	                        <td> </td>
 	                        <td><h5>Subtotal</h5></td>
 	                        <td class="text-right"><h5><strong>$${subTotal}</strong></h5></td>
 	                    </tr>
 	                    <tr>
-	                        <td>   </td>
-	                        <td>   </td>
-	                        <td>   </td>
-	                        <td><h5>Envío estimado</h5></td>
+	                        <td> </td>
+	                        <td> </td>
+	                        <td> </td>
+	                        <td><h5>Envio estimado</h5></td>
 	                        <td class="text-right"><h5><strong>$${envioEstimado}</strong></h5></td>
 	                    </tr>
 	                    <tr>
-	                        <td>   </td>
-	                        <td>   </td>
-	                        <td>   </td>
+	                        <td> </td>
+	                        <td> </td>
+	                        <td> </td>
 	                        <td><h3>Total</h3></td>
 	                        <td class="text-right"><h3><strong>$${total}</strong></h3></td>
 	                        
 	                    </tr>
 	                    <tr>
-	                        <td>   </td>
-	                        <td>   </td>
-	                        <td>   </td>
+	                        <td> </td>
+	                        <td> </td>
+	                        <td> </td>
 	                        <td>
 	                        <button type="button" class="btn btn-default" onclick="location.href='/catalogo'">
 	                            <span class="glyphicon glyphicon-shopping-cart" ></span> Continuar comprando

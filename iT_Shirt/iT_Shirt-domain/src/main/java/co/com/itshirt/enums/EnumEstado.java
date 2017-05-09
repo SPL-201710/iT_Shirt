@@ -20,6 +20,20 @@ public enum EnumEstado {
 		this.sigla = sigla;
 		this.nombre = nombre;
 	}
+	
+	/**
+	 * Obtiene el enum por la sigla.
+	 * @param sigla
+	 * @return
+	 */
+	public static EnumEstado get(String sigla) {
+		for (EnumEstado estado : ENUM_VALUES) {
+			if (estado.sigla.equals(sigla)) {
+				return estado;
+			}
+		}
+		return null;
+	}
 
 	public String getSigla() {
 		return sigla;

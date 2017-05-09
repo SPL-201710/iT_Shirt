@@ -10,7 +10,7 @@
 	<fieldset>
 
 		<legend>
-			Catálogo de <b>Estampas</b>
+			Catalogo de <b>Estampas</b>
 		</legend>
 
 		<br>
@@ -57,18 +57,28 @@
 					<a href="${contextPath}/detalleEstampa/?es=${e.idEstampa}"> <img
 						class="img-responsive" data-toggle="tooltip"
 						data-placement="right" style="width: 200px; height: 160px"
-						title="${e.nombreCorto}" src="/resources/estampas/${e.source}"
+						title="${e.nombreCorto}" src="${contextPath}/resources/estampas/${e.source}"
 						alt="${e.nombreCorto}">
-					</a> <label></label>
+					
+					</a>
+					<c:if test="${e.destacada == 'S'}">
+						<div style="position: absolute; left: 0px; top: 0px;"> 
+							<img src="${contextPath}/resources/images/rotstar2_e0.gif" title="Estampa destacada" alt="Estampa destacada">
+					 	</div> 
+					 </c:if>
+					<label></label>
 					<c:choose>
 						<c:when test="${roluser.nombre == 'Comprador'}">							
 							<a href="${contextPath}/seleccionCamiseta/?es=${e.idEstampa}&url=${e.source}">Seleccionar</a>
 						</c:when>
 						<c:when test="${roluser.nombre == 'Artista'}">
 							<div class="row col-md-6 col-md-offset-2 custyle">
-								<table class="table table-striped custab">	
-									<tr>
-										<td class="text-center">
+								<table class="table table-striped custab">
+									<thead>
+									</thead>									
+										<tr>										
+											<td class="text-center">
+
 											<a href="${contextPath}/estampa/editar/?es=${e.idEstampa}" class='btn btn-info btn-xs'> 
 												<span class="glyphicon glyphicon-edit"></span> Editar
 											</a> 
@@ -101,13 +111,23 @@
 											</form>
 										</td>
 									</tr>
-									<td class="text-center">
-									<c:choose>
-										<c:when test="${e.estado == 'I'}">
-											La estampa ha sido rechazada.
-										</c:when>
-									</c:choose>
-									</td>
+									<tr>
+										<td class="text-center">
+											<c:choose>
+												<c:when test="${e.estado == 'I'}">
+													La estampa ha sido rechazada.
+												</c:when>
+											</c:choose>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<form action="destacarEstampa" method="post">
+												<input type="hidden" name="idEst" value="${e.idEstampa}">
+												<button class='btn btn-primary btn-xs'><span class="glyphicon glyphicon-star-empty"></span>Destacar</button>
+											</form>
+										</td>
+									</tr>						
 								</table>
 							</div>
 						</c:when>

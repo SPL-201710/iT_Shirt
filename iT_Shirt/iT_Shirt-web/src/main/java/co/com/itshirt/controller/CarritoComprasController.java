@@ -9,15 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.com.itshirt.domain.DetalleOrden;
+import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.OrdenCompra;
+import co.com.itshirt.domain.vip.DetalleOrdenVIP;
 import co.com.itshirt.enums.EnumEstadoCompra;
 import co.com.itshirt.repository.DetalleOrdenRepository;
 import co.com.itshirt.repository.OrdenCompraRepository;
+import co.com.itshirt.repository.vip.DetalleOrdenVIPRepository;
 import co.com.itshirt.security.CustomUserDetails;
 
 
@@ -27,6 +33,8 @@ public class CarritoComprasController {
 	
 	@Autowired
 	private DetalleOrdenRepository detalleOrdenRepository;
+	@Autowired
+	private DetalleOrdenVIPRepository detalleOrdenVIPRepository;
 	@Autowired
 	private OrdenCompraRepository ordenCompraRepository;
 	
@@ -47,9 +55,21 @@ public class CarritoComprasController {
 		session.setAttribute("total", total);
 		return "compra/carrito";
 	}
+	//Elimninacion de los articulos escogidos del carrito de compra.
+	@RequestMapping(value= "eliminarOrden", method = RequestMethod.POST)
+	public String eliminarOrden(@RequestParam(value="ordDet", required=true) int ordDet, Model model, HttpSession session, final RedirectAttributes redirectAttributes) {
+		if (session.getAttribute("elementosCarrito")!=null) {
+			ArrayList<DetalleOrden> elementosCarrito = (ArrayList<DetalleOrden>) session.getAttribute("elementosCarrito");
+			elementosCarrito.remove(ordDet-1);
+		}
+		return "redirect:/carrito";
+	}
 	
 	@RequestMapping(value= "metodoPago", method = RequestMethod.GET)
 	public String metodoPago(ModelMap model, HttpSession session) {
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+    	model.addAttribute("rolUser", usuario.getRol());
 		return "compra/metodoPago";
 	}
 	
@@ -62,10 +82,11 @@ public class CarritoComprasController {
 	@RequestMapping(value= "realizarPago", method = RequestMethod.GET)
 	public String realizarPago(ModelMap model, HttpSession session) {
 		if (session.getAttribute("elementosCarrito") !=null ) {
+			System.err.println("Registrando un pago desde el carrito.");
 			final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
 			OrdenCompra ordenCompra = new OrdenCompra();
-			ordenCompra.setDireccionEnvio("PENDIENTE"); //TODO Ajustar
+			ordenCompra.setDireccionEnvio("Calle Falsa 123"); //TODO Ajustar
 			ordenCompra.setFecha(new Date());
 			ordenCompra.setEstado(EnumEstadoCompra.PROCESADO.getSigla());
 			ordenCompra.setIdUsuario(usuario.getIdUsuario());
@@ -82,9 +103,26 @@ public class CarritoComprasController {
 			}
 			session.removeAttribute("elementosCarrito");
 			return "redirect:/compras/detalle?es=" + idOrden;
+		} else if (session.getAttribute("compraVIP") !=null ) {
+			System.err.println("Registrando un pago compra VIP.");
+			final DetalleOrdenVIP ordenVIP = (DetalleOrdenVIP) session.getAttribute("compraVIP");
+			final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+			OrdenCompra ordenCompra = new OrdenCompra();
+			ordenCompra.setDireccionEnvio("N/A");
+			ordenCompra.setFecha(new Date());
+			ordenCompra.setEstado(EnumEstadoCompra.PROCESADO.getSigla());
+			ordenCompra.setIdUsuario(usuario.getIdUsuario());
+			ordenCompra.setTelefonoContacto(usuario.getTelefono());
+			ordenCompra.setTotal(ordenVIP.getPrecio());
+			ordenCompra = this.ordenCompraRepository.save(ordenCompra);
+			//Guardando relacion entre orden y detalle orden.
+			ordenVIP.setOrdenCompra(ordenCompra);
+			this.detalleOrdenVIPRepository.save(ordenVIP);
+			session.removeAttribute("elementosCarrito");
 		}
 		
-		return "catalogo";
+		return "redirect:/";
 	}
 	
 }
