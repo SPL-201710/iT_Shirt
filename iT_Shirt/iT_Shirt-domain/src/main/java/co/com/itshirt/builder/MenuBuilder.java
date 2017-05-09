@@ -3,6 +3,7 @@ package co.com.itshirt.builder;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.com.itshirt.annotation.OptionalFeature;
 import co.com.itshirt.dto.MenuDTO;
 import co.com.itshirt.enums.EnumRol;
 
@@ -30,6 +31,8 @@ public class MenuBuilder {
 		MENUS_ADMIN.add(new MenuDTO("Administrar Temas", "glyphicon-thumbs-up", "/admin/temas"));
 		MENUS_ADMIN.add(new MenuDTO("Administrar Estampas", "glyphicon-ok", "/admin/estampas"));
 		MENUS_ADMIN.add(new MenuDTO("Administrar Reportes", "glyphicon-download-alt", "/admin/reportes"));
+//		@OptionalFeature
+		MENUS_ADMIN.add(new MenuDTO("Suscripciones VIP", "glyphicon-star", "/admin/suscripcion"));
 		//Configuración menus comprador.
 		MENUS_COMPRADOR = new ArrayList<MenuDTO>();
 		MENUS_COMPRADOR.add(new MenuDTO("Inicio", "glyphicon-home", "/welcome"));
@@ -49,6 +52,7 @@ public class MenuBuilder {
 		MENUS_ARTISTA.add(new MenuDTO("Ver calificaciones", "glyphicon-thumbs-up", "/estampa/calificaciones"));
 		MENUS_ARTISTA.add(new MenuDTO("Cambiar contraseña", "glyphicon-wrench", "/perfil/cambiarCredenciales"));
 		MENUS_ARTISTA.add(new MenuDTO("Reportes", "glyphicon-download-alt", "/artista/reportes"));
+		MENUS_ARTISTA.add(new MenuDTO("Suscripciones VIP", "glyphicon-star", "/suscripcion"));
 //		MENUS_ARTISTA.add(new MenuDTO("Ayuda", "glyphicon-flag", "/ayuda"));
 	}
 	
