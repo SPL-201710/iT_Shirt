@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import co.com.itshirt.domain.DetalleOrden;
 import co.com.itshirt.domain.OrdenCompra;
+import co.com.itshirt.domain.vip.DetalleOrdenVIP;
 import co.com.itshirt.enums.EnumEstadoCompra;
 import co.com.itshirt.repository.DetalleOrdenRepository;
 import co.com.itshirt.repository.OrdenCompraRepository;
+import co.com.itshirt.repository.vip.DetalleOrdenVIPRepository;
 import co.com.itshirt.security.CustomUserDetails;
 
 
@@ -27,6 +29,8 @@ public class CarritoComprasController {
 	
 	@Autowired
 	private DetalleOrdenRepository detalleOrdenRepository;
+	@Autowired
+	private DetalleOrdenVIPRepository detalleOrdenVIPRepository;
 	@Autowired
 	private OrdenCompraRepository ordenCompraRepository;
 	
@@ -50,6 +54,9 @@ public class CarritoComprasController {
 	
 	@RequestMapping(value= "metodoPago", method = RequestMethod.GET)
 	public String metodoPago(ModelMap model, HttpSession session) {
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+    	model.addAttribute("rolUser", usuario.getRol());
 		return "compra/metodoPago";
 	}
 	
@@ -62,10 +69,11 @@ public class CarritoComprasController {
 	@RequestMapping(value= "realizarPago", method = RequestMethod.GET)
 	public String realizarPago(ModelMap model, HttpSession session) {
 		if (session.getAttribute("elementosCarrito") !=null ) {
+			System.err.println("Registrando un pago desde el carrito.");
 			final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
 			OrdenCompra ordenCompra = new OrdenCompra();
-			ordenCompra.setDireccionEnvio("PENDIENTE"); //TODO Ajustar
+			ordenCompra.setDireccionEnvio("Calle Falsa 123"); //TODO Ajustar
 			ordenCompra.setFecha(new Date());
 			ordenCompra.setEstado(EnumEstadoCompra.PROCESADO.getSigla());
 			ordenCompra.setIdUsuario(usuario.getIdUsuario());
@@ -82,9 +90,26 @@ public class CarritoComprasController {
 			}
 			session.removeAttribute("elementosCarrito");
 			return "redirect:/compras/detalle?es=" + idOrden;
+		} else if (session.getAttribute("compraVIP") !=null ) {
+			System.err.println("Registrando un pago compra VIP.");
+			final DetalleOrdenVIP ordenVIP = (DetalleOrdenVIP) session.getAttribute("compraVIP");
+			final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+			OrdenCompra ordenCompra = new OrdenCompra();
+			ordenCompra.setDireccionEnvio("N/A");
+			ordenCompra.setFecha(new Date());
+			ordenCompra.setEstado(EnumEstadoCompra.PROCESADO.getSigla());
+			ordenCompra.setIdUsuario(usuario.getIdUsuario());
+			ordenCompra.setTelefonoContacto(usuario.getTelefono());
+			ordenCompra.setTotal(ordenVIP.getPrecio());
+			ordenCompra = this.ordenCompraRepository.save(ordenCompra);
+			//Guardando relacion entre orden y detalle orden.
+			ordenVIP.setOrdenCompra(ordenCompra);
+			this.detalleOrdenVIPRepository.save(ordenVIP);
+			session.removeAttribute("elementosCarrito");
 		}
 		
-		return "catalogo";
+		return "redirect:/";
 	}
 	
 }

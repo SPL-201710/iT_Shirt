@@ -52,7 +52,8 @@ public class MenuBuilder {
 		MENUS_ARTISTA.add(new MenuDTO("Ver calificaciones", "glyphicon-thumbs-up", "/estampa/calificaciones"));
 		MENUS_ARTISTA.add(new MenuDTO("Cambiar contraseña", "glyphicon-wrench", "/perfil/cambiarCredenciales"));
 		MENUS_ARTISTA.add(new MenuDTO("Reportes", "glyphicon-download-alt", "/artista/reportes"));
-		MENUS_ARTISTA.add(new MenuDTO("Suscripciones VIP", "glyphicon-star", "/suscripcion"));
+		MENUS_ARTISTA.add(new MenuDTO("Comprar Paquete VIP", "glyphicon-star", "/suscripcion"));
+		MENUS_ARTISTA.add(new MenuDTO("Compras VIP realizadas", "glyphicon-usd", "/compras/historial/vip"));
 //		MENUS_ARTISTA.add(new MenuDTO("Ayuda", "glyphicon-flag", "/ayuda"));
 	}
 	

@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import co.com.itshirt.enums.EnumEstado;
+
 /**
  * Entidad Suscripciones VIP.
  * @author ja.picon
@@ -75,6 +77,10 @@ public class SuscripcionVIP {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+	public String getEstadoDesc() {
+		return EnumEstado.get(this.estado).getNombre();
 	}
 	
 }

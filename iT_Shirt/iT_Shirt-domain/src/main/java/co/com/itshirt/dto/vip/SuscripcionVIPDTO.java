@@ -28,6 +28,16 @@ public class SuscripcionVIPDTO {
 		this.cantidad = entity.getCantidad();
 		this.estado = entity.getEstado();
 	}
+	
+	public SuscripcionVIP toEntity() {
+		final SuscripcionVIP entity = new SuscripcionVIP();
+		entity.setIdSuscripcion(this.idSuscripcion);
+		entity.setPrecio(this.precio);
+		entity.setDescripcion(this.descripcion);
+		entity.setCantidad(this.cantidad);
+		entity.setEstado(this.estado);
+		return entity;
+	}
 
 	public Long getIdSuscripcion() {
 		return idSuscripcion;
