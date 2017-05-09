@@ -192,7 +192,7 @@
 						      	data-toggle="tooltip" data-placement="right" title="${e.nombre}" alt="${e.nombre}"/>
 						      	<c:if test="${rolUsuario == 'Comprador'}">
 		               				<img border="0" src="/resources/estampas/${url}" class="estampa" width="25%" />
-						      		<span class="product_text"></span>
+						      		<span class="product_text" id="text"></span>
 		               			</c:if>
 						    </a>
 						</div>
