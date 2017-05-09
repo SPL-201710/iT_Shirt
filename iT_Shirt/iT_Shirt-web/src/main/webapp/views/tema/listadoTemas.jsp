@@ -8,7 +8,12 @@
 
 <div class="container-fluid">
 	<h1 class="page-header">Listado de Temas</h1>
-	
+	<c:if test="${errorDelete != null}">
+	<div class="alert alert-success alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>Mensaje!</strong> ${errorDelete}
+		</div>
+	</c:if>
 		<form:form method="POST" modelAttribute="temaForm" class="form-horizontal">
 
 	        <spring:bind path="nombre">
@@ -44,8 +49,10 @@
                 <td>${t.nombre}</td>
                 <td class="text-center"><a class='btn btn-info btn-xs' href="#">
                 <span class="glyphicon glyphicon-edit"></span> Editar</a>
-                <a href="#" class="btn btn-danger btn-xs">
-                <span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
+                <form action="eliminarTema" method="post">
+					<input type="hidden" name="id" value="${t.idTema}">
+					<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
+				</form>
             </tr>
     	</c:forEach>
     </table>

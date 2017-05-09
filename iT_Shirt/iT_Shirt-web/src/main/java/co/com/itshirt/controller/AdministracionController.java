@@ -1,12 +1,13 @@
 package co.com.itshirt.controller;
 
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,16 +15,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.Tema;
 import co.com.itshirt.domain.Usuario;
-import co.com.itshirt.dto.CreacionEstampaDTO;
-import co.com.itshirt.enums.EnumEstadoEstampa;
+import co.com.itshirt.repository.EstampaRepository;
 import co.com.itshirt.repository.TemaRepository;
 import co.com.itshirt.repository.UserRepository;
-import co.com.itshirt.security.CustomUserDetails;
-import co.com.itshirt.util.FileUtils;
 
 
 @Controller
@@ -34,6 +33,8 @@ public class AdministracionController {
 	private TemaRepository temaRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private EstampaRepository estampaRepository;
 	
 	@RequestMapping(value="usuarios", method = RequestMethod.GET)
 	public String usuarios(ModelMap model, HttpSession session) {
@@ -86,4 +87,23 @@ public class AdministracionController {
 		return "redirect:usuarios";
 	}
 	
+	@RequestMapping(value="/eliminarTema", method = RequestMethod.POST)
+	public String eliminarTema(@RequestParam(value="id", required=false) Tema tema, Model model, HttpServletRequest request, final RedirectAttributes redirectAttributes){
+		
+		List<Estampa> estampas = this.estampaRepository.findByTema(tema);
+		String Message;
+		if(estampas.size() == 0)
+		{
+			this.temaRepository.delete(tema);
+			Message = "El tema se ha eliminado correctamente";
+		}
+		else
+		{
+			Message = "El tema tiene estampas relacionadas, no se ha podido eliminar!";
+		}
+		
+		redirectAttributes.addFlashAttribute("errorDelete", Message);
+		return "redirect:temas";
+	}
+
 }
