@@ -57,9 +57,14 @@
 					<a href="${contextPath}/detalleEstampa/?es=${e.idEstampa}"> <img
 						class="img-responsive" data-toggle="tooltip"
 						data-placement="right" style="width: 200px; height: 160px"
-						title="${e.nombreCorto}" src="/resources/estampas/${e.source}"
+						title="${e.nombreCorto}" src="${contextPath}/resources/estampas/${e.source}"
 						alt="${e.nombreCorto}">
-					</a> <label></label>
+					
+					</a> 
+					<div style="position: absolute; left: 0px; top: 0px;"> 
+					<img src="${contextPath}/resources/images/rotstar2_e0.gif" title="Estampa destacada" alt="Estampa destacada">
+					 </div>
+					<label></label>
 					<c:choose>
 						<c:when test="${roluser.nombre == 'Comprador'}">
 							<a
