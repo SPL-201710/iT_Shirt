@@ -18,6 +18,7 @@ public class EstampaDTO {
 	private String extension;
 	private Long idArtista;
 	private String nombresArtista;
+	private String destacada;
 	
 	/**
 	 * Constructor vacio por defecto.
@@ -40,6 +41,7 @@ public class EstampaDTO {
 		this.extension = estampa.getExtension();
 		this.idArtista = estampa.getArtista().getIdUsuario();
 		this.nombresArtista = estampa.getArtista().getNombresCompletos();
+		this.destacada = estampa.getDestacada();
 	}
 
 	public Long getIdEstampa() {
@@ -112,6 +114,14 @@ public class EstampaDTO {
 
 	public void setNombresArtista(String nombresArtista) {
 		this.nombresArtista = nombresArtista;
+	}
+
+	public String getDestacada() {
+		return destacada;
+	}
+
+	public void setDestacada(String destacada) {
+		this.destacada = destacada;
 	}
 
 	public String getSource() {

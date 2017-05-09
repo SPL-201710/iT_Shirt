@@ -218,4 +218,27 @@ public class EstampasController {
 		return "redirect:/catalogo";
 	}
 	
+	/**
+	 * Se encarga de destacar la estampa
+	 */
+	
+	@RequestMapping(value="/destacarEstampa", method = RequestMethod.POST)
+	public String destacarEstampa(@RequestParam(value="idEst", required=true) Long idEst, Model model, final RedirectAttributes redirectAttributes){
+		final Estampa estampa = estampaRepository.findOne(idEst);
+		String Message;
+		if(estampa.getDestacada().equals("N"))
+		{
+			estampa.setDestacada("S");
+			Message = "La estampa es destacada desde ahora";
+		}
+		else
+		{
+			estampa.setDestacada("N");
+			Message = "La estampa ya no es destacada";
+		}
+		this.estampaRepository.save(estampa);
+
+		redirectAttributes.addFlashAttribute("errorDelete", Message);
+		return "redirect:/catalogo";
+	}
 }

@@ -10,7 +10,7 @@
 	<fieldset>
 
 		<legend>
-			Cat�logo de <b>Estampas</b>
+			Catalogo de <b>Estampas</b>
 		</legend>
 
 		<br>
@@ -60,10 +60,12 @@
 						title="${e.nombreCorto}" src="${contextPath}/resources/estampas/${e.source}"
 						alt="${e.nombreCorto}">
 					
-					</a> 
-					<div style="position: absolute; left: 0px; top: 0px;"> 
-					<img src="${contextPath}/resources/images/rotstar2_e0.gif" title="Estampa destacada" alt="Estampa destacada">
-					 </div>
+					</a>
+					<c:if test="${e.destacada == 'S'}">
+						<div style="position: absolute; left: 0px; top: 0px;"> 
+							<img src="${contextPath}/resources/images/rotstar2_e0.gif" title="Estampa destacada" alt="Estampa destacada">
+					 	</div> 
+					 </c:if>
 					<label></label>
 					<c:choose>
 						<c:when test="${roluser.nombre == 'Comprador'}">
@@ -74,10 +76,8 @@
 							<div class="row col-md-6 col-md-offset-2 custyle">
 								<table class="table table-striped custab">
 									<thead>
-									</thead>
-									
-										<tr>
-											
+									</thead>									
+										<tr>										
 											<td class="text-center">
 											<a href="${contextPath}/estampa/editar/?es=${e.idEstampa}" class='btn btn-info btn-xs'> 
 												<span class="glyphicon glyphicon-edit"></span> Editar
@@ -87,12 +87,11 @@
 												<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
 											</form>
 											<form action="destacarEstampa" method="post">
-												<input type="hidden" name="es" value="${e.idEstampa}">
-												<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-star-empty"></span>Destacar</button>
+												<input type="hidden" name="idEst" value="${e.idEstampa}">
+												<button class='btn btn-primary btn-xs'><span class="glyphicon glyphicon-star-empty"></span>Destacar</button>
 											</form>
 											</td>
-										</tr>
-									
+										</tr>						
 								</table>
 							</div>
 						</c:when>

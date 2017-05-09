@@ -37,6 +37,9 @@ public class Estampa {
 	@Column(name = "esta_extension")
 	private String extension;
 	
+	@Column(name = "esta_destacada")
+	private String destacada;
+	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "tema_id")
     private Tema tema;
@@ -122,6 +125,14 @@ public class Estampa {
 
 	public void setExtension(String extension) {
 		this.extension = extension;
+	}
+	
+	public String getDestacada() {
+		return destacada;
+	}
+
+	public void setDestacada(String destacada) {
+		this.destacada = destacada;
 	}
 	
 	public String getSource() {
