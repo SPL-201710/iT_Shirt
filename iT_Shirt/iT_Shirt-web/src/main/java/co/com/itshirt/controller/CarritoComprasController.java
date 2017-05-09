@@ -55,7 +55,7 @@ public class CarritoComprasController {
 		session.setAttribute("total", total);
 		return "compra/carrito";
 	}
-	
+	//Elimninacion de los articulos escogidos del carrito de compra.
 	@RequestMapping(value= "eliminarOrden", method = RequestMethod.POST)
 	public String eliminarOrden(@RequestParam(value="ordDet", required=true) int ordDet, Model model, HttpSession session, final RedirectAttributes redirectAttributes) {
 		if (session.getAttribute("elementosCarrito")!=null) {

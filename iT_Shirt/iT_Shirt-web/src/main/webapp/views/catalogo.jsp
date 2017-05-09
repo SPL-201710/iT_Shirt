@@ -10,7 +10,7 @@
 	<fieldset>
 
 		<legend>
-			Catálogo de <b>Estampas</b>
+			Catï¿½logo de <b>Estampas</b>
 		</legend>
 
 		<br>
@@ -80,6 +80,10 @@
 											<form action="eliminaEstampa" method="post">
 												<input type="hidden" name="es" value="${e.idEstampa}">
 												<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
+											</form>
+											<form action="destacarEstampa" method="post">
+												<input type="hidden" name="es" value="${e.idEstampa}">
+												<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-star-empty"></span>Destacar</button>
 											</form>
 											</td>
 										</tr>
