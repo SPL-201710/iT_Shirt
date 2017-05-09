@@ -66,18 +66,19 @@ public class EstampasController {
     	
     	if(idTema != null)
     	{
-    		lstEntities = this.estampaRepository.findByTema(idTema);
-    		
+    		lstEntities = this.estampaRepository.find(idTema,"A");
     	}
     	else if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
     		lstEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
     	} else {
-    		lstEntities = this.estampaRepository.findAll();
+    		lstEntities = this.estampaRepository.findAll("A");
     	}
     	
     	if (lstEntities != null) {
     		for (final Estampa estampa : lstEntities) {
+    			System.out.println("Estampa: " + estampa.getEstado());
     			estampas.add(new EstampaDTO(estampa));
+
     		}
     	}
     	
@@ -213,6 +214,19 @@ public class EstampasController {
 		{
 			Message = "La estampa tiene compras asociadas, no se puede eliminar!";
 		}
+		
+		redirectAttributes.addFlashAttribute("errorDelete", Message);
+		return "redirect:/catalogo";
+	}
+	
+	@RequestMapping(value="/rechazarEstampa", method = RequestMethod.POST)
+	public String rechazarEstampa(@RequestParam(value="es", required=true) Estampa es, Model model, final RedirectAttributes redirectAttributes){
+		
+		String Message;
+		Message = "La estampa ha sido rechazada!";
+		
+		this.estampaRepository.updateEstado("I", es.getIdEstampa());
+		
 		
 		redirectAttributes.addFlashAttribute("errorDelete", Message);
 		return "redirect:/catalogo";

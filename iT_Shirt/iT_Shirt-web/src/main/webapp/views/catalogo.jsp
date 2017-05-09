@@ -52,7 +52,7 @@
 <br>
 
 			<c:forEach items="${estampas}" var="e">
-
+				
 				<div class="col-md-4 portfolio-item">
 					<a href="${contextPath}/detalleEstampa/?es=${e.idEstampa}"> <img
 						class="img-responsive" data-toggle="tooltip"
@@ -61,19 +61,14 @@
 						alt="${e.nombreCorto}">
 					</a> <label></label>
 					<c:choose>
-						<c:when test="${roluser.nombre == 'Comprador'}">
-							<a
-								href="${contextPath}/seleccionCamiseta/?es=${e.idEstampa}&url=${e.source}">Seleccionar</a>
+						<c:when test="${roluser.nombre == 'Comprador'}">							
+							<a href="${contextPath}/seleccionCamiseta/?es=${e.idEstampa}&url=${e.source}">Seleccionar</a>
 						</c:when>
 						<c:when test="${roluser.nombre == 'Artista'}">
 							<div class="row col-md-6 col-md-offset-2 custyle">
-								<table class="table table-striped custab">
-									<thead>
-									</thead>
-									
-										<tr>
-											
-											<td class="text-center">
+								<table class="table table-striped custab">	
+									<tr>
+										<td class="text-center">
 											<a href="${contextPath}/estampa/editar/?es=${e.idEstampa}" class='btn btn-info btn-xs'> 
 												<span class="glyphicon glyphicon-edit"></span> Editar
 											</a> 
@@ -81,15 +76,43 @@
 												<input type="hidden" name="es" value="${e.idEstampa}">
 												<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
 											</form>
-											</td>
-										</tr>
-									
+										</td>
+									</tr>
+									<tr>
+										<td class="text-center">
+										<c:choose>
+											<c:when test="${e.estado == 'I'}">
+												<p><strong><span class="label label-warning">Rechazada</span></strong></p>	
+											</c:when>
+										</c:choose>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</c:when>
+						<c:when test="${roluser.nombre == 'Administrador'}">
+							<div class="row col-md-6 col-md-offset-2 custyle">
+								<table class="table table-striped custab">
+									<tr>
+										<td class="text-center">
+											<form action="rechazarEstampa" method="post">
+												<input type="hidden" name="es" value="${e.idEstampa}">
+												<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span> Rechazar</button>
+											</form>
+										</td>
+									</tr>
+									<td class="text-center">
+									<c:choose>
+										<c:when test="${e.estado == 'I'}">
+											La estampa ha sido rechazada.
+										</c:when>
+									</c:choose>
+									</td>
 								</table>
 							</div>
 						</c:when>
 					</c:choose>
 				</div>
-
 			</c:forEach>
 
 		</div>
