@@ -54,9 +54,11 @@ public class Usuario {
 	@Column(name = "social_id")
 	private String idRedSocial;
 	
+	@Column(name = "usua_estamdestacadas")
+	private Long estampasDestacar;
+	
 	@Transient
 	private String passwordConfirm; //TODO Es temporal.
-	
 	
 	/**
 	 * Constructor vacío por defecto.
@@ -82,6 +84,7 @@ public class Usuario {
 		this.direccion = user.getDireccion();
 		this.estado = user.getEstado();
 		this.idRedSocial = user.getIdRedSocial();
+		this.estampasDestacar = user.estampasDestacar;
 	}
 
 	public Long getIdUsuario() {
@@ -199,6 +202,13 @@ public class Usuario {
 	public void setIdRedSocial(String idRedSocial) {
 		this.idRedSocial = idRedSocial;
 	}
-	
+
+	public Long getEstampasDestacar() {
+		return estampasDestacar;
+	}
+
+	public void setEstampasDestacar(Long estampasDestacar) {
+		this.estampasDestacar = estampasDestacar;
+	}	
 	
 }

@@ -30,6 +30,7 @@ import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.dto.TemaDTO;
 import co.com.itshirt.enums.EnumEstadoEstampa;
 import co.com.itshirt.enums.EnumRol;
+import co.com.itshirt.repository.UserRepository;
 import co.com.itshirt.repository.DetalleOrdenRepository;
 import co.com.itshirt.repository.EstampaRepository;
 import co.com.itshirt.repository.TemaRepository;
@@ -44,6 +45,8 @@ import co.com.itshirt.variability.factory.BusquedaFactory;
 @Controller
 public class EstampasController {
 	
+	@Autowired
+	private UserRepository userRepository;
 	@Autowired
 	private TemaRepository temaRepository;
 	@Autowired
@@ -78,7 +81,6 @@ public class EstampasController {
     		for (final Estampa estampa : lstEntities) {
     			System.out.println("Estampa: " + estampa.getEstado());
     			estampas.add(new EstampaDTO(estampa));
-
     		}
     	}
     	
@@ -93,6 +95,7 @@ public class EstampasController {
     	model.addAttribute("estampas", estampas);
     	model.addAttribute("busqueda", busquedaCatalogo);
     	model.addAttribute("roluser", usuario.getRol());
+    	model.addAttribute("suscripcion", usuario.getEstampasDestacar());
 		return "catalogo";
 	}
 	
@@ -235,24 +238,37 @@ public class EstampasController {
 	
 
 	/**
-	 * Se encarga de destacar la estampa
+	 * Se encarga de destacar/quitar destacado de la estampa
 	 */
 	
 	@RequestMapping(value="/destacarEstampa", method = RequestMethod.POST)
 	public String destacarEstampa(@RequestParam(value="idEst", required=true) Long idEst, Model model, final RedirectAttributes redirectAttributes){
 		final Estampa estampa = estampaRepository.findOne(idEst);
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+		
 		String Message;
 		if(estampa.getDestacada().equals("N"))
 		{
-			estampa.setDestacada("S");
-			Message = "La estampa es destacada desde ahora";
+			if (usuario.getEstampasDestacar() != null){
+				if (usuario.getEstampasDestacar() > 0){
+					this.estampaRepository.updateDestacada("S", idEst);
+					this.userRepository.updateSuscripVIPEstampas(-1, usuario.getIdUsuario());
+					Message = "La estampa es destacada desde ahora";
+				}
+				else
+					Message = "Ya no puede destacar mas estampas. "
+							+ "Para destacar otra estampa, compre otro paquete VIP o quite el destacado a una estampa";
+			}
+			else 
+				Message = "Debe comprar un paquete VIP para destacar la estampa";
 		}
 		else
 		{
-			estampa.setDestacada("N");
+			this.estampaRepository.updateDestacada("N", idEst);
+			this.userRepository.updateSuscripVIPEstampas(1, usuario.getIdUsuario());
 			Message = "La estampa ya no es destacada";
 		}
-		this.estampaRepository.save(estampa);
 
 		redirectAttributes.addFlashAttribute("errorDelete", Message);
 		return "redirect:/catalogo";

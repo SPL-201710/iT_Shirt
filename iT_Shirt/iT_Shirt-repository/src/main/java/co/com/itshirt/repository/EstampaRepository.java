@@ -33,4 +33,9 @@ public interface EstampaRepository extends CrudRepository<Estampa, Long> {
 	@Query("UPDATE Estampa e SET e.estado = ?1 WHERE e.idEstampa = ?2")
     public void updateEstado(String estado, long id);
 	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Estampa e SET e.destacada = ?1 WHERE e.idEstampa = ?2")
+	public void updateDestacada(String destacada, long id);
+	
 }
