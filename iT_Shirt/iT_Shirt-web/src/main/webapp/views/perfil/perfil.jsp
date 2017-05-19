@@ -86,7 +86,12 @@
 		</fieldset>
 		
 	</form:form>
-
+	
+	<table class="table table-bordered">
+		<tr>
+			<th>Temas preferidos por el usuario</th>
+		</tr>
+	</table>
 
 
 

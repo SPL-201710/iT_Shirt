@@ -84,7 +84,7 @@ public class Usuario {
 		this.direccion = user.getDireccion();
 		this.estado = user.getEstado();
 		this.idRedSocial = user.getIdRedSocial();
-		this.estampasDestacar = user.estampasDestacar;
+		this.estampasDestacar = user.estampasDestacar; 
 	}
 
 	public Long getIdUsuario() {
@@ -209,6 +209,6 @@ public class Usuario {
 
 	public void setEstampasDestacar(Long estampasDestacar) {
 		this.estampasDestacar = estampasDestacar;
-	}	
+	}
 	
 }
