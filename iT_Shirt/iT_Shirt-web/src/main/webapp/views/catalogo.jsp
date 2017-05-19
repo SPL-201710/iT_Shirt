@@ -123,6 +123,12 @@
 												<input type="hidden" name="es" value="${e.idEstampa}">
 												<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
 											</form>
+											<c:if test="${suscripcion != null}">
+												<form action="destacarEstampa" method="post">
+													<input type="hidden" name="idEst" value="${e.idEstampa}">
+													<button class='btn btn-primary btn-xs'><span class="glyphicon glyphicon-star-empty"></span>Destacar</button>
+												</form>
+											</c:if>
 										</td>
 									</tr>
 									<tr>
@@ -156,15 +162,7 @@
 												</c:when>
 											</c:choose>
 										</td>
-									</tr>
-									<tr>
-										<td>
-											<form action="destacarEstampa" method="post">
-												<input type="hidden" name="idEst" value="${e.idEstampa}">
-												<button class='btn btn-primary btn-xs'><span class="glyphicon glyphicon-star-empty"></span>Destacar</button>
-											</form>
-										</td>
-									</tr>						
+									</tr>					
 								</table>
 							</div>
 						</c:when>

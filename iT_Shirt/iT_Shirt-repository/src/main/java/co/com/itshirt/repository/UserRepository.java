@@ -23,5 +23,16 @@ public interface UserRepository extends CrudRepository<Usuario, Long> {
 	@Transactional
 	@Query("UPDATE Usuario u SET u.estado = ?1 WHERE u.idUsuario = ?2")
     public void updateEstado(String estado, long id);
+	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Usuario u SET u.estampasDestacar = u.estampasDestacar + ?1  WHERE u.idUsuario = ?2")
+    public void updateSuscripVIPEstampas(long cant_destacar, long id);
+	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Usuario u SET u.estampasDestacar = ?1  WHERE u.idUsuario = ?2")
+    public void inicialSuscripVIP(long cant_destacar, long id);
+	
     
 }

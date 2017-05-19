@@ -38,7 +38,7 @@ public class Estampa {
 	private String extension;
 	
 	@Column(name = "esta_destacada")
-	private String destacada;
+	private String destacada = "N";
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "tema_id")
