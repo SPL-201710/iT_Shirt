@@ -1,6 +1,8 @@
 package co.com.itshirt.controller;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -18,11 +20,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import co.com.itshirt.domain.Tema;
 import co.com.itshirt.domain.Usuario;
+import co.com.itshirt.domain.UsuarioTema;
 import co.com.itshirt.dto.CambioCredencialesDTO;
 import co.com.itshirt.dto.PerfilUsuarioDTO;
+import co.com.itshirt.dto.TemaDTO;
+import co.com.itshirt.dto.UsuarioTemaDTO;
 import co.com.itshirt.enums.EnumSexo;
+import co.com.itshirt.repository.TemaRepository;
 import co.com.itshirt.repository.UserRepository;
+import co.com.itshirt.repository.UsuarioTemaRepository;
 import co.com.itshirt.repository.service.SecurityService;
 import co.com.itshirt.security.CustomUserDetails;
 
@@ -39,6 +47,10 @@ public class PerfilUsuarioController {
 	private UserRepository userRepository;
 	@Autowired
 	private SecurityService securityService;
+	@Autowired
+	private UsuarioTemaRepository usuarioTemaRepository;
+	@Autowired
+	private TemaRepository temaRepository;
 	
 	/**
 	 * Método inicial del controlador.
@@ -56,12 +68,17 @@ public class PerfilUsuarioController {
 	public String actualizarPerfil(ModelMap model, HttpSession session, HttpServletRequest request) {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
-    	final Map<String,String> mapSexos = new LinkedHashMap<String,String>(); 
+    	final Map<String,String> mapSexos = new LinkedHashMap<String,String>();
+    	
 		for (EnumSexo sexo : EnumSexo.ENUM_VALUES) {
 			mapSexos.put(sexo.getCodigo(), sexo.getDescripcion());
-		}
+		}    	
+
     	model.addAttribute("perfilForm", new PerfilUsuarioDTO(usuario));
+    	model.addAttribute("usuarioTema", new UsuarioTemaDTO());
     	model.addAttribute("sexos", mapSexos);
+    	model.addAttribute("temas", this.temasUsuario());
+    	model.addAttribute("selecttemas", this.temas());
 		return "perfil/perfil";
 	}
 	
@@ -119,6 +136,61 @@ public class PerfilUsuarioController {
     		model.addAttribute("msgExitoso", "Se han actualizado sus datos exitosamente.");
         }
 		return "perfil/cambiarCredenciales";
+	}
+	
+	@RequestMapping(value = "temasFavoritos", method = RequestMethod.GET)
+	public String TemasFavoritos(ModelMap model, HttpSession session, HttpServletRequest request){
+		
+		model.addAttribute("selecttemas", this.temas());
+		model.addAttribute("usuarioTema", new UsuarioTemaDTO());
+		model.addAttribute("temas", this.temasUsuario());
+		
+		return "perfil/temasFavoritos";
+	}
+	
+	@RequestMapping(value = "temasFavoritos", method = RequestMethod.POST)
+	public String crearTemasFavoritos(@Valid UsuarioTemaDTO usuarioTema, BindingResult bindingResult, Model model, HttpServletRequest request){
+		final UsuarioTema usuTema = new UsuarioTema();
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	final CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+		final Usuario usuario = this.userRepository.findOne(customUserDetails.getIdUsuario());
+		
+		usuTema.setTema(this.temaRepository.findOne(usuarioTema.getTema()));
+		usuTema.setUsuario(usuario);
+		
+		this.usuarioTemaRepository.save(usuTema);
+		
+		model.addAttribute("selecttemas", this.temas());
+		model.addAttribute("usuarioTema", new UsuarioTemaDTO());
+		model.addAttribute("temas", this.temasUsuario());
+		return "perfil/temasFavoritos";
+	}
+	
+	private Map<Long, String> temas()
+	{
+		final Iterable<Tema> temas = this.temaRepository.findAll();
+		final Map<Long, String> mapTemas = new LinkedHashMap<Long, String>();
+		
+		for (Tema tema : temas){
+			mapTemas.put(tema.getIdTema(), tema.getNombre());
+			System.out.println(tema.getIdTema() + " " + tema.getNombre());
+		}
+		
+		return mapTemas;
+	}
+	
+	private List<TemaDTO> temasUsuario(){
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+    	final List<UsuarioTema> temasUsuario = this.usuarioTemaRepository.findByUsuario(usuario);
+    	final List<TemaDTO> temaUsuario = new ArrayList<TemaDTO>();
+    	
+    	for(final UsuarioTema tema : temasUsuario)
+    	{
+    		temaUsuario.add(new TemaDTO(tema.getTema()));
+    	}
+    	
+    	return temaUsuario;
 	}
 	
 	

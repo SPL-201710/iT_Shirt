@@ -2,9 +2,12 @@ package co.com.itshirt.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,10 +19,12 @@ public class UsuarioTema {
 	@Column(name = "idusua_tema")
 	private Long idUsuarioTema;
 	
-	@Column(name = "usuario_id")
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
-	@Column(name = "tema_id")
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "tema_id")
 	private Tema tema;
 	
 	public Long getIdUsuarioTema() {

@@ -86,13 +86,19 @@
 		</fieldset>
 		
 	</form:form>
+
+	<a href="temasFavoritos" class="btn btn-primary">Agregar temas favoritos</a>
 	
-	<table class="table table-bordered">
-		<tr>
-			<th>Temas preferidos por el usuario</th>
-		</tr>
-	</table>
-
-
-
+	<div style="width: 750px; margin-top: 10px">
+		<table class="table table-bordered">
+			<tr>
+				<th>Temas preferidos por el usuario</th>
+			</tr>
+			<c:forEach items="${temas}" var="t">
+				<tr>
+					<td>${ t.nombre }</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 </div>
