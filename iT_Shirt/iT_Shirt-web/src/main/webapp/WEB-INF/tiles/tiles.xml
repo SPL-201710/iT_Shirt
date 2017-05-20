@@ -40,6 +40,12 @@
         <put-attribute name="current" value="perfil"/>
     </definition>
     
+    <definition name="perfil/temasFavoritos" extends="master.page">
+    	<put-attribute name="title" value="Temas Favoritos" />
+        <put-attribute name="body" value="/views/perfil/temasFavoritos.jsp"/>
+        <put-attribute name="current" value="temasFavoritos"/>
+    </definition>
+    
     <definition name="catalogo" extends="master.page">
 		<put-attribute name="title" value="Catalogo" />
         <put-attribute name="body" value="/views/catalogo.jsp"/>

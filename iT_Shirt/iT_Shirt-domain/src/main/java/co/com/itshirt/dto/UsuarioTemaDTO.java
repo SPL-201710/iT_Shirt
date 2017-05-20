@@ -8,6 +8,10 @@ public class UsuarioTemaDTO {
 	private Long usuario;
 	private Long tema;
 	
+	public UsuarioTemaDTO(){
+		super();
+	}
+	
 	public UsuarioTemaDTO(final UsuarioTema usuariotema){
 		super();
 		this.idUsuarioTema = usuariotema.getIdUsuarioTema();
