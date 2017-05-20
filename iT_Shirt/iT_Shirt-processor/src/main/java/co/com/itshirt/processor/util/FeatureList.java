@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.com.itshirt.processor.enums.OptionalFeatures;
+
 public class FeatureList {
 	
 	private static final String FILENAME = "C:/Users/ja.picon/Documents/iT_Shirt-FINAL/iT_Shirt/iT_Shirt-processor/configs/default.config";
@@ -23,13 +25,14 @@ public class FeatureList {
 		return instance;
 	}
 	   
-	public List<String> features() {
+	public List<String> optionalFeatures() {
 		List<String> features = new ArrayList<String>();
 		try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
 			String sCurrentLine;
 			while ((sCurrentLine = br.readLine()) != null) {
-				System.out.println(sCurrentLine);
-				features.add(sCurrentLine);
+				if (OptionalFeatures.contains(sCurrentLine)) {
+					features.add(sCurrentLine);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -38,7 +41,7 @@ public class FeatureList {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("# Features: " +FeatureList.getInstance().features().size());
+		System.out.println("# Features: " +FeatureList.getInstance().optionalFeatures().size());
 	}
 	
 }
