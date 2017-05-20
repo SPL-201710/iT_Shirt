@@ -55,21 +55,20 @@
 	                            <div class="dropdown-menu dropdown-menu-right" role="menu">
 	                                <form class="form-horizontal" role="form">
 	                                  <div class="form-group">
-	                                    <label for="filter">Filter by</label>
+	                                    <label for="filter">Filtrar por</label>
 	                                    <select class="form-control">
 	                                        <option value="0" selected>All Snippets</option>
 	                                        <option value="1">Featured</option>
 	                                        <option value="2">Most popular</option>
 	                                        <option value="3">Top rated</option>
-	                                        <option value="4">Most commented</option>
 	                                    </select>
 	                                  </div>
 	                                  <div class="form-group">
-	                                    <label for="contain">Author</label>
+	                                    <label for="contain">Artista</label>
 	                                    <input class="form-control" type="text" />
 	                                  </div>
 	                                  <div class="form-group">
-	                                    <label for="contain">Contains the words</label>
+	                                    <label for="contain">Contiene las palabras</label>
 	                                    <input class="form-control" type="text" />
 	                                  </div>
 	                                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
