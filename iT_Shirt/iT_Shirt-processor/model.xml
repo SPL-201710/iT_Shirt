@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel>
+		<properties/>
+		<struct>
+			<and abstract="true" mandatory="true" name="iT_Shirt">
+				<and mandatory="true" name="Catalog">
+					<and mandatory="true" name="Products">
+						<feature mandatory="true" name="SearchProducts"/>
+						<feature name="AdvancedSearch"/>
+						<feature name="RateProducts"/>
+					</and>
+					<alt mandatory="true" name="View">
+						<feature mandatory="true" name="Gallery"/>
+						<feature mandatory="true" name="List"/>
+					</alt>
+				</and>
+				<feature mandatory="true" name="ShoppingCart"/>
+				<feature name="ProductAdmin"/>
+			</and>
+		</struct>
+		<constraints/>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

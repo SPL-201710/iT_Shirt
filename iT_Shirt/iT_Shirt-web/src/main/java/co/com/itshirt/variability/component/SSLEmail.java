@@ -48,7 +48,7 @@ public class SSLEmail {
 	
 	}
 	
-	public static void main(String[] args) {
+	public static void main() {
 		final String fromEmail = "itshirtcontact@gmail.com"; //requires valid gmail id
 		final String password = "Fabricas2017"; // correct password for gmail id
 		final String toEmail = "piconjulian03@gmail.com"; // can be any email id 

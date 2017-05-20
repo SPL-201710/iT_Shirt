@@ -11,6 +11,8 @@
 		<module>iT_Shirt-domain</module>
 		<module>iT_Shirt-repository</module>
 		<module>iT_Shirt-web</module>
+		<module>iT_Shirt-annotations</module>
+		<module>iT_Shirt-processor</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -32,6 +34,12 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.0</version>
+        </dependency>
+        
 				<!-- tag::web[] -->
 		<dependency>
             <groupId>org.springframework.boot</groupId>

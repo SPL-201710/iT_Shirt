@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.itshirt.annotation.Feature;
 import co.com.itshirt.domain.Usuario;
 import co.com.itshirt.repository.UserRepository;
 import co.com.itshirt.variability.injection.IReportService;
@@ -14,8 +15,9 @@ import co.com.itshirt.variability.injection.IReportService;
  * Controlador Rest Usuarios.
  * @author ja.picon
  */
+@Feature
 @RestController
-//@RequestMapping("/rest")
+@RequestMapping("/rest")
 public class UsuarioRestController {
 	
 	@Autowired
