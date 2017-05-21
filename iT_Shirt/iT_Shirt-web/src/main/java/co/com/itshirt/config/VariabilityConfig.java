@@ -1,5 +1,6 @@
 package co.com.itshirt.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -16,6 +17,7 @@ public class VariabilityConfig {
 	private boolean busquedaAvanzada;
 	private boolean schedulerEnabled;
 	private String language;
+    private boolean authFacebook;
 
 	
 	public boolean isBusquedaAvanzada() {
@@ -40,6 +42,14 @@ public class VariabilityConfig {
 
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+
+	public boolean isAuthFacebook() {
+		return authFacebook;
+	}
+
+	public void setAuthFacebook(boolean authFacebook) {
+		this.authFacebook = authFacebook;
 	}
 	
 }

@@ -42,9 +42,12 @@ public class FeatureProcessor extends AbstractProcessor {
                 final Writer w = fa.openWriter();
         		try {
                     PrintWriter pw = new PrintWriter(w);
+                    pw.println("# Archivo generado a partir de modelo FeatureIDE.");
+                    pw.println();
                     for (final OptionalFeatures optionalFeature : OptionalFeatures.VALUES) {
+                    	
                     	 pw.print("config."); //Arma una propiedad de tipo: config.AdvancedSearch = false
-                    	 pw.print(optionalFeature.getName());
+                    	 pw.print(optionalFeature.getName().substring(0, 1).toLowerCase() + optionalFeature.getName().substring(1));
                     	 pw.print(" = ");
                     	 pw.print(features.contains(optionalFeature.getName()));
                     	 pw.println();
