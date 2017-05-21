@@ -15,10 +15,68 @@
 					</alt>
 				</and>
 				<feature mandatory="true" name="ShoppingCart"/>
-				<feature name="ProductAdmin"/>
+				<and mandatory="true" name="ProductAdmin">
+					<feature mandatory="true" name="Size"/>
+					<feature mandatory="true" name="StampDesign"/>
+				</and>
+				<and mandatory="true" name="Pay">
+					<feature mandatory="true" name="CreditCard"/>
+					<feature name="ShareOnSocialNetwork"/>
+				</and>
+				<and mandatory="true" name="User">
+					<or mandatory="true" name="Authentication">
+						<feature mandatory="true" name="BD"/>
+						<feature mandatory="true" name="AuthTwitter"/>
+						<feature mandatory="true" name="AuthFacebook"/>
+					</or>
+					<and mandatory="true" name="UpdateProfile">
+						<feature name="ChangePassword"/>
+						<feature name="ChangeAddress"/>
+					</and>
+					<feature name="VIP"/>
+				</and>
+				<and abstract="true" name="Reports">
+					<and name="Rating">
+						<feature mandatory="true" name="Designs"/>
+						<feature name="DesignsByArtists"/>
+					</and>
+					<and name="Sales">
+						<feature name="ByArtist"/>
+						<feature mandatory="true" name="ByPeriod"/>
+					</and>
+				</and>
+				<alt name="SocialNetwork">
+					<feature mandatory="true" name="Facebook"/>
+					<feature mandatory="true" name="Twitter"/>
+				</alt>
 			</and>
 		</struct>
-		<constraints/>
+		<constraints>
+			<rule>
+				<imp>
+					<var>AuthFacebook</var>
+					<var>Facebook</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>AuthTwitter</var>
+					<var>Twitter</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>ShareOnSocialNetwork</var>
+					<var>SocialNetwork</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Rating</var>
+					<var>RateProducts</var>
+				</imp>
+			</rule>
+		</constraints>
 		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
 		<comments/>
 		<featureOrder userDefined="false"/>

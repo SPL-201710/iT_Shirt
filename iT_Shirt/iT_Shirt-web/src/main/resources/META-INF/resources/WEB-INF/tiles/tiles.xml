@@ -34,6 +34,12 @@
         <put-attribute name="current" value=""/>
     </definition>
     
+    <definition name="registration" extends="master.login">
+    	<put-attribute name="title" value="Crear cuenta" />
+        <put-attribute name="body" value="/WEB-INF/views/registration.jsp"/>
+        <put-attribute name="current" value=""/>
+    </definition>
+    
     <definition name="perfil/perfil" extends="master.page">
     	<put-attribute name="title" value="Perfil usuario" />
         <put-attribute name="body" value="/WEB-INF/views/perfil/perfil.jsp"/>
@@ -126,9 +132,15 @@
         <put-attribute name="body" value="/WEB-INF/views/perfil/cambiarCredenciales.jsp"/>
     </definition>
     
+
     <definition name="perfil/temasFavoritos" extends="master.page">
     	<put-attribute name="title" value="Temas Favoritos" />
         <put-attribute name="body" value="/WEB-INF/views/perfil/temasFavoritos.jsp"/>
+	</definition>
+	
+    <definition name="perfil/cambiarDireccion" extends="master.page">
+		<put-attribute name="title" value="Cambiar dirección" />
+        <put-attribute name="body" value="/WEB-INF/views/perfil/cambiarDireccion.jsp"/>
     </definition>
     
     <definition name="estampa/calificaciones" extends="master.page">

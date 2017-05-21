@@ -27,7 +27,7 @@ public class ScheduledTasks {
 
 	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm:ss");
 
-	@Value("${config.schedulerEnabled}")
+	@Value("${config.notifications}")
     private boolean schedulerEnabled;
     
     @Scheduled(fixedRate = 1500000)

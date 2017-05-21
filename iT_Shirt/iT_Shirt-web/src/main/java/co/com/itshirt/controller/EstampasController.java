@@ -61,7 +61,7 @@ public class EstampasController {
 	 */
 	@RequestMapping(value="catalogo", method = RequestMethod.GET)
 	public String verEstampas(@RequestParam(value="id", required=false) Tema idTema, ModelMap model, HttpSession session) {
-		final BusquedaCatalogo busquedaCatalogo = BusquedaFactory.getBusqueda(this.variabilityConfig.isBusquedaAvanzada());
+		final BusquedaCatalogo busquedaCatalogo = BusquedaFactory.getBusqueda(this.variabilityConfig.isAdvancedSearch());
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
     	Iterable<Estampa> lstEntities = null;

@@ -33,5 +33,10 @@ public interface UserRepository extends CrudRepository<Usuario, Long> {
 	@Query("UPDATE Usuario u SET u.estampasDestacar = ?1  WHERE u.idUsuario = ?2")
     public void inicialSuscripVIP(long cant_destacar, long id);
 	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Usuario u SET u.direccion = ?1  WHERE u.idUsuario = ?2")
+    public void actualizarDireccion(String direccion, long id);
+	
     
 }

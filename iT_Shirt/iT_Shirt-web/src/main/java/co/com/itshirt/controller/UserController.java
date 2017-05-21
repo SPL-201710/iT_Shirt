@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import co.com.itshirt.config.VariabilityConfig;
 import co.com.itshirt.domain.Usuario;
 import co.com.itshirt.dto.RegistroUsuarioDTO;
 import co.com.itshirt.enums.EnumEstadoUsuario;
@@ -33,6 +34,8 @@ public class UserController {
 	private RolRepository rolRepository;
 	@Autowired
 	private SecurityService securityService;
+	@Autowired
+	protected VariabilityConfig variabilityConfig;
 
 	/**
      * Crear cuenta de usuario.
@@ -73,6 +76,7 @@ public class UserController {
         usuario.setTelefono(userForm.getTelefono());
         usuario.setEmail(userForm.getEmail());
         usuario.setGenero(userForm.getSexo());
+        usuario.setDireccion(userForm.getDireccion());
         usuario.setRol(this.rolRepository.findBySigla(userForm.getRolUsuario()));
         usuario.setEstado(EnumEstadoUsuario.ACTIVO.getSigla());
         this.userRepository.save(usuario);
@@ -85,6 +89,7 @@ public class UserController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
+    	model.addAttribute("authFacebook", this.variabilityConfig.isAuthFacebook());
         if (error != null) {
         	model.addAttribute("error", "Usuario y contraseña invalida.");
         }

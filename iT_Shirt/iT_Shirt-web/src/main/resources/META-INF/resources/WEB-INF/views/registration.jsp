@@ -94,6 +94,16 @@
             </div>
         </spring:bind>
         
+        <spring:bind path="direccion">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+            	<label class="col-md-4 control-label" for=apellidos>Dirección:</label>  
+		  		<div class="col-md-4">
+		  			 <form:input type="text" path="direccion" required="required" class="form-control" placeholder="Dirección"/>
+                	 <form:errors path="direccion"></form:errors>
+		  		</div>
+            </div>
+        </spring:bind>
+        
         <spring:bind path="sexo">
             <div class="form-group ${status.error ? 'has-error' : ''}">
             	<label class="col-md-4 control-label" for=sexo>Género:</label>  

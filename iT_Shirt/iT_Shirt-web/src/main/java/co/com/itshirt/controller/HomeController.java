@@ -1,8 +1,11 @@
 package co.com.itshirt.controller;
 
+import java.lang.reflect.Field;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,7 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import co.com.itshirt.builder.MenuBuilder;
+import co.com.itshirt.config.MenuBuilder;
+import co.com.itshirt.config.VariabilityConfig;
 import co.com.itshirt.repository.UserRepository;
 import co.com.itshirt.repository.service.SecurityService;
 import co.com.itshirt.security.CustomUserDetails;
@@ -26,6 +30,10 @@ public class HomeController {
 	private UserRepository userRepository;
 	@Autowired
 	private SecurityService securityService;
+	@Autowired
+	protected VariabilityConfig variabilityConfig;
+	@Autowired
+	protected MenuBuilder menuBuilder;
 	
 	/**
 	 * Método que se encarga se ejecutar la petición raíz del proyecto, 
@@ -34,6 +42,9 @@ public class HomeController {
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
 	public String welcome(Model model, HttpSession session) {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		this.cargarConfiguracionEnSesion(session);
+		
 		if (!authentication.getName().equals(ANONYMOUS_USER)) {
 			System.err.println(authentication.getPrincipal());
 			CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
@@ -45,11 +56,20 @@ public class HomeController {
 			session.setAttribute("nombreCompleto", usuario.getNombresCompletos());
 			session.setAttribute("genero", usuario.getGenero());
 			session.setAttribute("rol", rol);
-			session.setAttribute("menus", MenuBuilder.obtenerMenusPorRol(usuario.getRol().getNombre()));
+			session.setAttribute("menus", this.menuBuilder.obtenerMenusPorRol(usuario.getRol().getNombre()));
 			return "welcome";
 		} else {
 			return "home";
 		}
+		
+	}
+
+	private void cargarConfiguracionEnSesion(HttpSession session) {
+		session.setAttribute("authFacebook", this.variabilityConfig.isAuthFacebook());
+		session.setAttribute("advancedSearch", this.variabilityConfig.isAdvancedSearch());
+		session.setAttribute("notifications", this.variabilityConfig.isNotifications());
+		session.setAttribute("changePassword", this.variabilityConfig.isChangePassword());
+		session.setAttribute("vip", this.variabilityConfig.isVip());
 	}
 
 }

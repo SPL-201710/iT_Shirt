@@ -20,6 +20,8 @@ public class RegistroUsuarioDTO {
     @NotNull
 	private String email;
     @NotNull
+    private String direccion;
+    @NotNull
 	private String sexo;
     @NotNull
 	private String ciudad;
@@ -111,6 +113,14 @@ public class RegistroUsuarioDTO {
 
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 	
 }

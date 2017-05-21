@@ -3,9 +3,6 @@ package co.com.itshirt.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
 
 @Configuration
 @PropertySource("config.properties")
@@ -24,22 +21,68 @@ public class VariabilityConfig {
 
 	public void setBusquedaAvanzada(boolean busquedaAvanzada) {
 		this.AdvancedSearch = busquedaAvanzada;
+			
+	}
+	private boolean notifications;
+    private boolean authFacebook;
+    private boolean advancedSearch;
+    private boolean changePassword;
+    private boolean changeAddress;
+    private boolean vip;
+    
+    /**
+     * Constructor por defecto.
+     */
+    public VariabilityConfig() {
+		super();
 	}
 
-	public boolean isSchedulerEnabled() {
-		return schedulerEnabled;
+	public boolean isNotifications() {
+		return notifications;
 	}
 
-	public void setSchedulerEnabled(boolean schedulerEnabled) {
-		this.schedulerEnabled = schedulerEnabled;
+	public void setNotifications(boolean notifications) {
+		this.notifications = notifications;
 	}
 
-	public String getLanguage() {
-		return language;
+	public boolean isAuthFacebook() {
+		return authFacebook;
 	}
 
-	public void setLanguage(String language) {
-		this.language = language;
+	public void setAuthFacebook(boolean authFacebook) {
+		this.authFacebook = authFacebook;
+	}
+
+	public boolean isAdvancedSearch() {
+		return advancedSearch;
+	}
+
+	public void setAdvancedSearch(boolean advancedSearch) {
+		this.advancedSearch = advancedSearch;
+	}
+
+	public boolean isChangePassword() {
+		return changePassword;
+	}
+
+	public void setChangePassword(boolean changePassword) {
+		this.changePassword = changePassword;
+	}
+
+	public boolean isChangeAddress() {
+		return changeAddress;
+	}
+
+	public void setChangeAddress(boolean changeAddress) {
+		this.changeAddress = changeAddress;
+	}
+
+	public boolean isVip() {
+		return vip;
+	}
+
+	public void setVip(boolean vip) {
+		this.vip = vip;
 	}
 	
 }

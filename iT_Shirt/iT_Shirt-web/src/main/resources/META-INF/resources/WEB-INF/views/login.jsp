@@ -50,12 +50,14 @@
 
     </form>
     
-    <div class="col-sm-12">
-        <form action="/signin/facebook" method="POST" class="form-signin">
-            <input type="hidden" name="scope" value="public_profile" />
-            <input type="submit" value="Sign in with Facebook" class="btn btn-block btn-primary">
-        </form>
-	</div>
+    <c:if test="${authFacebook}">
+	    <div class="col-sm-12">
+	        <form action="/signin/facebook" method="POST" class="form-signin">
+	            <input type="hidden" name="scope" value="public_profile" />
+	            <input type="submit" value="Sign in with Facebook" class="btn btn-block btn-primary">
+	        </form>
+		</div>
+	</c:if>
 
 </div>
 <!-- /container -->
