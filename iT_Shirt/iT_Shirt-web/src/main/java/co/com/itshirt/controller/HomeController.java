@@ -1,5 +1,7 @@
 package co.com.itshirt.controller;
 
+import java.lang.reflect.Field;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import co.com.itshirt.builder.MenuBuilder;
+import co.com.itshirt.config.VariabilityConfig;
 import co.com.itshirt.repository.UserRepository;
 import co.com.itshirt.repository.service.SecurityService;
 import co.com.itshirt.security.CustomUserDetails;
@@ -27,6 +30,8 @@ public class HomeController {
 	private UserRepository userRepository;
 	@Autowired
 	private SecurityService securityService;
+	@Autowired
+	protected VariabilityConfig variabilityConfig;
 	
 	/**
 	 * Método que se encarga se ejecutar la petición raíz del proyecto, 
@@ -35,6 +40,9 @@ public class HomeController {
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
 	public String welcome(Model model, HttpSession session) {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		this.cargarConfiguracionEnSesion(session);
+		
 		if (!authentication.getName().equals(ANONYMOUS_USER)) {
 			System.err.println(authentication.getPrincipal());
 			CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
@@ -52,6 +60,11 @@ public class HomeController {
 			return "home";
 		}
 		
+	}
+
+	private void cargarConfiguracionEnSesion(HttpSession session) {
+		session.setAttribute("authFacebook", this.variabilityConfig.isAuthFacebook());
+		session.setAttribute("advancedSearch", this.variabilityConfig.isAdvancedSearch());
 	}
 
 }

@@ -1,47 +1,31 @@
 package co.com.itshirt.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
 
 @Configuration
 @PropertySource("config.properties")
 @ConfigurationProperties(prefix="config")
 public class VariabilityConfig {
 
-	//Indica si es búsqueda simple o avanzada
-	private boolean busquedaAvanzada;
-	private boolean schedulerEnabled;
-	private String language;
+	private boolean notifications;
     private boolean authFacebook;
-
-	
-	public boolean isBusquedaAvanzada() {
-		return busquedaAvanzada;
+    private boolean advancedSearch;
+    
+    /**
+     * Constructor por defecto.
+     */
+    public VariabilityConfig() {
+		super();
 	}
 
-	public void setBusquedaAvanzada(boolean busquedaAvanzada) {
-		this.busquedaAvanzada = busquedaAvanzada;
+	public boolean isNotifications() {
+		return notifications;
 	}
 
-	public boolean isSchedulerEnabled() {
-		return schedulerEnabled;
-	}
-
-	public void setSchedulerEnabled(boolean schedulerEnabled) {
-		this.schedulerEnabled = schedulerEnabled;
-	}
-
-	public String getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(String language) {
-		this.language = language;
+	public void setNotifications(boolean notifications) {
+		this.notifications = notifications;
 	}
 
 	public boolean isAuthFacebook() {
@@ -50,6 +34,14 @@ public class VariabilityConfig {
 
 	public void setAuthFacebook(boolean authFacebook) {
 		this.authFacebook = authFacebook;
+	}
+
+	public boolean isAdvancedSearch() {
+		return advancedSearch;
+	}
+
+	public void setAdvancedSearch(boolean advancedSearch) {
+		this.advancedSearch = advancedSearch;
 	}
 	
 }
