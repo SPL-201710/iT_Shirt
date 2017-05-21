@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import co.com.itshirt.builder.MenuBuilder;
+import co.com.itshirt.config.MenuBuilder;
 import co.com.itshirt.config.VariabilityConfig;
 import co.com.itshirt.repository.UserRepository;
 import co.com.itshirt.repository.service.SecurityService;
@@ -32,6 +32,8 @@ public class HomeController {
 	private SecurityService securityService;
 	@Autowired
 	protected VariabilityConfig variabilityConfig;
+	@Autowired
+	protected MenuBuilder menuBuilder;
 	
 	/**
 	 * Método que se encarga se ejecutar la petición raíz del proyecto, 
@@ -54,7 +56,7 @@ public class HomeController {
 			session.setAttribute("nombreCompleto", usuario.getNombresCompletos());
 			session.setAttribute("genero", usuario.getGenero());
 			session.setAttribute("rol", rol);
-			session.setAttribute("menus", MenuBuilder.obtenerMenusPorRol(usuario.getRol().getNombre()));
+			session.setAttribute("menus", this.menuBuilder.obtenerMenusPorRol(usuario.getRol().getNombre()));
 			return "welcome";
 		} else {
 			return "home";
@@ -65,6 +67,9 @@ public class HomeController {
 	private void cargarConfiguracionEnSesion(HttpSession session) {
 		session.setAttribute("authFacebook", this.variabilityConfig.isAuthFacebook());
 		session.setAttribute("advancedSearch", this.variabilityConfig.isAdvancedSearch());
+		session.setAttribute("notifications", this.variabilityConfig.isNotifications());
+		session.setAttribute("changePassword", this.variabilityConfig.isChangePassword());
+		session.setAttribute("vip", this.variabilityConfig.isVip());
 	}
 
 }

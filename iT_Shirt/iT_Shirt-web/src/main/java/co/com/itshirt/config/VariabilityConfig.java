@@ -12,6 +12,9 @@ public class VariabilityConfig {
 	private boolean notifications;
     private boolean authFacebook;
     private boolean advancedSearch;
+    private boolean changePassword;
+    private boolean changeAddress;
+    private boolean vip;
     
     /**
      * Constructor por defecto.
@@ -42,6 +45,30 @@ public class VariabilityConfig {
 
 	public void setAdvancedSearch(boolean advancedSearch) {
 		this.advancedSearch = advancedSearch;
+	}
+
+	public boolean isChangePassword() {
+		return changePassword;
+	}
+
+	public void setChangePassword(boolean changePassword) {
+		this.changePassword = changePassword;
+	}
+
+	public boolean isChangeAddress() {
+		return changeAddress;
+	}
+
+	public void setChangeAddress(boolean changeAddress) {
+		this.changeAddress = changeAddress;
+	}
+
+	public boolean isVip() {
+		return vip;
+	}
+
+	public void setVip(boolean vip) {
+		this.vip = vip;
 	}
 	
 }

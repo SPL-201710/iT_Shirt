@@ -24,18 +24,18 @@
 					<feature name="ShareOnSocialNetwork"/>
 				</and>
 				<and mandatory="true" name="User">
-					<alt mandatory="true" name="Authentication">
+					<or mandatory="true" name="Authentication">
 						<feature mandatory="true" name="BD"/>
 						<feature mandatory="true" name="AuthTwitter"/>
 						<feature mandatory="true" name="AuthFacebook"/>
-					</alt>
+					</or>
 					<and mandatory="true" name="UpdateProfile">
 						<feature name="ChangePassword"/>
-						<feature name="ChangeAdress"/>
+						<feature name="ChangeAddress"/>
 					</and>
 					<feature name="VIP"/>
 				</and>
-				<and name="Reports">
+				<and abstract="true" name="Reports">
 					<and name="Rating">
 						<feature mandatory="true" name="Designs"/>
 						<feature name="DesignsByArtists"/>

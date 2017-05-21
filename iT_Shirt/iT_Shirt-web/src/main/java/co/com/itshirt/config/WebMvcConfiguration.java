@@ -33,7 +33,6 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter{
     
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		System.err.println("addResourceHandlers JULIAN-PICON");
 		if (!registry.hasMappingForPattern("/webjars/**")) {
 			registry.addResourceHandler("/webjars/**").addResourceLocations(
 					"classpath:/META-INF/resources/webjars/");
