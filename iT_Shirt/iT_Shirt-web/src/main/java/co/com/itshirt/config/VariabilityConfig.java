@@ -13,17 +13,17 @@ import org.springframework.validation.annotation.Validated;
 public class VariabilityConfig {
 
 	//Indica si es búsqueda simple o avanzada
-	private boolean busquedaAvanzada;
+	private boolean AdvancedSearch;
 	private boolean schedulerEnabled;
 	private String language;
 
 	
 	public boolean isBusquedaAvanzada() {
-		return busquedaAvanzada;
+		return this.AdvancedSearch;
 	}
 
 	public void setBusquedaAvanzada(boolean busquedaAvanzada) {
-		this.busquedaAvanzada = busquedaAvanzada;
+		this.AdvancedSearch = busquedaAvanzada;
 	}
 
 	public boolean isSchedulerEnabled() {

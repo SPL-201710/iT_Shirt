@@ -15,3 +15,5 @@ target/
 iT_Shirt-project/src/main/webapp/estampas/
 iT_Shirt-project/src/main/webapp/resources/estampas/
 iT_Shirt/iT_Shirt-web/src/main/webapp/resources/estampas/
+iT_Shirt/iT_Shirt-web/src/main/resources/META-INF/resources/WEB-INF/resources/estampas/
+iT_Shirt/iT_Shirt-web/src/main/resources/application.properties

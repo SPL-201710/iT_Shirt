@@ -67,6 +67,8 @@ public class EstampasController {
     	Iterable<Estampa> lstEntities = null;
     	List<EstampaDTO> estampas = new ArrayList<EstampaDTO>();
     	
+    	System.out.println("Tipo de busqueda: " + busquedaCatalogo);
+    	
     	if(idTema != null)
     	{
     		lstEntities = this.estampaRepository.find(idTema,"A");
