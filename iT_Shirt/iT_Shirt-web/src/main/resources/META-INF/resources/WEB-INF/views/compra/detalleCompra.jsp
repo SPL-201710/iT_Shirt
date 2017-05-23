@@ -8,7 +8,7 @@
 <div class="container-fluid">
 
 	<fieldset>
-		<legend>Detalle de <b>Compra</b> <b class="text-success">No. Transacciï¿½n: </b>${idOrdenCompra}</legend>
+		<legend>Detalle de <b>Compra</b> <b class="text-success">No. Transacción: </b>${idOrdenCompra}</legend>
 
 		<br>
 		
