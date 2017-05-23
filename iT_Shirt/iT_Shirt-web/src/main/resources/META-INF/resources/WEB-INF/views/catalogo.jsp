@@ -41,7 +41,7 @@
 							  <ul class="dropdown-menu" role="menu">
 							  	<li><a href="catalogo">Todos</a></li>
 							  <c:forEach items="${temas}" var="t">
-							  	<li><a href="catalogo?id=${ t.idTema }">${ t.nombre }</a></li>
+							  	<li><a href="catalogo?id=${ t.idTema }&filter=0&nom=">${ t.nombre }</a></li>
 							  </c:forEach>
 							  </ul>
 						</div>

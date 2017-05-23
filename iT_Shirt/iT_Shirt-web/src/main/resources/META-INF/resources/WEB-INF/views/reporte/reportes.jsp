@@ -12,7 +12,9 @@
 		<legend>Reportes de <b>Ventas</b></legend>
 
 		<br>
-		<a target="_blank" href="/pdf">Generate report</a>
+		<a target="_blank" href="/pdf" class="btn btn-primary">Generate report</a> <br><br>
+		
+		<a target="_blank" href="/calificaciones" class="btn btn-primary">Reporte Calificaciones</a>
 		
 	
 	</fieldset>

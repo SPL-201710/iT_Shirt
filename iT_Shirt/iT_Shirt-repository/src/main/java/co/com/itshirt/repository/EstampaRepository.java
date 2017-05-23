@@ -53,6 +53,9 @@ public interface EstampaRepository extends CrudRepository<Estampa, Long> {
 	@Query("SELECT e FROM Estampa e WHERE e.artista = ?1 AND e.destacada = ?2 ORDER BY e.idEstampa DESC")
 	public List<Estampa> findDestArtista(Usuario artista, String destacada);
 	
+	@Query("SELECT e FROM Estampa e ORDER BY e.rating DESC")
+	public List<Estampa> findEstampaReport();
+	
 	@Modifying
 	@Transactional
 	@Query("UPDATE Estampa e SET e.estado = ?1 WHERE e.idEstampa = ?2")

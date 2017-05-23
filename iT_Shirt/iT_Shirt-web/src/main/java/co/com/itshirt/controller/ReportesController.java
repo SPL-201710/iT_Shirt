@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import co.com.itshirt.annotation.OptionalFeature;
+import co.com.itshirt.repository.EstampaRepository;
 import co.com.itshirt.repository.UserRepository;
 //import net.sf.jasperreports.engine.JREmptyDataSource;
 //import net.sf.jasperreports.engine.JRException;
@@ -49,6 +50,9 @@ public class ReportesController {
     private ApplicationContext appContext;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private EstampaRepository estampaRepository;
+	
 	
 	@RequestMapping(value="/admin/reportes", method = RequestMethod.GET)
 	public String reportesAdministrador(ModelMap model, HttpSession session) {
@@ -68,6 +72,18 @@ public class ReportesController {
 
 	    Map<String, Object> params = new HashMap<>();
 	    params.put("datasource", userRepository.findAll());
+
+	    return new ModelAndView(view, params);
+	}
+	
+	@RequestMapping(value = "/calificaciones", method = RequestMethod.GET)
+	public ModelAndView reportEstampasCalificadas() {
+	    JasperReportsPdfView view = new JasperReportsPdfView();
+	    view.setUrl("classpath:/reports/calificacionEstampas.jrxml");
+	    view.setApplicationContext(appContext);
+
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("datasource", estampaRepository.findEstampaReport());
 
 	    return new ModelAndView(view, params);
 	}
