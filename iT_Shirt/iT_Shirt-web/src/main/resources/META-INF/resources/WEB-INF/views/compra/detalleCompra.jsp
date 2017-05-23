@@ -8,7 +8,7 @@
 <div class="container-fluid">
 
 	<fieldset>
-		<legend>Detalle de <b>Compra</b> <b class="text-success">No. Transacciï¿½n: </b>${idOrdenCompra}</legend>
+		<legend>Detalle de <b>Compra</b> <b class="text-success">No. Transacción: </b>${idOrdenCompra}</legend>
 
 		<br>
 		
@@ -43,19 +43,22 @@
                             <br />
                             <i class="glyphicon glyphicon-usd"></i><small><b class="text-primary"> Total: </b>$ ${deto.precioTotalCalculado}</small>
                         <!-- Split button -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary">
-                                Compartir en Redes Sociales</button>
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span><span class="sr-only">Compartir en Redes Sociales</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="#">Google +</a></li>
-                                <li><a href="#">Facebook</a></li>
-                                <li><a href="#">Instagram</a></li>
-                            </ul>
-                        </div>
+                        <div class="col-md-6">
+                        	<!-- Load Facebook SDK for JavaScript -->
+	  
+						  <div id="fb-root"></div>
+							<script>(function(d, s, id) {
+							  var js, fjs = d.getElementsByTagName(s)[0];
+							  if (d.getElementById(id)) return;
+							  js = d.createElement(s); js.id = id;
+							  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.9";
+							  fjs.parentNode.insertBefore(js, fjs);
+							}(document, 'script', 'facebook-jssdk'));</script>
+						
+						  <!-- Your share button code -->
+						  <div class="fb-share-button" data-href="http://localhost:8080/compras/detalle?es=${idOrdenCompra}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8080%2Fcompras%2Fdetalle%3Fes%3D16&amp;src=sdkpreparse">Compartir</a></div>
+                        	<a href="https://twitter.com/share" class="twitter-share-button" data-via="WilmerFabianT" data-lang="es">Twittear</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        </div>	  
                         <c:if test="${deto.estampa.artista.estampasDestacar != null}">
 	                        <form action="calificarEstampa" method="post">	
 								<input type="hidden" name="est" value="${deto.estampa.idEstampa}">
