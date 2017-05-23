@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.com.itshirt.config.VariabilityConfig;
 import co.com.itshirt.domain.DetalleOrden;
 import co.com.itshirt.domain.OrdenCompra;
 import co.com.itshirt.repository.DetalleOrdenRepository;
@@ -40,6 +41,8 @@ public class ComprasController {
 	private EstampaRepository estampaRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	protected VariabilityConfig variabilityConfig;
 	
 	@RequestMapping(value= "historial", method = RequestMethod.GET)
 	public String historial(ModelMap model, HttpSession session) {
@@ -59,6 +62,7 @@ public class ComprasController {
     	} else {
     		model.addAttribute("detallesOrdenVIP", this.detalleOrdenVIPRepository.findByOrdenCompra(ordenCompra));
     	}
+    	model.addAttribute("ratingVar", this.variabilityConfig.isRatingVar());
     	
     	//final usuario = this.userRepository.findOne(arg0)
 		return "compra/detalleCompra";
@@ -74,10 +78,25 @@ public class ComprasController {
 	
 	@RequestMapping(value="/calificarEstampa", method = RequestMethod.POST)
 	public String calificarEstampaVIP(@RequestParam(value="ord", required=true) Long idOrden, @RequestParam(value="est", required=true) Long idEst, 
-			@RequestParam(value="calif", required=true) String calif, 
-			Model model, final RedirectAttributes redirectAttributes){
+			@RequestParam(value="calif", required=true) String calif, Model model, final RedirectAttributes redirectAttributes){
+		
+		if(this.variabilityConfig.isRatingVar())
+		{
 			EstampasControllerVIP estampaVIP = new EstampasControllerVIP(userRepository, estampaRepository);
-		return estampaVIP.calificarEstampaVIP(idOrden, idEst, calif, redirectAttributes);
+			return estampaVIP.calificarEstampaVIP(idOrden, idEst, calif, redirectAttributes);
+		}
+		return "redirect:/compras/detalle?es=" + idOrden;
+	}
+	@RequestMapping(value="/detalle/calificarEstampa", method = RequestMethod.POST)
+	public String calificarEstampaVIPListado(@RequestParam(value="ord", required=true) Long idOrden, @RequestParam(value="est", required=true) Long idEst, 
+			@RequestParam(value="calif", required=true) String calif, Model model, final RedirectAttributes redirectAttributes){
+		
+		if(this.variabilityConfig.isRatingVar())
+		{
+			EstampasControllerVIP estampaVIP = new EstampasControllerVIP(userRepository, estampaRepository);
+			return estampaVIP.calificarEstampaVIP(idOrden, idEst, calif, redirectAttributes);
+		}
+		return "redirect:/compras/detalle?es=" + idOrden;
 	}
 	
 }

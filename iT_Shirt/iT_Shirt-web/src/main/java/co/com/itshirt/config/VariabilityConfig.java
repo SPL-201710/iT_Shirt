@@ -23,8 +23,8 @@ public class VariabilityConfig {
     private boolean twitter;
     private boolean designsByArtist;
     private boolean byArtist;
+    private boolean ratingVar;
     		
-    
     /**
      * Constructor por defecto.
      */
@@ -134,6 +134,14 @@ public class VariabilityConfig {
 
 	public void setByArtist(boolean byArtist) {
 		this.byArtist = byArtist;
+	}
+
+	public boolean isRatingVar() {
+		return ratingVar;
+	}
+
+	public void setRatingVar(boolean ratingVar) {
+		this.ratingVar = ratingVar;
 	}
 	
 }

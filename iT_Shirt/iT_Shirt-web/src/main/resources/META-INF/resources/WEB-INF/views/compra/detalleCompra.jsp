@@ -4,7 +4,16 @@
 <%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
+<script type="text/javascript">
+	function cambia_clase(){
+		if (${TipoMensaje})
+	     	document.getElementById('Mensaje').className = "alert alert-success alert-dismissable";
+	   	else
+	   		document.getElementById('Mensaje').className = "alert alert-danger alert-dismissable";
+	   		
+	}
+	window.onload = cambia_clase;
+</script>
 <div class="container-fluid">
 
 	<fieldset>
@@ -13,9 +22,9 @@
 		<br>
 		
 		<c:if test="${MsgCalificar != null}">
-			<div class="alert alert-success alert-dismissable">
+			<div id="Mensaje" name="Mensaje" class="alert alert-info alert-dismissable">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
-			  <strong>Mensaje!</strong> ${MsgCalificar}
+			  <strong>${MsgCalificar}</strong> 
 			</div>
 		</c:if>
 		

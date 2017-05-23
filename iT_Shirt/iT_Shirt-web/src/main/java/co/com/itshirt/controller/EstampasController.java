@@ -68,9 +68,8 @@ public class EstampasController {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
     	
-    	Iterable<Estampa> lstEntities = null;
-    	Iterable<Estampa> listEstampDest = null;
     	List<EstampaDTO> estampas = new ArrayList<EstampaDTO>();
+    	List<EstampaDTO> estampasDest = new ArrayList<EstampaDTO>();
     	
     	System.out.println(filter);
     	System.out.println(nombre);
@@ -80,68 +79,59 @@ public class EstampasController {
     	{
     		if(filter > 0 && nombre.equals("") && idTema == null)
     		{
-    			estampas = this.buscarEstampasByRating();
-    			lstEntities = null;
+    			estampas = this.buscarEstampasByRating("N");
+    			estampasDest = this.buscarEstampasByRating("S");;
     		}
     		else if(nombre != "" && idTema == null && filter == 0)
         	{
-        		estampas = this.buscarEstampasByNombre(nombre);
-        		lstEntities = null;
+        		estampas = this.buscarEstampasByNombre(nombre, "N");
+        		estampasDest = this.buscarEstampasByNombre(nombre, "S");;
         	}    	    	
         	else if(idTema != null && filter == 0 && nombre.equals(""))
         	{
-        		estampas = this.buscarEstampasByTema(idTema);
-        		listEstampDest = this.estampaRepository.find(idTema,"A","S");
-        		lstEntities = null;
+        		estampas = this.buscarEstampasByTema(idTema, "N");
+        		estampasDest = this.buscarEstampasByTema(idTema, "S");
         	}
         	else if(idTema != null && filter > 0 && nombre.equals(""))
         	{
-        		estampas = this.buscarEstampasByTemaAndRating(idTema);
-        		lstEntities = null;
+        		estampas = this.buscarEstampasByTemaAndRating(idTema, "N");
+        		estampasDest = this.buscarEstampasByTemaAndRating(idTema, "S");
         	}
         	else if(idTema != null && filter == 0 && nombre != "")
         	{
-        		estampas = this.buscarEstampasByTemaAndNombre(idTema, nombre);
-        		lstEntities = null;
+        		estampas = this.buscarEstampasByTemaAndNombre(idTema, nombre, "N");
+        		estampasDest = this.buscarEstampasByTemaAndNombre(idTema, nombre, "S");;
         	}
         	else if(idTema == null && filter >= 0 && nombre != "")
         	{
-        		estampas = this.buscarEstampasByRatingAndNombre(nombre);
-        		lstEntities = null;
+        		estampas = this.buscarEstampasByRatingAndNombre(nombre, "N");
+        		estampasDest = buscarEstampasByRatingAndNombre(nombre, "S");;
         	}
         	else if(idTema != null && filter >= 0 && nombre != "")
         	{
-        		estampas = this.buscarEstampasByTemaAndRatingAndNombre(idTema,nombre);
-        		lstEntities = null;
+        		estampas = this.buscarEstampasByTemaAndRatingAndNombre(idTema, nombre, "N");
+        		estampasDest = this.buscarEstampasByTemaAndRatingAndNombre(idTema, nombre, "S");;
         	}
         	else if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
-        		lstEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
-        		listEstampDest = this.estampaRepository.findDestArtista(usuario, "S");
+        		estampas = this.estampas(this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario));
+        		estampasDest = this.estampas(this.estampaRepository.findDestArtista(usuario, "S"));
         	} 
         	else {
-        		lstEntities = this.estampaRepository.findAll("A", "N");
-        		listEstampDest = this.estampaRepository.findAll("A", "S");
+        		estampas = this.estampas(this.estampaRepository.findAll("A", "N"));
+        		estampasDest = this.estampas(this.estampaRepository.findAll("A", "S"));
         	}
+    	}
+    	else if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla()))
+    	{
+    		estampas = this.estampas(this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario));
+    		estampasDest = this.estampas(this.estampaRepository.findDestArtista(usuario, "S"));
     	}
     	else
     	{
-    		lstEntities = this.estampaRepository.findAll("A", "N");		
+    		estampas = this.estampas(this.estampaRepository.findAll("A", "N"));
+    		estampasDest = this.estampas(this.estampaRepository.findAll("A", "S"));
     	}
-    	List<EstampaDTO> estampasDest = new ArrayList<EstampaDTO>();
-    	
-    	
-    	if (lstEntities != null) {
-    		for (final Estampa estampa : lstEntities) {
-    			estampas.add(new EstampaDTO(estampa));
-    		}
-    	}
-    	
-    	if (listEstampDest != null) {
-    		for (final Estampa estampa : listEstampDest) {
-    			estampasDest.add(new EstampaDTO(estampa));
-    		}
-    	}
-    	
+   	
     	//Temas para el filtro por temas
     	final Iterable<Tema> temas = this.temaRepository.findAll();
 		List<TemaDTO> listTemas = new ArrayList<TemaDTO>();
@@ -149,12 +139,22 @@ public class EstampasController {
 			listTemas.add(new TemaDTO(tema));
 		}
 		
+		if (this.variabilityConfig.isRatingVar())
+			model.addAttribute("estampasDest", estampasDest);
+		else if(!EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla()))
+		{
+			for (final EstampaDTO estampa : estampasDest) {
+    			estampas.add(estampa);
+    		}
+		}
+			
 		model.addAttribute("temas", listTemas);
     	model.addAttribute("estampas", estampas);
-    	model.addAttribute("estampasDest", estampasDest);
     	model.addAttribute("busqueda", busquedaCatalogo);
     	model.addAttribute("roluser", usuario.getRol());
     	model.addAttribute("suscripcion", usuario.getEstampasDestacar());
+    	model.addAttribute("ratingVar", this.variabilityConfig.isRatingVar());
+    	model.addAttribute("VIP", this.variabilityConfig.isVip());
 		return "catalogo";
 	}
 	
@@ -315,60 +315,63 @@ public class EstampasController {
 	
 	@RequestMapping(value="/destacarEstampa", method = RequestMethod.POST)
 	public String destacarEstampa(@RequestParam(value="idEst", required=true) Long idEst, Model model, final RedirectAttributes redirectAttributes){
-		EstampasControllerVIP estampaVIP = new EstampasControllerVIP(userRepository, estampaRepository);
-		return estampaVIP.destacarEstampaVIP(idEst, redirectAttributes);
+		if (this.variabilityConfig.isVip()){
+			EstampasControllerVIP estampaVIP = new EstampasControllerVIP(userRepository, estampaRepository);
+			return estampaVIP.destacarEstampaVIP(idEst, redirectAttributes);
+		}
+		return "redirect:/catalogo";
 	}
 	
-	public List<EstampaDTO> buscarEstampasByTema(Tema tema)
+	public List<EstampaDTO> buscarEstampasByTema(Tema tema, String destacada)
 	{
-		List<Estampa> buscaEstampas = this.estampaRepository.find(tema, "A", "N");
+		List<Estampa> buscaEstampas = this.estampaRepository.find(tema, "A", destacada);
 		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
 		return estampas;
 	}
 	
-	public List<EstampaDTO> buscarEstampasByNombre(String nombre)
+	public List<EstampaDTO> buscarEstampasByNombre(String nombre, String destacada)
 	{
-		List<Estampa> buscaEstampas = this.estampaRepository.findByNombre(nombre, "A");
-		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
-		
-		return estampas;
-	}
-	
-	public List<EstampaDTO> buscarEstampasByRating()
-	{
-		List<Estampa> buscaEstampas = this.estampaRepository.findByRating("A");
+		List<Estampa> buscaEstampas = this.estampaRepository.findByNombre(nombre, "A", destacada);
 		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
 		
 		return estampas;
 	}
 	
-	public List<EstampaDTO> buscarEstampasByTemaAndRating(Tema tema)
+	public List<EstampaDTO> buscarEstampasByRating(String destacada)
 	{
-		List<Estampa> buscaEstampas = this.estampaRepository.findByTemaAndRating(tema,"A");
+		List<Estampa> buscaEstampas = this.estampaRepository.findByRating("A", destacada);
 		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
 		
 		return estampas;
 	}
 	
-	public List<EstampaDTO> buscarEstampasByTemaAndNombre(Tema tema, String nombre)
+	public List<EstampaDTO> buscarEstampasByTemaAndRating(Tema tema, String destacada)
 	{
-		List<Estampa> buscaEstampas = this.estampaRepository.findByTemaAndNombre(tema,"A", nombre);
+		List<Estampa> buscaEstampas = this.estampaRepository.findByTemaAndRating(tema, "A", destacada);
 		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
 		
 		return estampas;
 	}
 	
-	public List<EstampaDTO> buscarEstampasByRatingAndNombre(String nombre)
+	public List<EstampaDTO> buscarEstampasByTemaAndNombre(Tema tema, String nombre, String destacada)
 	{
-		List<Estampa> buscaEstampas = this.estampaRepository.findByRatingAndNombre("A", nombre);
+		List<Estampa> buscaEstampas = this.estampaRepository.findByTemaAndNombre(tema,"A", nombre, destacada);
 		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
 		
 		return estampas;
 	}
 	
-	public List<EstampaDTO> buscarEstampasByTemaAndRatingAndNombre(Tema tema, String nombre)
+	public List<EstampaDTO> buscarEstampasByRatingAndNombre(String nombre, String destacada)
 	{
-		List<Estampa> buscaEstampas = this.estampaRepository.findByTemaAndRatingAndNombre(tema, "A", nombre);
+		List<Estampa> buscaEstampas = this.estampaRepository.findByRatingAndNombre("A", nombre, destacada);
+		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
+		
+		return estampas;
+	}
+	
+	public List<EstampaDTO> buscarEstampasByTemaAndRatingAndNombre(Tema tema, String nombre, String destacada)
+	{
+		List<Estampa> buscaEstampas = this.estampaRepository.findByTemaAndRatingAndNombre(tema, "A", nombre, destacada);
 		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
 		
 		return estampas;
