@@ -55,7 +55,15 @@
 	        <form action="/signin/facebook" method="POST" class="form-signin">
 	            <input type="hidden" name="scope" value="public_profile" />
 	            <input type="submit" value="Sign in with Facebook" class="btn btn-block btn-primary">
+	            
 	        </form>
+		</div>
+		<div class="col-sm-12">
+             <!-- Add Twitter sign in Button -->
+             <form action="/auth/twitter" method="POST" class="" style="text-align: center">
+            	<input type="hidden" name="scope" value="public_profile" />
+            	<input class="btn btn-twitter" value="Sign in with Twitter">
+             </form>
 		</div>
 	</c:if>
 
