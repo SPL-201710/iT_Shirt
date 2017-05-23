@@ -40,6 +40,12 @@ public class Estampa {
 	@Column(name = "esta_destacada")
 	private String destacada = "N";
 	
+	@Column(name = "esta_rating")
+	private float rating = 0;
+	
+	@Column(name = "esta_calificada")
+	private Long calificada = 0L;
+	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "tema_id")
     private Tema tema;
@@ -138,5 +144,21 @@ public class Estampa {
 	public String getSource() {
 		return this.artista.getIdUsuario() + "/" + this.idEstampa + "." + this.extension;
 	}
-	
+
+	public float getRating() {
+		return rating;
+	}
+
+	public void setRating(float rating) {
+		this.rating = rating;
+	}
+
+	public Long getCalificada() {
+		return calificada;
+	}
+
+	public void setCalificada(Long calificado) {
+		this.calificada = calificado;
+	}
+
 }

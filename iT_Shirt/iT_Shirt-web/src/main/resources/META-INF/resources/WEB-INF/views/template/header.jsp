@@ -68,7 +68,7 @@
 <!-- 				<li> -->
 <%-- 					<a href="${contextPath}/verCatalogo/"> --%>
 <!-- 					<i class="glyphicon glyphicon-search"></i> -->
-<!-- 					Catálogo </a> -->
+<!-- 					Catï¿½logo </a> -->
 <!-- 				</li> -->
 <!-- 				<li> -->
 <!-- 					<a href="/personalizacion-web/personalizacion/"> -->
@@ -93,7 +93,7 @@
 <!-- 				<li> -->
 <!-- 					<a href="#"> -->
 <!-- 					<i class="glyphicon glyphicon-wrench"></i> -->
-<!-- 					Cambiar contraseña </a> -->
+<!-- 					Cambiar contraseï¿½a </a> -->
 <!-- 				</li> -->
 				
 <!-- 				<li> -->

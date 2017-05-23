@@ -38,6 +38,7 @@ import co.com.itshirt.security.CustomUserDetails;
 import co.com.itshirt.util.FileUtils;
 import co.com.itshirt.variability.factory.BusquedaCatalogo;
 import co.com.itshirt.variability.factory.BusquedaFactory;
+import co.com.itshirt.variability.delegation.*;
 
 /**
  * Funcionalidades de las Estampas.
@@ -67,22 +68,36 @@ public class EstampasController {
     	Iterable<Estampa> lstEntities = null;
     	List<EstampaDTO> estampas = new ArrayList<EstampaDTO>();
     	
-    	System.out.println("Tipo de busqueda: " + busquedaCatalogo);
+    	Iterable<Estampa> listEstampDest = null;
+    	List<EstampaDTO> estampasDest = new ArrayList<EstampaDTO>();
     	
+    	System.out.println("Tipo de busqueda: " + busquedaCatalogo);
+
     	if(idTema != null)
     	{
-    		lstEntities = this.estampaRepository.find(idTema,"A");
+    		lstEntities = this.estampaRepository.find(idTema,"A","N");
+    		listEstampDest = this.estampaRepository.find(idTema,"A","S");
+    		
     	}
     	else if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
     		lstEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
+    		listEstampDest = this.estampaRepository.findDestArtista(usuario, "S");
     	} else {
-    		lstEntities = this.estampaRepository.findAll("A");
+    		lstEntities = this.estampaRepository.findAll("A", "N");
+    		listEstampDest = this.estampaRepository.findAll("A", "S");
     	}
     	
     	if (lstEntities != null) {
     		for (final Estampa estampa : lstEntities) {
     			System.out.println("Estampa: " + estampa.getEstado());
     			estampas.add(new EstampaDTO(estampa));
+    		}
+    	}
+    	
+    	if (listEstampDest != null) {
+    		for (final Estampa estampaDest : listEstampDest) {
+    			System.out.println("Estampa: " + estampaDest.getEstado());
+    			estampasDest.add(new EstampaDTO(estampaDest));
     		}
     	}
     	
@@ -95,6 +110,7 @@ public class EstampasController {
 		
 		model.addAttribute("temas", listTemas);
     	model.addAttribute("estampas", estampas);
+    	model.addAttribute("estampasDest", estampasDest);
     	model.addAttribute("busqueda", busquedaCatalogo);
     	model.addAttribute("roluser", usuario.getRol());
     	model.addAttribute("suscripcion", usuario.getEstampasDestacar());
@@ -245,34 +261,7 @@ public class EstampasController {
 	
 	@RequestMapping(value="/destacarEstampa", method = RequestMethod.POST)
 	public String destacarEstampa(@RequestParam(value="idEst", required=true) Long idEst, Model model, final RedirectAttributes redirectAttributes){
-		final Estampa estampa = estampaRepository.findOne(idEst);
-		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
-		
-		String Message;
-		if(estampa.getDestacada().equals("N"))
-		{
-			if (usuario.getEstampasDestacar() != null){
-				if (usuario.getEstampasDestacar() > 0){
-					this.estampaRepository.updateDestacada("S", idEst);
-					this.userRepository.updateSuscripVIPEstampas(-1, usuario.getIdUsuario());
-					Message = "La estampa es destacada desde ahora";
-				}
-				else
-					Message = "Ya no puede destacar mas estampas. "
-							+ "Para destacar otra estampa, compre otro paquete VIP o quite el destacado a una estampa";
-			}
-			else 
-				Message = "Debe comprar un paquete VIP para destacar la estampa";
-		}
-		else
-		{
-			this.estampaRepository.updateDestacada("N", idEst);
-			this.userRepository.updateSuscripVIPEstampas(1, usuario.getIdUsuario());
-			Message = "La estampa ya no es destacada";
-		}
-
-		redirectAttributes.addFlashAttribute("errorDelete", Message);
-		return "redirect:/catalogo";
+		EstampasControllerVIP estampaVIP = new EstampasControllerVIP(userRepository, estampaRepository);
+		return estampaVIP.destacarEstampaVIP(idEst, redirectAttributes);
 	}
 }

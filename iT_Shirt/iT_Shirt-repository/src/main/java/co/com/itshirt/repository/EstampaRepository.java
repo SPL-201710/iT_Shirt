@@ -22,11 +22,14 @@ public interface EstampaRepository extends CrudRepository<Estampa, Long> {
 	
 	public List<Estampa> findByTema(Tema tema);
 	
-	@Query("SELECT e FROM Estampa e WHERE e.tema = ?1 AND e.estado = ?2")
-    public List<Estampa> find(Tema tema, String estado);
+	@Query("SELECT e FROM Estampa e WHERE e.tema = ?1 AND e.estado = ?2 AND e.destacada = ?3")
+    public List<Estampa> find(Tema tema, String estado, String destacada);
 	
-	@Query("SELECT e FROM Estampa e WHERE e.estado = ?1")
-    public List<Estampa> findAll(String estado);
+	@Query("SELECT e FROM Estampa e WHERE e.estado = ?1 AND e.destacada = ?2")
+    public List<Estampa> findAll(String estado, String destacada);
+	
+	@Query("SELECT e FROM Estampa e WHERE e.artista = ?1 AND e.destacada = ?2 ORDER BY e.idEstampa DESC")
+	public List<Estampa> findDestArtista(Usuario artista, String destacada);
 	
 	@Modifying
 	@Transactional
@@ -37,5 +40,18 @@ public interface EstampaRepository extends CrudRepository<Estampa, Long> {
 	@Transactional
 	@Query("UPDATE Estampa e SET e.destacada = ?1 WHERE e.idEstampa = ?2")
 	public void updateDestacada(String destacada, long id);
+	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Estampa e SET e.rating = ?1 WHERE e.idEstampa = ?2")
+	public void updateRating(float calificacion, long id);
+	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Estampa e SET e.calificada = e.calificada + 1 WHERE e.idEstampa = ?1")
+	public void updateCalificada(long id);
+	
+	@Query("SELECT e.artista FROM Estampa e WHERE e.idEstampa = ?1")
+	public Usuario findArtistaVIP(Long id);
 	
 }
