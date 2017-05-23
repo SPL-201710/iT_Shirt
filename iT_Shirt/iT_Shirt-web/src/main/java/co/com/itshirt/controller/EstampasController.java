@@ -69,6 +69,7 @@ public class EstampasController {
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
     	
     	Iterable<Estampa> lstEntities = null;
+    	Iterable<Estampa> listEstampDest = null;
     	List<EstampaDTO> estampas = new ArrayList<EstampaDTO>();
     	
     	System.out.println(filter);
@@ -85,6 +86,7 @@ public class EstampasController {
         	else if(idTema != null && filter == 0 && nombre.equals(""))
         	{
         		estampas = this.buscarEstampasByTema(idTema);
+        		listEstampDest = this.estampaRepository.find(idTema,"A","S");
         		lstEntities = null;
         	}
         	else if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
@@ -98,24 +100,20 @@ public class EstampasController {
     	}
     	else
     	{
-    		lstEntities = this.estampaRepository.findAll("A");
-
-    	Iterable<Estampa> listEstampDest = null;
-    	List<EstampaDTO> estampasDest = new ArrayList<EstampaDTO>();
-    	
-    	System.out.println("Tipo de busqueda: " + busquedaCatalogo);
-
-    	if(idTema != null)
-    	{
-    		lstEntities = this.estampaRepository.find(idTema,"A","N");
-    		listEstampDest = this.estampaRepository.find(idTema,"A","S");
-    		
+    		lstEntities = this.estampaRepository.findAll("A", "N");		
     	}
+    	List<EstampaDTO> estampasDest = new ArrayList<EstampaDTO>();
     	
     	
     	if (lstEntities != null) {
     		for (final Estampa estampa : lstEntities) {
     			estampas.add(new EstampaDTO(estampa));
+    		}
+    	}
+    	
+    	if (listEstampDest != null) {
+    		for (final Estampa estampa : listEstampDest) {
+    			estampasDest.add(new EstampaDTO(estampa));
     		}
     	}
     	
@@ -303,7 +301,7 @@ public class EstampasController {
 	
 	public List<EstampaDTO> buscarEstampasByTema(Tema tema)
 	{
-		List<Estampa> buscaEstampas = this.estampaRepository.find(tema, "A");
+		List<Estampa> buscaEstampas = this.estampaRepository.find(tema, "A", "N");
 		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
 		return estampas;
 	}

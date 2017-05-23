@@ -52,14 +52,8 @@
              
             <c:if test="${advancedSearch}">
 	            <div class="col-md-3">
-<<<<<<< HEAD
-	            
-	                <div class="input-group" id="adv-search">
-		                <input type="text" class="form-control" placeholder="Busqueda Avanzada"/>
-=======
 		            <div class="input-group" id="adv-search">
-		                <input type="text" class="form-control" placeholder="Bï¿½squeda avanzada" />
->>>>>>> fe6fc9ce1db717f2f934d30446d4486c4a853427
+		                <input type="text" class="form-control" placeholder="Búsqueda avanzada" />
 		                <div class="input-group-btn">
 		                    <div class="btn-group" role="group">
 		                        <div class="dropdown dropdown-lg">
