@@ -9,20 +9,6 @@ import org.springframework.context.annotation.PropertySource;
 @ConfigurationProperties(prefix="config")
 public class VariabilityConfig {
 
-	//Indica si es búsqueda simple o avanzada
-	private boolean AdvancedSearch;
-	private boolean schedulerEnabled;
-	private String language;
-
-	
-	public boolean isBusquedaAvanzada() {
-		return this.AdvancedSearch;
-	}
-
-	public void setBusquedaAvanzada(boolean busquedaAvanzada) {
-		this.AdvancedSearch = busquedaAvanzada;
-			
-	}
 	private boolean notifications;
     private boolean authFacebook;
     private boolean advancedSearch;

@@ -1,6 +1,9 @@
 package co.com.itshirt.variability.factory;
 
-import co.com.itshirt.dto.variability.IFiltrosCatalogoDTO;
+import java.util.List;
+
+import co.com.itshirt.dto.EstampaDTO;
+import co.com.itshirt.dto.variability.FiltrosCatalogoDTO;
 
 public class BusquedaSencilla extends BusquedaCatalogo {
 	
@@ -9,8 +12,8 @@ public class BusquedaSencilla extends BusquedaCatalogo {
 	}
 
 	@Override
-	public String filtrarCatalogo(IFiltrosCatalogoDTO filtros) {
-		return "Resultado consulta sencilla";
+	public List<EstampaDTO> filtrarCatalogo(FiltrosCatalogoDTO filtros) {
+		return null;
 	}
 
 }

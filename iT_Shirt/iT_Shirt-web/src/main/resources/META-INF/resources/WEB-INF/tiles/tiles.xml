@@ -137,7 +137,7 @@
     	<put-attribute name="title" value="Temas Favoritos" />
         <put-attribute name="body" value="/WEB-INF/views/perfil/temasFavoritos.jsp"/>
 	</definition>
-	
+	 	
     <definition name="perfil/cambiarDireccion" extends="master.page">
 		<put-attribute name="title" value="Cambiar dirección" />
         <put-attribute name="body" value="/WEB-INF/views/perfil/cambiarDireccion.jsp"/>

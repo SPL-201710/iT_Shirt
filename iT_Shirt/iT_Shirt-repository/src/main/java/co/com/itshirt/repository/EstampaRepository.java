@@ -22,6 +22,12 @@ public interface EstampaRepository extends CrudRepository<Estampa, Long> {
 	
 	public List<Estampa> findByTema(Tema tema);
 	
+	@Query("SELECT e FROM Estampa e WHERE e.estaNombreCorto like %?1% AND e.estado = ?2")
+    public List<Estampa> findByNombre(String nombre, String estado);
+	
+	@Query("SELECT e FROM Estampa e WHERE e.rating >= 3.5 AND e.estado = ?1")
+    public List<Estampa> findByRating(String estado);
+	
 	@Query("SELECT e FROM Estampa e WHERE e.tema = ?1 AND e.estado = ?2")
     public List<Estampa> find(Tema tema, String estado);
 	

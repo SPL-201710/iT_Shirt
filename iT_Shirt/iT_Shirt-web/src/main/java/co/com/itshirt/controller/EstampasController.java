@@ -55,33 +55,50 @@ public class EstampasController {
 	protected VariabilityConfig variabilityConfig;
 	@Autowired
 	private DetalleOrdenRepository detalleOrdenRepository;
-	
+
 	/**
 	 * Ver todo el catalogo de estampas.
 	 */
 	@RequestMapping(value="catalogo", method = RequestMethod.GET)
-	public String verEstampas(@RequestParam(value="id", required=false) Tema idTema, ModelMap model, HttpSession session) {
+	public String verEstampas(@RequestParam(value="id", required=false) Tema idTema, @RequestParam(value="filter", required=false) Double filter, @RequestParam(value="nom", required=false) String nombre, ModelMap model, HttpSession session) {
 		final BusquedaCatalogo busquedaCatalogo = BusquedaFactory.getBusqueda(this.variabilityConfig.isAdvancedSearch());
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
+    	
     	Iterable<Estampa> lstEntities = null;
     	List<EstampaDTO> estampas = new ArrayList<EstampaDTO>();
     	
-    	System.out.println("Tipo de busqueda: " + busquedaCatalogo);
+    	System.out.println(filter);
+    	System.out.println(nombre);
+    	System.out.println(idTema);
     	
-    	if(idTema != null)
+    	if(nombre != null || idTema != null || filter != null)
     	{
-    		lstEntities = this.estampaRepository.find(idTema,"A");
+    		if(nombre != "" && idTema == null && filter == 0)
+        	{
+        		estampas = this.buscarEstampasByNombre(nombre);
+        		lstEntities = null;
+        	}    	    	
+        	else if(idTema != null && filter == 0 && nombre.equals(""))
+        	{
+        		estampas = this.buscarEstampasByTema(idTema);
+        		lstEntities = null;
+        	}
+        	else if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
+        		lstEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
+        	} 
+        	else {
+        		lstEntities = this.estampaRepository.findAll("A");
+        	}
     	}
-    	else if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
-    		lstEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
-    	} else {
+    	else
+    	{
     		lstEntities = this.estampaRepository.findAll("A");
     	}
     	
+    	
     	if (lstEntities != null) {
     		for (final Estampa estampa : lstEntities) {
-    			System.out.println("Estampa: " + estampa.getEstado());
     			estampas.add(new EstampaDTO(estampa));
     		}
     	}
@@ -274,5 +291,41 @@ public class EstampasController {
 
 		redirectAttributes.addFlashAttribute("errorDelete", Message);
 		return "redirect:/catalogo";
+	}
+	
+	public List<EstampaDTO> buscarEstampasByTema(Tema tema)
+	{
+		List<Estampa> buscaEstampas = this.estampaRepository.find(tema, "A");
+		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
+		return estampas;
+	}
+	
+	public List<EstampaDTO> buscarEstampasByNombre(String nombre)
+	{
+		List<Estampa> buscaEstampas = this.estampaRepository.findByNombre(nombre, "A");
+		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
+		
+		return estampas;
+	}
+	
+	public List<EstampaDTO> buscarEstampasByRating()
+	{
+		List<Estampa> buscaEstampas = this.estampaRepository.findByRating("A");
+		List<EstampaDTO> estampas = this.estampas(buscaEstampas);
+		
+		return estampas;
+	}
+	
+	public List<EstampaDTO> estampas(List<Estampa> estampasDTO)
+	{
+		List<EstampaDTO> estampas = new ArrayList<EstampaDTO>();
+		
+		if (estampasDTO != null) {
+    		for (final Estampa estampa : estampasDTO) {
+    			estampas.add(new EstampaDTO(estampa));
+    		}
+    	}
+		
+		return estampas;
 	}
 }
