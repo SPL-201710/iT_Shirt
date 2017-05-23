@@ -1,9 +1,11 @@
 package co.com.itshirt.dto.variability;
 
+import co.com.itshirt.domain.Tema;
+
 public class FiltrosAvanzadosCatalogoDTO extends FiltrosCatalogoDTO implements IFiltrosCatalogoDTO {
 	
 	private String autor;
-	private String tema;
+	private Tema tema;
 	
 	public FiltrosAvanzadosCatalogoDTO() {
 		super();
@@ -18,11 +20,11 @@ public class FiltrosAvanzadosCatalogoDTO extends FiltrosCatalogoDTO implements I
 		this.autor = autor;
 	}
 
-	public String getTema() {
+	public Tema getTema() {
 		return tema;
 	}
 
-	public void setTema(String tema) {
+	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
 

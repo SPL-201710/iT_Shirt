@@ -22,8 +22,30 @@ public interface EstampaRepository extends CrudRepository<Estampa, Long> {
 	
 	public List<Estampa> findByTema(Tema tema);
 	
+	@Query("SELECT e FROM Estampa e WHERE e.estaNombreCorto like %?1% AND e.estado = ?2")
+    public List<Estampa> findByNombre(String nombre, String estado);
+	
+	@Query("SELECT e FROM Estampa e WHERE e.rating >= 3.5 AND e.estado = ?1")
+    public List<Estampa> findByRating(String estado);
+	
+	@Query("SELECT e FROM Estampa e WHERE e.tema = ?1 AND e.estado = ?2")
+    public List<Estampa> find(Tema tema, String estado);
+	
+	@Query("SELECT e FROM Estampa e WHERE e.tema = ?1 AND e.estado = ?2 AND e.rating >= 3.5")
+    public List<Estampa> findByTemaAndRating(Tema tema, String estado);
+	
+	@Query("SELECT e FROM Estampa e WHERE e.tema = ?1 AND e.estado = ?2 AND e.estaNombreCorto like %?3%")
+    public List<Estampa> findByTemaAndNombre(Tema tema, String estado, String nombre);
+	
+	@Query("SELECT e FROM Estampa e WHERE e.estado = ?1 AND e.estaNombreCorto like %?2% AND e.rating >= 3.5")
+    public List<Estampa> findByRatingAndNombre(String estado, String nombre);
+	
+	@Query("SELECT e FROM Estampa e WHERE e.tema = ?1 AND e.estado = ?2 AND e.estaNombreCorto like %?3% AND e.rating >= 3.5")
+    public List<Estampa> findByTemaAndRatingAndNombre(Tema tema, String estado, String nombre);
+
 	@Query("SELECT e FROM Estampa e WHERE e.tema = ?1 AND e.estado = ?2 AND e.destacada = ?3")
     public List<Estampa> find(Tema tema, String estado, String destacada);
+
 	
 	@Query("SELECT e FROM Estampa e WHERE e.estado = ?1 AND e.destacada = ?2")
     public List<Estampa> findAll(String estado, String destacada);

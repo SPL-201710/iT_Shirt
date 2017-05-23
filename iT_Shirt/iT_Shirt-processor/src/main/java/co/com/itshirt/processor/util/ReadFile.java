@@ -1,44 +1,44 @@
 package co.com.itshirt.processor.util;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 
 public class ReadFile {
 	
-	private static final String FILENAME = "C:/Users/jpicon/Downloads/annotations-exploration-master (1)/annotations-exploration-master/processors/src/main/java/com/olivierlafleur/guicetest/PatateProcessor.java";
+//	private static final String FILENAME = "C:/Users/ja.picon/Documents/iT_Shirt-22/iT_Shirt/iT_Shirt-processor/configs/default.config";
 
-	public ReadFile() {
-		// TODO Auto-generated constructor stub
+	public ReadFile() throws IOException {
+//		final URL r = getClass().getResource("/configs/default.config");
+//		System.err.println(r);
+//		String filePath = new File("").getAbsolutePath();
+//		System.out.println (filePath);
+//
+//		//http://stackoverflow.com/questions/2788080/reading-a-text-file-in-java    
+//		//http://stackoverflow.com/questions/19874066/how-to-read-text-file-relative-path
+//		BufferedReader reader = new BufferedReader(new FileReader(filePath + "/configs/default.config"));
+//		System.err.println(reader.readLine());
 	}
 	
 	public void readFile() {
 		BufferedReader br = null;
 		FileReader fr = null;
-
 		try {
-
 			String sCurrentLine;
-
 			URL url = this.getClass().getResource("prueba.txt");
-			System.err.println(url);
-//			br = new BufferedReader(new FileReader(FILENAME));
-//			InputStreamReader reader =  new InputStreamReader(this.getClass().getResourceAsStream("/PatateProcessor.java"));
-			br = new BufferedReader(new FileReader(FILENAME));
-
+			String filePath = new File("").getAbsolutePath();
+//			br = new BufferedReader(new FileReader(FILENAME))
+			br = new BufferedReader(new FileReader(filePath + "/configs/default.config"));
 			while ((sCurrentLine = br.readLine()) != null) {
 				System.out.println(sCurrentLine);
 			}
-
 		} catch (IOException e) {
-
 			e.printStackTrace();
-
 		} finally {
-
 			try {
-
 				if (br != null)
 					br.close();
 
@@ -54,9 +54,11 @@ public class ReadFile {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		File file = new File("/configs/default.config");  
+		System.err.println(file.getAbsolutePath());
 		ReadFile readFile = new ReadFile();
-		readFile.readFile();
+//		readFile.readFile();
 	}
 	
 }

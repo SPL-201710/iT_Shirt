@@ -10,7 +10,7 @@ import co.com.itshirt.processor.enums.OptionalFeatures;
 
 public class FeatureList {
 	
-	private static final String FILENAME = "C:/Users/ja.picon/Documents/iT_Shirt-FINAL/iT_Shirt/iT_Shirt-processor/configs/default.config";
+	private static final String FILENAME = "C:/Users/ja.picon/Documents/iT_Shirt-22/iT_Shirt/iT_Shirt-processor/configs/default.config";
 
 	private static FeatureList instance = null;
 

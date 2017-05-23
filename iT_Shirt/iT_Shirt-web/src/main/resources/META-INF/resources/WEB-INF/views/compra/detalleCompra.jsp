@@ -56,6 +56,22 @@
                                 <li><a href="#">Instagram</a></li>
                             </ul>
                         </div>
+                        <div class="col-md-6">
+                        	<!-- Load Facebook SDK for JavaScript -->
+	  
+						  <div id="fb-root"></div>
+							<script>(function(d, s, id) {
+							  var js, fjs = d.getElementsByTagName(s)[0];
+							  if (d.getElementById(id)) return;
+							  js = d.createElement(s); js.id = id;
+							  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.9";
+							  fjs.parentNode.insertBefore(js, fjs);
+							}(document, 'script', 'facebook-jssdk'));</script>
+						
+						  <!-- Your share button code -->
+						  <div class="fb-share-button" data-href="http://localhost:8080/compras/detalle?es=${idOrdenCompra}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8080%2Fcompras%2Fdetalle%3Fes%3D16&amp;src=sdkpreparse">Compartir</a></div>
+                        	<a href="https://twitter.com/share" class="twitter-share-button" data-via="WilmerFabianT" data-lang="es">Twittear</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        </div>	  
                         <c:if test="${ratingVar}">
 	                        <form action="calificarEstampa" method="post">	
 								<input type="hidden" name="est" value="${deto.estampa.idEstampa}">

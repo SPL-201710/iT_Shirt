@@ -9,26 +9,21 @@ import org.springframework.context.annotation.PropertySource;
 @ConfigurationProperties(prefix="config")
 public class VariabilityConfig {
 
-	//Indica si es búsqueda simple o avanzada
-	private boolean AdvancedSearch;
-	private boolean schedulerEnabled;
-	private String language;
-
-	
-	public boolean isBusquedaAvanzada() {
-		return this.AdvancedSearch;
-	}
-
-	public void setBusquedaAvanzada(boolean busquedaAvanzada) {
-		this.AdvancedSearch = busquedaAvanzada;
-			
-	}
 	private boolean notifications;
     private boolean authFacebook;
     private boolean advancedSearch;
     private boolean changePassword;
     private boolean changeAddress;
     private boolean vip;
+    
+    private boolean rateProducts;
+    private boolean authTwitter;
+    private boolean shareOnSocialNetwork;
+    private boolean facebook;
+    private boolean twitter;
+    private boolean designsByArtist;
+    private boolean byArtist;
+    		
     
     /**
      * Constructor por defecto.
@@ -83,6 +78,62 @@ public class VariabilityConfig {
 
 	public void setVip(boolean vip) {
 		this.vip = vip;
+	}
+
+	public boolean isRateProducts() {
+		return rateProducts;
+	}
+
+	public void setRateProducts(boolean rateProducts) {
+		this.rateProducts = rateProducts;
+	}
+
+	public boolean isAuthTwitter() {
+		return authTwitter;
+	}
+
+	public void setAuthTwitter(boolean authTwitter) {
+		this.authTwitter = authTwitter;
+	}
+
+	public boolean isShareOnSocialNetwork() {
+		return shareOnSocialNetwork;
+	}
+
+	public void setShareOnSocialNetwork(boolean shareOnSocialNetwork) {
+		this.shareOnSocialNetwork = shareOnSocialNetwork;
+	}
+
+	public boolean isFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(boolean facebook) {
+		this.facebook = facebook;
+	}
+
+	public boolean isTwitter() {
+		return twitter;
+	}
+
+	public void setTwitter(boolean twitter) {
+		this.twitter = twitter;
+	}
+
+	public boolean isDesignsByArtist() {
+		return designsByArtist;
+	}
+
+	public void setDesignsByArtist(boolean designsByArtist) {
+		this.designsByArtist = designsByArtist;
+	}
+
+	public boolean isByArtist() {
+		return byArtist;
+	}
+
+	public void setByArtist(boolean byArtist) {
+		this.byArtist = byArtist;
 	}
 	
 }

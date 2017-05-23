@@ -1,8 +1,13 @@
 package co.com.itshirt.variability.factory;
 
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.itshirt.dto.variability.IFiltrosCatalogoDTO;
+import co.com.itshirt.dto.EstampaDTO;
+import co.com.itshirt.dto.variability.FiltrosCatalogoDTO;
 
 @Component
 public abstract class BusquedaCatalogo {
@@ -11,7 +16,7 @@ public abstract class BusquedaCatalogo {
 	protected boolean busquedaAvanzada = false;
 	
 	
-	public abstract String filtrarCatalogo(IFiltrosCatalogoDTO filtros);
+	public abstract List<EstampaDTO> filtrarCatalogo(FiltrosCatalogoDTO filtros);
 
 	public String getTipoBusqueda() {
 		return tipoBusqueda;

@@ -14,6 +14,11 @@
 
     <dependencies>
     	<dependency>
+    		<groupId>co.com.itshirt</groupId>
+            <artifactId>iT_Shirt-profile</artifactId>
+            <version>1</version>
+    	</dependency>
+    	<dependency>
             <groupId>co.com.itshirt</groupId>
             <artifactId>iT_Shirt-processor</artifactId>
             <version>1</version>
@@ -67,10 +72,11 @@
 		<resources>
 	        <resource>
 	            <directory>src/main/resources</directory>
-<!-- 	            <excludes> -->
-<!--   	            	Se excluye pues en el procesador se genera nuevamente    -->
-<!-- 	                <exclude>config.properties</exclude> -->
-<!-- 	            </excludes> -->
+
+	            <excludes>
+<!--  	            	Se excluye pues en el procesador se genera nuevamente  -->
+	                <exclude>config.properties</exclude>
+	            </excludes>
 	            <filtering>false</filtering>
 	        </resource>
 	    </resources>

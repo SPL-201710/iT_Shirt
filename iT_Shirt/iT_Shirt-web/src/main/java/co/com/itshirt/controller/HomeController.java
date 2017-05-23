@@ -1,7 +1,9 @@
 package co.com.itshirt.controller;
 
+import java.io.File;
 import java.lang.reflect.Field;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +42,15 @@ public class HomeController {
 	 * validando si existe un usuario logueado o no, para determinar la redirección.
 	 */
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-	public String welcome(Model model, HttpSession session) {
+	public String welcome(Model model, HttpSession session, HttpServletRequest request) {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		String filePath = request.getServletContext().getRealPath("/"); 
+		File newFiles= new File(request.getSession().getServletContext().getRealPath("/WEB-INF/files/"), "test.png");
+		String realPath = request.getRealPath("/somefile.txt");
+		System.err.println( newFiles);
+		System.err.println( filePath);
+		System.err.println("Información de prueba!");
 		
 		this.cargarConfiguracionEnSesion(session);
 		
@@ -70,6 +79,15 @@ public class HomeController {
 		session.setAttribute("notifications", this.variabilityConfig.isNotifications());
 		session.setAttribute("changePassword", this.variabilityConfig.isChangePassword());
 		session.setAttribute("vip", this.variabilityConfig.isVip());
+		
+		session.setAttribute("rateProducts", this.variabilityConfig.isRateProducts());
+		session.setAttribute("authTwitter", this.variabilityConfig.isAuthTwitter());
+		session.setAttribute("shareOnSocialNetwork", this.variabilityConfig.isShareOnSocialNetwork());
+		session.setAttribute("facebook", this.variabilityConfig.isFacebook());
+		session.setAttribute("twitter", this.variabilityConfig.isTwitter());
+		session.setAttribute("designsByArtist", this.variabilityConfig.isDesignsByArtist());
+		session.setAttribute("byArtist", this.variabilityConfig.isByArtist());
+		
 	}
 
 }

@@ -28,27 +28,32 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">                        
-            <div class="col-md-3">
-            	<div class="">
-	            	<div class="btn-group">
-						  <button type="button" class="btn btn-primary dropdown-toggle"	data-toggle="dropdown">
-						    Filtro por Tema <span class="caret"></span>
-						  </button>
-						 
-						  <ul class="dropdown-menu" role="menu">
-						  	<li><a href="catalogo">Todos</a></li>
-						  <c:forEach items="${temas}" var="t">
-						  	<li><a href="catalogo?id=${ t.idTema }">${ t.nombre }</a></li>
-						  </c:forEach>
-						  </ul>
-					</div>
-            	</div>
-            </div> 
+		<div class="col-md-12">
+		<c:choose>
+			<c:when test="${advancedSearch == false}">
+				<div class="col-md-3">
+	            	<div class="">
+		            	<div class="btn-group">
+							  <button type="button" class="btn btn-primary dropdown-toggle"	data-toggle="dropdown">
+							    Filtro por Tema <span class="caret"></span>
+							  </button>
+							 
+							  <ul class="dropdown-menu" role="menu">
+							  	<li><a href="catalogo">Todos</a></li>
+							  <c:forEach items="${temas}" var="t">
+							  	<li><a href="catalogo?id=${ t.idTema }">${ t.nombre }</a></li>
+							  </c:forEach>
+							  </ul>
+						</div>
+	            	</div>
+	            </div>
+			</c:when>
+		</c:choose>                        
+             
             <c:if test="${advancedSearch}">
 	            <div class="col-md-3">
 		            <div class="input-group" id="adv-search">
-		                <input type="text" class="form-control" placeholder="Bï¿½squeda avanzada" />
+		                <input type="text" class="form-control" placeholder="Búsqueda avanzada" />
 		                <div class="input-group-btn">
 		                    <div class="btn-group" role="group">
 		                        <div class="dropdown dropdown-lg">
@@ -57,26 +62,30 @@
 		                                <form class="form-horizontal" role="form">
 		                                  <div class="form-group">
 		                                    <label for="filter">Filtrar por</label>
-		                                    <select class="form-control">
-		                                        <option value="0" selected>All Snippets</option>
-		                                        <option value="1">Featured</option>
-		                                        <option value="2">Most popular</option>
-		                                        <option value="3">Top rated</option>
+		                                    <select name="filter" class="form-control">
+		                                        <option value="0" selected>Todos</option>
+		                                        <option value="1">Mas populares</option>
 		                                    </select>
 		                                  </div>
 		                                  <div class="form-group">
-		                                    <label for="contain">Artista</label>
-		                                    <input class="form-control" type="text" />
+		                                    <label for="contain">Tema</label>
+		                                    <select name="id" class="form-control">
+		                                        <option value="0" selected>Todos</option>
+		                                        <c:forEach items="${temas}" var="t">
+												  	<option value="${ t.idTema }">${ t.nombre }</option>
+												</c:forEach>
+		                                    </select>
 		                                  </div>
 		                                  <div class="form-group">
 		                                    <label for="contain">Contiene las palabras</label>
-		                                    <input class="form-control" type="text" />
+		                                    <input class="form-control" type="text" name="nom"/>
 		                                  </div>
+		                                  
+		                                  
 		                                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 		                                </form>
 		                            </div>
 		                        </div>
-		                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 		                    </div>
 		                </div>
 		            </div>
@@ -103,6 +112,7 @@
 						</c:if>		
 						<br>
 					</a>
+					<label>${e.nombreCorto}</label><br>
 					<c:if test="${e.destacada == 'S'}">
 						<div style="position: absolute; left: 0px; top: 0px;"> 
 							<img src="${contextPath}/resources/images/rotstar2_e0.gif" title="Estampa destacada" alt="Estampa destacada">
