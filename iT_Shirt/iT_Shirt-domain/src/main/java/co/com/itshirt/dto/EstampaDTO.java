@@ -19,6 +19,8 @@ public class EstampaDTO {
 	private Long idArtista;
 	private String nombresArtista;
 	private String destacada;
+	private float rating;
+	private Long calificada;
 	
 	/**
 	 * Constructor vacio por defecto.
@@ -42,6 +44,8 @@ public class EstampaDTO {
 		this.idArtista = estampa.getArtista().getIdUsuario();
 		this.nombresArtista = estampa.getArtista().getNombresCompletos();
 		this.destacada = estampa.getDestacada();
+		this.rating = estampa.getRating();
+		this.calificada = estampa.getCalificada();
 	}
 
 	public Long getIdEstampa() {
@@ -126,6 +130,22 @@ public class EstampaDTO {
 
 	public String getSource() {
 		return this.idArtista + "/" + this.idEstampa + "." + this.extension;
+	}
+
+	public float getRating() {
+		return rating;
+	}
+
+	public void setRating(float rating) {
+		this.rating = rating;
+	}
+
+	public Long getCalificada() {
+		return calificada;
+	}
+
+	public void setCalificada(Long calificada) {
+		this.calificada = calificada;
 	}
 	
 }

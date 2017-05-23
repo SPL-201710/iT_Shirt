@@ -72,7 +72,7 @@ public class ComprasController {
 		return "compra/historial";
 	}
 	
-	@RequestMapping(value="/detalle/calificarEstampa", method = RequestMethod.POST)
+	@RequestMapping(value="/calificarEstampa", method = RequestMethod.POST)
 	public String calificarEstampaVIP(@RequestParam(value="ord", required=true) Long idOrden, @RequestParam(value="est", required=true) Long idEst, 
 			@RequestParam(value="calif", required=true) String calif, 
 			Model model, final RedirectAttributes redirectAttributes){

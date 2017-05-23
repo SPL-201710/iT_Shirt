@@ -105,5 +105,16 @@ public class AdministracionController {
 		redirectAttributes.addFlashAttribute("errorDelete", Message);
 		return "redirect:temas";
 	}
+	
+	@RequestMapping(value="/editarTema", method = RequestMethod.POST)
+	public String editarTema(@RequestParam(value="id", required=false) Tema tema, @RequestParam(value="nameTema", required=false) String nameTema,
+	Model model, HttpServletRequest request, final RedirectAttributes redirectAttributes){
+		String Message = null;
+		tema.setNombre(nameTema);
+		this.temaRepository.save(tema);
+		Message = "El tema se ha editado correctamente";
+		redirectAttributes.addFlashAttribute("errorDelete", Message);
+		return "redirect:temas";
+	}
 
 }

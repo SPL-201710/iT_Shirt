@@ -56,7 +56,7 @@
                                 <li><a href="#">Instagram</a></li>
                             </ul>
                         </div>
-                        <c:if test="${deto.estampa.artista.estampasDestacar != null}">
+                        <c:if test="${ratingVar}">
 	                        <form action="calificarEstampa" method="post">	
 								<input type="hidden" name="est" value="${deto.estampa.idEstampa}">
 								<input type="hidden" name="ord" value="${idOrdenCompra}">

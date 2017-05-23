@@ -20,8 +20,7 @@
 	            <div class="form-group ${status.error ? 'has-error' : ''}">
 	            	<label class="col-md-4 control-label" for="estaNombreCorto">Nombre del tema:</label>  
 			  		<div class="col-md-5">
-	                <form:input type="text" path="nombre" required="required" class="form-control" placeholder="Nombre"
-	                            autofocus="true"/>
+	                <form:input type="text" path="nombre" required="required" class="form-control" placeholder="Nombre" autofocus="true"/>
 	                <form:errors path="nombre"/>
 	                </div>
 	                <!-- Button -->
@@ -46,9 +45,14 @@
     </thead>
     	<c:forEach items="${temas}" var="t">
     		<tr>
-                <td>${t.nombre}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#">
-                <span class="glyphicon glyphicon-edit"></span> Editar</a>
+    			<form action="editarTema" method="post">
+                <td>
+                	<input id="nameTema" name="nameTema" type="text" value="${t.nombre}">
+                </td>
+                <td class="text-center">
+					<input type="hidden" name="id" value="${t.idTema}">
+					<button class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span>Editar</button>
+				</form>
                 <form action="eliminarTema" method="post">
 					<input type="hidden" name="id" value="${t.idTema}">
 					<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span>Eliminar</button>

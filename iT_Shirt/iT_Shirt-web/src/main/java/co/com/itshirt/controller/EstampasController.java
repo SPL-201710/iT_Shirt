@@ -97,9 +97,9 @@ public class EstampasController {
     	}
     	
     	if (listEstampDest != null) {
-    		for (final Estampa estampaDest : listEstampDest) {
-    			System.out.println("Estampa: " + estampaDest.getEstado());
-    			estampasDest.add(new EstampaDTO(estampaDest));
+    		for (final Estampa estampa : listEstampDest) {
+    			System.out.println("Estampa: " + estampa.getEstado());
+    			estampasDest.add(new EstampaDTO(estampa));
     		}
     	}
     	
@@ -116,17 +116,6 @@ public class EstampasController {
     	model.addAttribute("busqueda", busquedaCatalogo);
     	model.addAttribute("roluser", usuario.getRol());
     	model.addAttribute("suscripcion", usuario.getEstampasDestacar());
-		
-    	Long id_Tema= 1L;//estampa.getTema().getIdTema();
-		//List <String> correosAll = this.userRepository.findAllEmail();
-		//List <String> usuariosAll = this.userRepository.findByTema(id_Tema);
-		
-		//for(int i=0;i<usuariosAll.size();i++){
-		  //  System.out.println("Correo"+i+":"+usuariosAll.get(i));
-		//} 
-		//SSLEmail mail = new SSLEmail(correosAll);
-	//	mail.enviarTodos();
-
 		
 		return "catalogo";
 	}
