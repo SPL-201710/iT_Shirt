@@ -24,7 +24,7 @@ import co.com.itshirt.annotation.OptionalFeature;
 @Component
 @OptionalFeature
 public class ScheduledTasks {
-
+ 
 	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm:ss");
 
 	@Value("${config.notifications}")
@@ -36,8 +36,8 @@ public class ScheduledTasks {
     	if (this.schedulerEnabled) {
     		System.err.println("Enviando correos: " + DATE_FORMAT.format(new Date()));
     		System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    		SSLEmail enviarCorreo = new SSLEmail();
-    		enviarCorreo.enviar();
+    	//	SSLEmail enviarCorreo = new SSLEmail();
+    	//	enviarCorreo.enviar();
     	}
     }
 }

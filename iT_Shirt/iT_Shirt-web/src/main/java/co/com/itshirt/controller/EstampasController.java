@@ -25,6 +25,7 @@ import co.com.itshirt.config.VariabilityConfig;
 import co.com.itshirt.domain.DetalleOrden;
 import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.Tema;
+import co.com.itshirt.domain.Usuario;
 import co.com.itshirt.dto.CreacionEstampaDTO;
 import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.dto.TemaDTO;
@@ -36,6 +37,7 @@ import co.com.itshirt.repository.EstampaRepository;
 import co.com.itshirt.repository.TemaRepository;
 import co.com.itshirt.security.CustomUserDetails;
 import co.com.itshirt.util.FileUtils;
+import co.com.itshirt.variability.component.SSLEmail;
 import co.com.itshirt.variability.factory.BusquedaCatalogo;
 import co.com.itshirt.variability.factory.BusquedaFactory;
 import co.com.itshirt.variability.delegation.*;
@@ -114,6 +116,18 @@ public class EstampasController {
     	model.addAttribute("busqueda", busquedaCatalogo);
     	model.addAttribute("roluser", usuario.getRol());
     	model.addAttribute("suscripcion", usuario.getEstampasDestacar());
+		
+    	Long id_Tema= 1L;//estampa.getTema().getIdTema();
+		//List <String> correosAll = this.userRepository.findAllEmail();
+		//List <String> usuariosAll = this.userRepository.findByTema(id_Tema);
+		
+		//for(int i=0;i<usuariosAll.size();i++){
+		  //  System.out.println("Correo"+i+":"+usuariosAll.get(i));
+		//} 
+		//SSLEmail mail = new SSLEmail(correosAll);
+	//	mail.enviarTodos();
+
+		
 		return "catalogo";
 	}
 	
@@ -193,7 +207,20 @@ public class EstampasController {
 		estampa.setPrecio(edicionEstampa.getPrecio());
 		estampa.setTema(this.temaRepository.findOne(edicionEstampa.getIdTema()));
 		this.estampaRepository.save(estampa);
+		
+		
+		Long id_Tema= estampa.getTema().getIdTema();
+				
+		List <String> correosAll = this.userRepository.findByTema(id_Tema);
+		for(int i=0;i<correosAll.size();i++){
+		    System.out.println(i+" El ID del Tema es: "+id_Tema+" Y un Correo suscrito es: "+correosAll.get(i));
+		} 
+		SSLEmail mail = new SSLEmail(correosAll);
+		mail.enviarTodos();
+
 		return "redirect:/catalogo";
+		
+		
 	}
 	
 	/**
