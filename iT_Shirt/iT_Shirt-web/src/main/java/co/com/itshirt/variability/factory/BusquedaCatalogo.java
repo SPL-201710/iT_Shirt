@@ -8,15 +8,12 @@ import org.springframework.stereotype.Component;
 
 import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.dto.variability.FiltrosCatalogoDTO;
-import co.com.itshirt.repository.variability.EstampaAdvanceSearchRepository;
 
 @Component
 public abstract class BusquedaCatalogo {
 	
 	protected String tipoBusqueda = "";
 	protected boolean busquedaAvanzada = false;
-	@Autowired
-	protected EstampaAdvanceSearchRepository estampaRepository;
 	
 	
 	public abstract List<EstampaDTO> filtrarCatalogo(FiltrosCatalogoDTO filtros);
