@@ -105,6 +105,7 @@ public class CarritoComprasController {
 			}
 			session.removeAttribute("elementosCarrito");
 			return "redirect:/compras/detalle?es=" + idOrden;
+
 		} else if (session.getAttribute("compraVIP") != null) {
 			System.err.println("Registrando un pago compra VIP.");
 			final DetalleOrdenVIP ordenVIP = (DetalleOrdenVIP) session.getAttribute("compraVIP");
@@ -121,13 +122,14 @@ public class CarritoComprasController {
 			//Guardando relacion entre orden y detalle orden.
 			ordenVIP.setOrdenCompra(ordenCompra);
 			this.detalleOrdenVIPRepository.save(ordenVIP);
+			long idOrden = ordenCompra.getIdOrdenCompra();
 			if (usuario.getEstampasDestacar() == null)
 				this.userRepository.inicialSuscripVIP(ordenVIP.getSuscripcion().getCantidad(), usuario.getIdUsuario());	
 			else
 				this.userRepository.updateSuscripVIPEstampas(ordenVIP.getSuscripcion().getCantidad(), usuario.getIdUsuario());
-			session.removeAttribute("elementosCarrito");
+			session.removeAttribute("compraVIP");
+			return "redirect:/compras/detalle?es=" + idOrden;
 		}
-		
 		return "redirect:/";
 	}
 	

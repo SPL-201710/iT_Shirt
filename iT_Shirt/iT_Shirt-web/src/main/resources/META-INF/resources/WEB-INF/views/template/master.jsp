@@ -28,6 +28,7 @@
     </head>
     <body>
 	<fieldset>
+		<c:if test="${ratingVar}">
 			<c:if test="${estampasDest != null}">
 				<h1 center>Estampas Destacadas</h1>
 			</c:if>
@@ -38,18 +39,17 @@
 							data-placement="right" style="width: 200px; height: 160px"
 							title="${est.nombreCorto}" src="${contextPath}/resources/estampas/${est.source}"
 							alt="${est.nombreCorto}">
-							<c:if test="${ratingVar}">
 								<input readonly id="calif" name="calif" class="rating rating-loading" value="${est.rating}" data-min="0" data-max="5" data-step="1" data-size="xs">
 								<label>Calificada: ${est.calificada}</label>
-							</c:if>
 							<br>					
 						</a>
-						<label></label>
+						<label>${est.nombreCorto}</label><br>
 						<c:if test="${roluser.nombre == 'Comprador'}">							
 							<a href="${contextPath}/seleccionCamiseta/?es=${est.idEstampa}&url=${est.source}">Seleccionar</a>
 						</c:if>
 					</div>
 				</c:forEach>
+		</c:if>
 	</fieldset>
     		<div class="row profile">
             	<tiles:insertAttribute name="header" />

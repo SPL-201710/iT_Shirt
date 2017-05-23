@@ -82,8 +82,12 @@ public class EstampasControllerVIP {
 	
 	public String calificarEstampaVIP(Long idOrden, Long idEst, String calificacion, final RedirectAttributes redirectAttributes){
 		String Mensaje;
+		boolean TipoMensaje; 
 		if (calificacion.equals(""))
-			Mensaje = "Estampa no calificada. Debe seleccionar el número de estrellas (1 a 5)";
+		{
+			Mensaje = "Error!!! Estampa no calificada. Debe seleccionar el número de estrellas (1 a 5)";
+			TipoMensaje = false;
+		}
 		else
 		{
 			final Estampa estampa = this.estampaRepository.findOne(idEst);
@@ -95,10 +99,12 @@ public class EstampasControllerVIP {
 			System.out.print("\n");
 			this.estampaRepository.updateRating(ratingFinal, idEst);
 			this.estampaRepository.updateCalificada(idEst);
-			Mensaje = "Estampa calificada exitosamente";
+			Mensaje = "Exito: Estampa calificada exitosamente";
+			TipoMensaje = true;
 		}	
 		redirectAttributes.addFlashAttribute("MsgCalificar", Mensaje);
-		return "redirect:/compras/detalle/?es="+String.valueOf(idOrden);
+		redirectAttributes.addFlashAttribute("TipoMensaje", TipoMensaje);
+		return "redirect:/compras/detalle?es=" + idOrden;
 	}
 	
 }

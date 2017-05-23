@@ -53,7 +53,7 @@
             <c:if test="${advancedSearch}">
 	            <div class="col-md-3">
 		            <div class="input-group" id="adv-search">
-		                <input type="text" class="form-control" placeholder="Búsqueda avanzada" />
+		                <input type="text" class="form-control" placeholder="Bï¿½squeda avanzada" />
 		                <div class="input-group-btn">
 		                    <div class="btn-group" role="group">
 		                        <div class="dropdown dropdown-lg">
@@ -113,7 +113,7 @@
 						<br>
 					</a>
 					<label>${e.nombreCorto}</label><br>
-					<c:if test="${e.destacada == 'S'}">
+					<c:if test="${e.destacada == 'S' and VIP}">
 						<div style="position: absolute; left: 0px; top: 0px;"> 
 							<img src="${contextPath}/resources/images/rotstar2_e0.gif" title="Estampa destacada" alt="Estampa destacada">
 					 	</div> 
@@ -138,7 +138,7 @@
 												<input type="hidden" name="es" value="${e.idEstampa}">
 												<button class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
 											</form>
-											<c:if test="${suscripcion != null}">
+											<c:if test="${suscripcion != null and VIP}">
 												<form action="destacarEstampa" method="post">
 													<input type="hidden" name="idEst" value="${e.idEstampa}">
 													<button class='btn btn-primary btn-xs'><span class="glyphicon glyphicon-star-empty"></span>Destacar</button>
