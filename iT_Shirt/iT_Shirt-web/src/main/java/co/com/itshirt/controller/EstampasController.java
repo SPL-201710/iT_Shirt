@@ -25,6 +25,7 @@ import co.com.itshirt.config.VariabilityConfig;
 import co.com.itshirt.domain.DetalleOrden;
 import co.com.itshirt.domain.Estampa;
 import co.com.itshirt.domain.Tema;
+import co.com.itshirt.domain.Usuario;
 import co.com.itshirt.dto.CreacionEstampaDTO;
 import co.com.itshirt.dto.EstampaDTO;
 import co.com.itshirt.dto.TemaDTO;
@@ -36,8 +37,10 @@ import co.com.itshirt.repository.EstampaRepository;
 import co.com.itshirt.repository.TemaRepository;
 import co.com.itshirt.security.CustomUserDetails;
 import co.com.itshirt.util.FileUtils;
+import co.com.itshirt.variability.component.SSLEmail;
 import co.com.itshirt.variability.factory.BusquedaCatalogo;
 import co.com.itshirt.variability.factory.BusquedaFactory;
+import co.com.itshirt.variability.delegation.*;
 
 /**
  * Funcionalidades de las Estampas.
@@ -86,14 +89,27 @@ public class EstampasController {
         	}
         	else if (EnumRol.ARTISTA.getSigla().equals(usuario.getRol().getSigla())) {
         		lstEntities = this.estampaRepository.findByArtistaOrderByIdEstampaDesc(usuario);
+        		listEstampDest = this.estampaRepository.findDestArtista(usuario, "S");
         	} 
         	else {
-        		lstEntities = this.estampaRepository.findAll("A");
+        		lstEntities = this.estampaRepository.findAll("A", "N");
+        		listEstampDest = this.estampaRepository.findAll("A", "S");
         	}
     	}
     	else
     	{
     		lstEntities = this.estampaRepository.findAll("A");
+
+    	Iterable<Estampa> listEstampDest = null;
+    	List<EstampaDTO> estampasDest = new ArrayList<EstampaDTO>();
+    	
+    	System.out.println("Tipo de busqueda: " + busquedaCatalogo);
+
+    	if(idTema != null)
+    	{
+    		lstEntities = this.estampaRepository.find(idTema,"A","N");
+    		listEstampDest = this.estampaRepository.find(idTema,"A","S");
+    		
     	}
     	
     	
@@ -102,6 +118,7 @@ public class EstampasController {
     			estampas.add(new EstampaDTO(estampa));
     		}
     	}
+    	
     	
     	//Temas para el filtro por temas
     	final Iterable<Tema> temas = this.temaRepository.findAll();
@@ -112,9 +129,14 @@ public class EstampasController {
 		
 		model.addAttribute("temas", listTemas);
     	model.addAttribute("estampas", estampas);
+    	model.addAttribute("estampasDest", estampasDest);
     	model.addAttribute("busqueda", busquedaCatalogo);
     	model.addAttribute("roluser", usuario.getRol());
     	model.addAttribute("suscripcion", usuario.getEstampasDestacar());
+		
+    	Long id_Tema= 1L;
+
+		
 		return "catalogo";
 	}
 	
@@ -194,7 +216,20 @@ public class EstampasController {
 		estampa.setPrecio(edicionEstampa.getPrecio());
 		estampa.setTema(this.temaRepository.findOne(edicionEstampa.getIdTema()));
 		this.estampaRepository.save(estampa);
+		
+		
+		Long id_Tema= estampa.getTema().getIdTema();
+				
+		List <String> correosAll = this.userRepository.findByTema(id_Tema);
+		for(int i=0;i<correosAll.size();i++){
+		    System.out.println(i+" El ID del Tema es: "+id_Tema+" Y un Correo suscrito es: "+correosAll.get(i));
+		} 
+		SSLEmail mail = new SSLEmail(correosAll);
+		mail.enviarTodos();
+
 		return "redirect:/catalogo";
+		
+		
 	}
 	
 	/**
@@ -262,35 +297,8 @@ public class EstampasController {
 	
 	@RequestMapping(value="/destacarEstampa", method = RequestMethod.POST)
 	public String destacarEstampa(@RequestParam(value="idEst", required=true) Long idEst, Model model, final RedirectAttributes redirectAttributes){
-		final Estampa estampa = estampaRepository.findOne(idEst);
-		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
-		
-		String Message;
-		if(estampa.getDestacada().equals("N"))
-		{
-			if (usuario.getEstampasDestacar() != null){
-				if (usuario.getEstampasDestacar() > 0){
-					this.estampaRepository.updateDestacada("S", idEst);
-					this.userRepository.updateSuscripVIPEstampas(-1, usuario.getIdUsuario());
-					Message = "La estampa es destacada desde ahora";
-				}
-				else
-					Message = "Ya no puede destacar mas estampas. "
-							+ "Para destacar otra estampa, compre otro paquete VIP o quite el destacado a una estampa";
-			}
-			else 
-				Message = "Debe comprar un paquete VIP para destacar la estampa";
-		}
-		else
-		{
-			this.estampaRepository.updateDestacada("N", idEst);
-			this.userRepository.updateSuscripVIPEstampas(1, usuario.getIdUsuario());
-			Message = "La estampa ya no es destacada";
-		}
-
-		redirectAttributes.addFlashAttribute("errorDelete", Message);
-		return "redirect:/catalogo";
+		EstampasControllerVIP estampaVIP = new EstampasControllerVIP(userRepository, estampaRepository);
+		return estampaVIP.destacarEstampaVIP(idEst, redirectAttributes);
 	}
 	
 	public List<EstampaDTO> buscarEstampasByTema(Tema tema)

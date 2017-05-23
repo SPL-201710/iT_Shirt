@@ -27,7 +27,27 @@
 		
     </head>
     <body>
-        <div class="container">
+	<fieldset>
+			<c:if test="${estampasDest != null}">
+				<h1 center>Estampas Destacadas</h1>
+			</c:if>
+				<c:forEach items="${estampasDest}" var="est">
+					<div class="col-md-2 portfolio-item">
+						<a href="${contextPath}/detalleEstampa/?es=${est.idEstampa}"> <img
+							class="img-responsive" data-toggle="tooltip"
+							data-placement="right" style="width: 200px; height: 160px"
+							title="${est.nombreCorto}" src="${contextPath}/resources/estampas/${est.source}"
+							alt="${est.nombreCorto}">					
+						</a>
+						<label></label>
+						<c:if test="${roluser.nombre == 'Comprador'}">							
+							<a href="${contextPath}/seleccionCamiseta/?es=${est.idEstampa}&url=${est.source}">Seleccionar</a>
+						</c:if>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</fieldset>
     		<div class="row profile">
             	<tiles:insertAttribute name="header" />
             	<div class="col-md-9">
@@ -37,6 +57,7 @@
 				</div>
             </div>
         </div>
+
         <tiles:insertAttribute name="footer" />
         
         <script>

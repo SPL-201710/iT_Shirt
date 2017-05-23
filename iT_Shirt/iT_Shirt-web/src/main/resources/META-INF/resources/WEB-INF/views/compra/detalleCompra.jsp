@@ -6,11 +6,18 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <div class="container-fluid">
-	<fieldset>
 
-		<legend>Detalle de <b>Compra</b> <b class="text-success">No. Transacción: </b>${idOrdenCompra}</legend>
+	<fieldset>
+		<legend>Detalle de <b>Compra</b> <b class="text-success">No. Transacciï¿½n: </b>${idOrdenCompra}</legend>
 
 		<br>
+		
+		<c:if test="${MsgCalificar != null}">
+			<div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong>Mensaje!</strong> ${MsgCalificar}
+			</div>
+		</c:if>
 		
         	<c:forEach items="${detallesOrden}" var="deto">
         		<div class="row">
@@ -49,9 +56,14 @@
                                 <li><a href="#">Instagram</a></li>
                             </ul>
                         </div>
-                        
-                        <input id="input-7-xs" class="rating rating-loading" value="0" data-min="0" data-max="5" data-step="1" data-size="xs">
-                        
+                        <c:if test="${deto.estampa.artista.estampasDestacar != null}">
+	                        <form action="calificarEstampa" method="post">	
+								<input type="hidden" name="est" value="${deto.estampa.idEstampa}">
+								<input type="hidden" name="ord" value="${idOrdenCompra}">
+								<input id="calif" name="calif" class="rating rating-loading" value="0" data-min="0" data-max="5" data-step="1" data-size="xs">
+								<button class='btn btn-primary btn-xs'><span class="glyphicon glyphicon-star-empty"></span>Calificar</button>
+							</form>
+						</c:if>
                     </div>
                 </div>
             </div>

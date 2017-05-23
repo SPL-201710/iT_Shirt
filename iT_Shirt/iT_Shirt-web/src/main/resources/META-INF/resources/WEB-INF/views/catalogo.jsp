@@ -52,9 +52,14 @@
              
             <c:if test="${advancedSearch}">
 	            <div class="col-md-3">
+<<<<<<< HEAD
 	            
 	                <div class="input-group" id="adv-search">
 		                <input type="text" class="form-control" placeholder="Busqueda Avanzada"/>
+=======
+		            <div class="input-group" id="adv-search">
+		                <input type="text" class="form-control" placeholder="B�squeda avanzada" />
+>>>>>>> fe6fc9ce1db717f2f934d30446d4486c4a853427
 		                <div class="input-group-btn">
 		                    <div class="btn-group" role="group">
 		                        <div class="dropdown dropdown-lg">
@@ -101,7 +106,7 @@
 
 			<c:forEach items="${estampas}" var="e">
 				
-				<div class="col-md-4 portfolio-item">
+				<div class="col-md-2 portfolio-item">
 					<a href="${contextPath}/detalleEstampa/?es=${e.idEstampa}"> <img
 						class="img-responsive" data-toggle="tooltip"
 						data-placement="right" style="width: 200px; height: 160px"
@@ -181,11 +186,6 @@
 					</c:choose>
 				</div>
 			</c:forEach>
-
-		</div>
-
 	</fieldset>
-
-
-
+	
 </div>

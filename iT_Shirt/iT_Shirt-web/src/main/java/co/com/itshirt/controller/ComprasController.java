@@ -8,17 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.com.itshirt.domain.DetalleOrden;
 import co.com.itshirt.domain.OrdenCompra;
 import co.com.itshirt.repository.DetalleOrdenRepository;
 import co.com.itshirt.repository.OrdenCompraRepository;
 import co.com.itshirt.repository.vip.DetalleOrdenVIPRepository;
+import co.com.itshirt.repository.EstampaRepository;
+import co.com.itshirt.repository.UserRepository;
 import co.com.itshirt.security.CustomUserDetails;
+import co.com.itshirt.variability.delegation.EstampasControllerVIP;
 
 
 @Controller
@@ -31,6 +36,10 @@ public class ComprasController {
 	private DetalleOrdenRepository detalleOrdenRepository;
 	@Autowired
 	private DetalleOrdenVIPRepository detalleOrdenVIPRepository;
+	@Autowired
+	private EstampaRepository estampaRepository;
+	@Autowired
+	private UserRepository userRepository;
 	
 	@RequestMapping(value= "historial", method = RequestMethod.GET)
 	public String historial(ModelMap model, HttpSession session) {
@@ -50,6 +59,8 @@ public class ComprasController {
     	} else {
     		model.addAttribute("detallesOrdenVIP", this.detalleOrdenVIPRepository.findByOrdenCompra(ordenCompra));
     	}
+    	
+    	//final usuario = this.userRepository.findOne(arg0)
 		return "compra/detalleCompra";
 	}
 	
@@ -59,6 +70,14 @@ public class ComprasController {
     	final CustomUserDetails usuario = (CustomUserDetails) authentication.getPrincipal();
 		model.addAttribute("compras", this.ordenCompraRepository.findByIdUsuario(usuario.getIdUsuario()));
 		return "compra/historial";
+	}
+	
+	@RequestMapping(value="/detalle/calificarEstampa", method = RequestMethod.POST)
+	public String calificarEstampaVIP(@RequestParam(value="ord", required=true) Long idOrden, @RequestParam(value="est", required=true) Long idEst, 
+			@RequestParam(value="calif", required=true) String calif, 
+			Model model, final RedirectAttributes redirectAttributes){
+			EstampasControllerVIP estampaVIP = new EstampasControllerVIP(userRepository, estampaRepository);
+		return estampaVIP.calificarEstampaVIP(idOrden, idEst, calif, redirectAttributes);
 	}
 	
 }
