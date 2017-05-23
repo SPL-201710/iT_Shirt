@@ -237,13 +237,14 @@ public class EstampasController {
 		
 		
 		Long id_Tema= estampa.getTema().getIdTema();
+		String nombreTema=estampa.getTema().getNombre();
 				
 		List <String> correosAll = this.userRepository.findByTema(id_Tema);
 		for(int i=0;i<correosAll.size();i++){
 		    System.out.println(i+" El ID del Tema es: "+id_Tema+" Y un Correo suscrito es: "+correosAll.get(i));
 		} 
-		SSLEmail mail = new SSLEmail(correosAll);
-		mail.enviarTodos();
+		SSLEmail mail = new SSLEmail(correosAll,nombreTema);
+		mail.enviarTodosMejorado();
 
 		return "redirect:/catalogo";
 		

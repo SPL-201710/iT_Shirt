@@ -72,7 +72,7 @@ public class EmailUtil {
 		     msg.addHeader("format", "flowed");
 		     msg.addHeader("Content-Transfer-Encoding", "8bit");
 		      
-		     msg.setFrom(new InternetAddress("no_reply@journaldev.com", "NoReply-JD"));
+		     msg.setFrom(new InternetAddress("no_reply@journaldev.com", "NoReply-iT_Shirt"));
 
 		     msg.setReplyTo(InternetAddress.parse("no_reply@journaldev.com", false));
 
@@ -96,7 +96,7 @@ public class EmailUtil {
 
 	         // Second part is attachment
 	         messageBodyPart = new MimeBodyPart();
-	         String filename = "abc.txt";
+	         String filename = "iTShirtLogo2.PNG";
 	         DataSource source = new FileDataSource(filename);
 	         messageBodyPart.setDataHandler(new DataHandler(source));
 	         messageBodyPart.setFileName(filename);
@@ -152,7 +152,7 @@ public class EmailUtil {
 
 	         // Second part is image attachment
 	         messageBodyPart = new MimeBodyPart();
-	         String filename = "image.png";
+	         String filename = "iTShirtLogo.png";
 	         DataSource source = new FileDataSource(filename);
 	         messageBodyPart.setDataHandler(new DataHandler(source));
 	         messageBodyPart.setFileName(filename);
