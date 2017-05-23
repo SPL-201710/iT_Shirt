@@ -45,8 +45,6 @@
 						</c:if>
 					</div>
 				</c:forEach>
-			</div>
-		</div>
 	</fieldset>
     		<div class="row profile">
             	<tiles:insertAttribute name="header" />
@@ -56,7 +54,6 @@
 		            </div>
 				</div>
             </div>
-        </div>
 
         <tiles:insertAttribute name="footer" />
         

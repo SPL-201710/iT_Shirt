@@ -13,6 +13,8 @@
 		<module>iT_Shirt-web</module>
 		<module>iT_Shirt-annotations</module>
 		<module>iT_Shirt-processor</module>
+		<module>iT_Shirt-rest</module>
+		<module>iT_Shirt-profile</module>
 	</modules>
 	<packaging>pom</packaging>
 

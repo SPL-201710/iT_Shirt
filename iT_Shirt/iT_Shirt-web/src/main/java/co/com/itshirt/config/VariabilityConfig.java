@@ -16,6 +16,15 @@ public class VariabilityConfig {
     private boolean changeAddress;
     private boolean vip;
     
+    private boolean rateProducts;
+    private boolean authTwitter;
+    private boolean shareOnSocialNetwork;
+    private boolean facebook;
+    private boolean twitter;
+    private boolean designsByArtist;
+    private boolean byArtist;
+    		
+    
     /**
      * Constructor por defecto.
      */
@@ -69,6 +78,62 @@ public class VariabilityConfig {
 
 	public void setVip(boolean vip) {
 		this.vip = vip;
+	}
+
+	public boolean isRateProducts() {
+		return rateProducts;
+	}
+
+	public void setRateProducts(boolean rateProducts) {
+		this.rateProducts = rateProducts;
+	}
+
+	public boolean isAuthTwitter() {
+		return authTwitter;
+	}
+
+	public void setAuthTwitter(boolean authTwitter) {
+		this.authTwitter = authTwitter;
+	}
+
+	public boolean isShareOnSocialNetwork() {
+		return shareOnSocialNetwork;
+	}
+
+	public void setShareOnSocialNetwork(boolean shareOnSocialNetwork) {
+		this.shareOnSocialNetwork = shareOnSocialNetwork;
+	}
+
+	public boolean isFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(boolean facebook) {
+		this.facebook = facebook;
+	}
+
+	public boolean isTwitter() {
+		return twitter;
+	}
+
+	public void setTwitter(boolean twitter) {
+		this.twitter = twitter;
+	}
+
+	public boolean isDesignsByArtist() {
+		return designsByArtist;
+	}
+
+	public void setDesignsByArtist(boolean designsByArtist) {
+		this.designsByArtist = designsByArtist;
+	}
+
+	public boolean isByArtist() {
+		return byArtist;
+	}
+
+	public void setByArtist(boolean byArtist) {
+		this.byArtist = byArtist;
 	}
 	
 }
