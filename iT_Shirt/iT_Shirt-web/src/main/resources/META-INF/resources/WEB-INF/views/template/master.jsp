@@ -37,7 +37,12 @@
 							class="img-responsive" data-toggle="tooltip"
 							data-placement="right" style="width: 200px; height: 160px"
 							title="${est.nombreCorto}" src="${contextPath}/resources/estampas/${est.source}"
-							alt="${est.nombreCorto}">					
+							alt="${est.nombreCorto}">
+							<c:if test="${ratingVar}">
+								<input readonly id="calif" name="calif" class="rating rating-loading" value="${est.rating}" data-min="0" data-max="5" data-step="1" data-size="xs">
+								<label>Calificada: ${est.calificada}</label>
+							</c:if>
+							<br>					
 						</a>
 						<label></label>
 						<c:if test="${roluser.nombre == 'Comprador'}">							

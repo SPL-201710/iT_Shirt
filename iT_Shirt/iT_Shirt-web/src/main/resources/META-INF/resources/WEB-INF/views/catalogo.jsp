@@ -106,7 +106,11 @@
 						data-placement="right" style="width: 200px; height: 160px"
 						title="${e.nombreCorto}" src="${contextPath}/resources/estampas/${e.source}"
 						alt="${e.nombreCorto}">
-					
+						<c:if test="${ratingVar}"> 
+							<input readonly id="calif" name="calif" class="rating rating-loading" value="${e.rating}" data-min="0" data-max="5" data-step="1" data-size="xs">
+							<label>Calificada: ${e.calificada}</label>
+						</c:if>		
+						<br>
 					</a>
 					<label>${e.nombreCorto}</label><br>
 					<c:if test="${e.destacada == 'S'}">

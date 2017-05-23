@@ -142,7 +142,6 @@ public class EstampasController {
     		}
     	}
     	
-    	
     	//Temas para el filtro por temas
     	final Iterable<Tema> temas = this.temaRepository.findAll();
 		List<TemaDTO> listTemas = new ArrayList<TemaDTO>();
@@ -156,10 +155,6 @@ public class EstampasController {
     	model.addAttribute("busqueda", busquedaCatalogo);
     	model.addAttribute("roluser", usuario.getRol());
     	model.addAttribute("suscripcion", usuario.getEstampasDestacar());
-		
-    	Long id_Tema= 1L;
-
-		
 		return "catalogo";
 	}
 	
